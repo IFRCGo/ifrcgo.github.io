@@ -16,20 +16,27 @@
 	{
 		"title":"SIMS Scenario Mapping Tool",
 		"image":"images/scenariomapping.png",
-		"tags":["Tool","Situational Analysis","SIMS"],
+		"tags":["Tool","Situational Analysis"],
 		"description":"Scenario mapping tool in Word format. Useful for situational analysis and planning. Produced by SIMS. ",
 		"url":"http://webviz.redcross.org/sims/docs/toolkit/B_FACT%20Analysis%20and%20Decision%20Making/B4%20Scenario%20Mapping.docx"
 	},
 	{
 		"title":"SIMS Situational Analysis and Recommendations Report Template",
 		"image":"images/situationalanalysisreport.png",
-		"tags":["Tool","Situational Analysis","SIMS"],
+		"tags":["Tool","Situational Analysis"],
 		"description":"Situational analysis tool in Word format. Useful for situational analysis and planning. Produced by SIMS. ",
-		"url":"http://webviz.redcross.org/sims/docs/toolkit/A_FACT%20Assessment/A5%20FACT%20Situation%20Analysis%20and%20Response%20Reccomendations%20Report%20TEMPLATE.docx"},
-		{
-			"title":"Coming soon",
-			"image":"images/comingsoon.png",
-			"tags":[],
-			"description":"Dashbords for Syria Crisis Host Countries, analysis tools, and more.",
-			"url":"http://mena-im.github.io/"}
+		"url":"http://webviz.redcross.org/sims/docs/toolkit/A_FACT%20Assessment/A5%20FACT%20Situation%20Analysis%20and%20Response%20Reccomendations%20Report%20TEMPLATE.docx"
+	},
+	{
+		"title":"Guidedance for Emergency Plan of Action",
+		"image":"images/emergencyguidance.png",
+		"tags":["Guide"],
+		"description":"Emergency guidance for DREFs, EAs, and other funding mechanisms.",
+		"url":"http://webviz.redcross.org/sims/docs/toolkit/B_FACT%20Analysis%20and%20Decision%20Making/B6%20IFRC_DREF_Plan%20of%20Action_Guidance-EN_LR.pdf"},
+	{
+		"title":"Coming soon",
+		"image":"images/comingsoon.png",
+		"tags":[],
+		"description":"Dashbords for Syria Crisis Host Countries, analysis tools, and more.",
+		"url":"http://mena-im.github.io/"}
 ]
