@@ -1,4 +1,4 @@
-var colors = ['#ee8b7a','#ec7763','#e9634d','#e64f36','#e64f36','#0288d1','#e33b1f','#b92e17'];
+var colors = ['#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a'];
 
 $.ajax({
 	url:'content/content.json',
