@@ -1,0 +1,23 @@
+[
+	{
+		"title":"Syria Assessment Dashboard",
+		"image":"images/syriasos.png",
+		"tags":["Syria","Dashboard"],
+		"description":"Interactive dashboard showing all assessments in Syria from 2013. Useful for secondary research and planning.",
+		"url":"http://mena-im.github.io/surveys"
+	},
+	{
+		"title":"Syria 3W Dashboard",
+		"image":"images/syria3w.png",
+		"tags":["Syria","Dashboard"],
+		"description":"Interactive 3W Syria Dashboard. Useful for coordination and planning.",
+		"url":"http://mena-im.github.io/Syria3W"
+	},
+	{
+		"title":"Scenario Mapping Tool",
+		"image":"images/scenariomapping.png",
+		"tags":["Tool","Situational Analysis"],
+		"description":"Scenarior mapping tool in Word format. Useful for situational analysis and planning.",
+		"url":"http://mena-im.github.io/Syria3W"
+	}
+]

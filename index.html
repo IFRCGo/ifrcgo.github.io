@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+    <head>
+        <title>MENA IM Hub</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/site.css"/>
+        <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+        <script src="js/isotope.pkgd.min.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-46399763-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row header">
+                <h1>Red Cross MENA IM Hub</h1>
+                <p class="titledesc">Information Management and Sharing Hub for Middle East Region. This hub is public, open source, and minimalist. We welcome any tools or resources complementing this portal. Please contact us with comments or contributions.</p>
+                <p class="links">Contact: <a href="mailto:rdelafosse@redcross.org.uk" target="_blank">Ryan Delafosse</a></p>
+                <p class="links">Github: <a href="https://github.com/mena-im" target="_blank">MENA-IM</a></p>
+            </div>
+            <div class="row">
+                <div class="col-md-12 button-group filter-button-group">
+                    <button class="filterbutton highlight" data-filter="*">Show All</button>
+                </div>
+            </div>
+            <div id="grid">
+
+            </div>
+        </div>
+        <script src="js/site.js"></script>
+    </body>
 </html>
