@@ -2,14 +2,14 @@
 	{
 		"title":"Syria Assessment Dashboard",
 		"image":"images/syriasos.png",
-		"tags":["Syria","Dashboard"],
+		"tags":["Syria","Dashboard", "Secondary Data"],
 		"description":"Interactive dashboard showing all assessments in Syria from 2013. Useful for secondary research and planning.",
 		"url":"http://mena-im.github.io/surveys"
 	},
 	{
 		"title":"Syria 3W Dashboard",
 		"image":"images/syria3w.png",
-		"tags":["Syria","Dashboard"],
+		"tags":["Syria","Dashboard", "3W"],
 		"description":"Interactive 3W Syria Dashboard. Useful for coordination and planning.",
 		"url":"http://mena-im.github.io/Syria3W"
 	},
