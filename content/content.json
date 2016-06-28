@@ -30,9 +30,17 @@
 	{
 		"title":"Guidedance for Emergency Plan of Action",
 		"image":"images/emergencyguidance.png",
-		"tags":["Guide"],
+		"tags":["Guidance"],
 		"description":"Emergency guidance for DREFs, EAs, and other funding mechanisms.",
-		"url":"http://webviz.redcross.org/sims/docs/toolkit/B_FACT%20Analysis%20and%20Decision%20Making/B6%20IFRC_DREF_Plan%20of%20Action_Guidance-EN_LR.pdf"},
+		"url":"http://webviz.redcross.org/sims/docs/toolkit/B_FACT%20Analysis%20and%20Decision%20Making/B6%20IFRC_DREF_Plan%20of%20Action_Guidance-EN_LR.pdf"
+	},
+	{
+		"title":"50 Humanitarian IM Tips",
+		"image":"images/imtips.png",
+		"tags":["Guidance"],
+		"description":"50 Humnitarian IM Tips created by British Red Cross' Simon Johnson. Useful IM resource.",
+		"url":"http://simonbjohnson.github.io/im-tips/#/frontcover"
+	},
 	{
 		"title":"Coming soon",
 		"image":"images/comingsoon.png",
