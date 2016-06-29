@@ -14,6 +14,13 @@
 		"url":"http://mena-im.github.io/Syria3W"
 	},
 	{
+		"title":"Syria Road and Airport Map",
+		"image":"images/airportroadmap.png",
+		"tags":["Syria","Map"],
+		"description":"Syria base map showing roads and airports.",
+		"url":"https://trello-attachments.s3.amazonaws.com/57397e3bd3598c6f48b7587f/5773bda2ec8123bd19a82b27/3014b9767f51da57c43a5d9fc3dd31a2/Syria_RoadAirport.pdf"
+	},
+	{
 		"title":"SIMS Scenario Mapping Tool",
 		"image":"images/scenariomapping.png",
 		"tags":["Tool","Situational Analysis"],
