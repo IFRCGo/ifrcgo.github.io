@@ -1,7 +1,7 @@
 var colors = ['#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a','#ee8b7a'];
 
 $.ajax({
-	url:'content/content.json',
+	url:'https://proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/1mF8R8dLHSlN3574RO2EmOHLns-pPLS3wzpBxle5aIDw/edit%3Fusp%3Dsharing&strip-headers=on',
 	dataType: 'json',
     success: function(data) {
     	initGrid(data);
@@ -11,6 +11,14 @@ $.ajax({
 hover = false;
 
 function initGrid(data){
+
+	data = hxlProxyToJSON(data);
+
+	data.sort(
+    	function(a, b) {
+        	return b['#meta+priority'] - a['#meta+priority'];
+    	}
+	)
 
 	generateGrid(data);
 	generateButtons(data);
@@ -39,24 +47,25 @@ function initGrid(data){
 
 function generateGrid(data){
 	data.forEach(function(d,i){
-		var classes = 'col-md-4 col-sm-6 grid-item';
+		var classes = 'col-md-3 col-sm-6 grid-item';
+		d.tags = d['#meta+tags'].split(',');
 		d.tags.forEach(function(tag){
-			classes += ' '+tag.replace(' ','_').toLowerCase();
+			classes += ' '+tag.replace(/ /g, '_').toLowerCase();
 		});
-		var html = '<div id="grid'+i+'" class="'+classes+'"><div class="inner"><img id="image'+i+'" src="'+d.image+'" /><div id="overlay'+i+'" class="overlay">';
-		html+='<h3 class="grid-title">'+d.title+'</h3><p class="overlaydesc">'+d.description+'</p>';
+		var html = '<div id="grid'+i+'" class="'+classes+'"><div class="inner"><h3 class="grid-title">'+d['#meta+title']+'</h3><div id="overlay'+i+'" class="overlay">';
+		html+='<p class="overlaydesc">'+d['#meta+description']+'</p>';
 		html +='</div></div></div>';
 
 		$('#grid').append(html);
 
-		$('#image'+i).css({"max-width": "100%", "max-height": "auto"});
+		$('#grid'+i).height($('#overlay'+i).height());
 
 		var color = Math.floor((Math.random() * (colors.length-1)));
 		$('#overlay'+i).css({'background-color':colors[color]});
 
 		$('#overlay'+i).on('click touchstart',function(){
 			if($('#overlay'+i).css('opacity')>0.5){
-				window.open(d.url, '_blank');
+				window.open(d['#meta+url'], '_blank');
 			}
 		});
 
@@ -81,7 +90,32 @@ function generateButtons(data){
 	});
 
 	filters.forEach(function(f){
-		var html = '<button class="filterbutton" data-filter=".'+f.replace(' ','_').toLowerCase()+'">'+f+'</button> ';
+		var html = '<button class="filterbutton" data-filter=".'+f.replace(/ /g,'_').toLowerCase()+'">'+f+'</button> ';
 		$('.filter-button-group').append(html);
 	});
+}
+
+function hxlProxyToJSON(input,headers){
+    var output = [];
+    var keys=[]
+    input.forEach(function(e,i){
+        if(i==0){
+            keys = e;
+        }
+        if(headers==true && i>1){
+            var row = {};
+            e.forEach(function(e2,i2){
+                row[keys[i2]] = e2;
+            });
+            output.push(row);
+        }
+        if(headers!=true && i>0){
+            var row = {};
+            e.forEach(function(e2,i2){
+                row[keys[i2]] = e2;
+            });
+            output.push(row);
+        }
+    });
+    return output;
 }
