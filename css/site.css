@@ -55,7 +55,7 @@ p {
 
 .inner {
     height:100%;
-    background-color:#ee8b7a;
+    background-color:#D33F49;
 }
 
 .button-group {
@@ -63,18 +63,22 @@ p {
 }
 
 button {
-    border: 0px solid;
+    border-width: 1px;
+    border-style:solid;
+    border-color:#D33F49;
+    border-radius: 10px;
     font-size:1.4em;
     background-color:#fff;
-    padding: 5px;
+    padding: 10px;
     margin-right:10px;
+    color:#D33F49;
     outline:0;
-    color:indianred;
 }
 
 .highlight {
-    color:darkred;
+    background-color:#FFEBEE;
 }
+
 h1 {
     font-family: 'Arial';
 }
@@ -93,18 +97,18 @@ h1 {
 }
 
 a:link {
-    color:indianred;
+    color:#D33F49;
     text-decoration: none;
 }
 a:visited {
-    color:indianred;
+    color:#D33F49;
     text-decoration: none;
 }
 a:hover {
-    color:firebrick;
+    color:#D33F49;
     text-decoration: none;
 }
 a:active {
-    color:firebrick;
+    color:#D33F49;
     text-decoration: none;
 }
