@@ -1,5 +1,18 @@
-h1 {
+body {
+    font-family: 'Roboto', serif;
+}
+
+h1 { 
     font-size:3em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .titledesc{
@@ -10,17 +23,7 @@ h1 {
 .title{
     font-size:2.5em;
 }
-/*
-p {
-    margin: 5px 0px 0px 0px;
-}
 
-.border{
-    border-width:1px;
-    border-style: solid;
-    border-color: #000;
-}
-*/
 .overlay{
     position: absolute;
     height: 100%;
@@ -69,21 +72,18 @@ button {
     border-style:solid;
     border-color:#D33F49;
     border-radius: 10px;
-    font-size:1.4em;
+    font-size:1.2em;
     background-color:#fff;
     padding: 10px;
     margin-right:10px;
     color:#D33F49;
     outline:0;
     margin-bottom:10px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .highlight {
     background-color:#FFEBEE;
-}
-
-h1 {
-    font-family: 'Arial';
 }
 
 .links {
@@ -114,4 +114,22 @@ a:hover {
 a:active {
     color:#D33F49;
     text-decoration: none;
+}
+
+.bottomspacer {
+    margin-bottom:20px;
+}
+
+.keyfiguretitle {
+    color:#D33F49;
+    font-size:1.2em;
+}
+
+.keyfigure {
+    color: #999;
+    font-size:1.6em;
+}
+
+.large {
+    font-size:2em;
 }

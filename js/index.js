@@ -65,7 +65,13 @@ function generateGrid(data){
 
 		$('#overlay'+i).on('click touchstart',function(){
 			if($('#overlay'+i).css('opacity')>0.5){
-				window.open(d['#meta+url'], '_blank');
+				if(d['#meta+url'].substring(0,1).toLowerCase()=='h'){
+					window.open(d['#meta+url'], '_blank');
+					console.log('external');
+				} else {
+					window.open(d['#meta+url'],'_self');
+					console.log('internal');
+				}
 			}
 		});
 
