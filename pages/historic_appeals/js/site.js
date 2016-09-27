@@ -60,7 +60,6 @@ function generateDash(data,geom){
     var timeLine = dc.lineChart('#time_chart');
     var disasterType = dc.rowChart('#disastertype_chart');
     var region = dc.rowChart('#region_chart');
-    var onset = dc.rowChart('#onset_chart');
     var map = dc.leafletChoroplethChart('#map');
 
     var cf = crossfilter(data);
@@ -89,11 +88,8 @@ function generateDash(data,geom){
     var disasterTypeDimension = cf.dimension(function(d){return d['#crisis+type']});
     var disasterTypeGroup = disasterTypeDimension.group();
 
-    var regionDimension = cf.dimension(function(d){return d['#region']});
+    var regionDimension = cf.dimension(function(d){return d['#region+name']});
     var regionGroup = regionDimension.group();
-
-    var onsetDimension = cf.dimension(function(d){return d['#crisis+speed']});
-    var onsetGroup = onsetDimension.group();
 
     var mapDimension = cf.dimension(function(d){return d['#country+code']});
     var mapGroup = mapDimension.group();
@@ -102,18 +98,18 @@ function generateDash(data,geom){
     var countryGroup = countryDimension.group();    
 
     var beneficiaryAll = cf.groupAll().reduceSum(function(d){
-        if(isNaN(d['#beneficiary'])){
+        if(isNaN(d['#targeted'])){
             return 0
         } else {
-            return d['#beneficiary'];
+            return d['#targeted'];
         }
     });
 
     var drefAll = cf.groupAll().reduceSum(function(d){
-        if(isNaN(d['#value'])){
+        if(isNaN(d['#meta+value'])){
             return 0
         } else {
-            return d['#value'];
+            return d['#meta+value'];
         }
     });              
 
@@ -155,7 +151,9 @@ function generateDash(data,geom){
 
     disasterType
         .width($('#disasterType_chart').width())
-        .height(400)
+        .height(650)
+        .cap(20)
+        .ordering(function(d){ return -d.value })
         .dimension(disasterTypeDimension)
         .group(disasterTypeGroup)
         .elasticX(true)
@@ -167,7 +165,7 @@ function generateDash(data,geom){
 
     region
         .width($('#region_chart').width())
-        .height(220)
+        .height(200)
         .dimension(regionDimension)
         .group(regionGroup)
         .elasticX(true)
@@ -175,20 +173,7 @@ function generateDash(data,geom){
         .colorDomain([0, 1])
         .colorAccessor(function (d) {
             return 1;
-        });
-
-    onset
-        .width($('#onset_chart').width())
-        .height(120)
-        .dimension(onsetDimension)
-        .group(onsetGroup)
-        .elasticX(true)
-        .colors([colors[0], colors[3]])
-        .colorDomain([0, 1])
-        .colorAccessor(function (d) {
-            return 1;
-        });                
-                    
+        }); 
     
     dc.dataCount('#count-info')
             .dimension(cf)
@@ -252,13 +237,14 @@ function generateDash(data,geom){
             .group(function (d) {
                 return d[countryGroup];
             })
+            .ordering(function(d){ return -d.value })
             .size(650)
             .columns([
                 function(d){
                    return d['#country+name']; 
                 },
                 function(d){
-                   return d['#region']; 
+                   return d['#region_name']; 
                 },
                 function(d){
                    return d['#crisis+type']; 
@@ -270,10 +256,10 @@ function generateDash(data,geom){
                    return d['#date+end'].getDate()  + "-" + (d['#date+end'].getMonth()+1) + "-" + d['#date+end'].getFullYear();; 
                 },
                 function(d){
-                   return d['#value']; 
+                   return d['#meta+value']; 
                 },
                 function(d){
-                   return d['#beneficiary']; 
+                   return d['#affected']; 
                 }
             ]);            
                            
@@ -345,8 +331,8 @@ function generateDash(data,geom){
         filterDates(new Date(2010,0,1),new Date(2010,11,31));
     });
 
-    $('#filter2009').on("click",function(){
-        filterDates(new Date(2009,0,1),new Date(2009,11,31));
+    $('#filter2000').on("click",function(){
+        filterDates(new Date(2000,0,1),new Date(2009,11,31));
     });                             
 
     function filterDates(start,end){
@@ -358,20 +344,10 @@ function generateDash(data,geom){
 
 function dataPrep(data){
 
-    var dateFormat = d3.time.format("%d/%m/%y");
+    var dateFormat = d3.time.format("%d/%m/%Y");
 
     var today = new Date();
     var oneDay = 24*60*60*1000;
-
-    var regionLookUp = {
-        'AM':'Americas',
-        'AP':'Asia Pacific',
-        'CWAF':'Central and West Africa',
-        'EA':'East Africa',
-        'EU':'Europe',
-        'ME':'Middle East and North Africa',
-        'SAF':'Southern Africa'
-    }
 
     data.forEach(function(d,i){
         d['#date+start'] = dateFormat.parse(d['#date+start']);
@@ -391,11 +367,6 @@ function dataPrep(data){
             d['#date+end'] = new Date(d['#date+start']);
             d['#date+end'].setDate(d['#date+start'].getDate()+100);
         }
-        d['#region'] = regionLookUp[d['#region']];
-        if(d['#crisis+type']=='Tsunami'){d['#crisis+type']='Other'}
-        if(d['#crisis+type']=='Land Slide'){d['#crisis+type']='Other'}
-        if(d['#crisis+type']=='Complex Emergency'){d['#crisis+type']='Other'}
-        if(d['#crisis+type']==''){d['#crisis+type']='No Data'}
     });
     return data;
 }
@@ -513,21 +484,18 @@ function hxlProxyToJSON(input,headers){
 
 var dataCall = $.ajax({ 
     type: 'GET', 
-    url: 'data/drefs_compact.csv',
-    dataType: 'text',
+    url: 'https://proxy.hxlstandard.org/data.json?replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&merge-tags02=country%2Bcode&filter02=merge&filter01=replace-map&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&merge-keys02=country%2Bname',
+    dataType: 'json',
 });
 
 var geomCall = $.ajax({ 
     type: 'GET', 
-    url: 'data/worldmap.json', 
+    url: '/data/worldmap.json', 
     dataType: 'json'
 });
 
-$('#cw_centercolumn').removeClass('span6');
-$('#cw_centercolumn').addClass('span9');
-
 $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
-    var data = Papa.parse(dataArgs[0]).data;
+    var data = dataArgs[0];
     data = dataPrep(hxlProxyToJSON(data));
     data = roundMonths(data);
     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);

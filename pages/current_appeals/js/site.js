@@ -57,7 +57,7 @@ function updateTable(data){
 	$('#data-table').html("");
 	var html = "";
 	data.forEach(function(d,i){
-		html += '<tr><td>'+d['#meta+type']+'</td><td>'+d['#crises+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#affected'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">'+d['#meta+id']+'</a></td></tr>';
+		html += '<tr><td>'+d['#meta+type']+'</td><td>'+d['#crises+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">'+d['#meta+id']+'</a></td></tr>';
 	});
 	$('#tcontents').html(html);
 	data.forEach(function(d,i){
@@ -150,7 +150,7 @@ function updateKeyFigures(data){
 	data.forEach(function(d,i){
 		totalappeals+=parseFloat(d['#meta+value']);
 		totalfunding+=parseFloat(d['#meta+funding']);
-		totalBen+=parseFloat(d['#affected']);
+		totalBen+=parseFloat(d['#targeted']);
 		if(d['#meta+type']=='DREF'){
 			totalDREF +=1;
 		} else {
@@ -272,7 +272,7 @@ $('#loadingmodal').modal('show');
 
 var dataCall = $.ajax({ 
     type: 'GET', 
-    url: 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E2016-09-01&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0', 
+    url: 'https://proxy.hxlstandard.org/data.json?replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&merge-tags02=country%2Bcode&filter02=merge&filter01=replace-map&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&merge-keys02=country%2Bname', 
     dataType: 'json',
 });
 

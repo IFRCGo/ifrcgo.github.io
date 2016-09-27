@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <title>DREFs Dashboard</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/dc.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/leaflet.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/introjs.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="css/site.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+        <script src="/libs/jquery.js"></script>
+        <script src="/libs/d3.min.js"></script>
+        <script src="/libs/crossfilter.v1.min.js"></script>
+        <script src="/libs/dc.js"></script>
+        <script src="/libs/leaflet.js"></script>
+        <script src="/libs/dc.leaflet.js"></script>
+        <script src="/libs/d3.tip.min.js"></script>
+        <script src="/libs/intro.js"></script>
+        <script src="/libs/topojson.v1.min.js"></script>
+        <script src="/libs/papaparse.min.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-46399763-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>         
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">  
+                    <p><h2 id="title">Historic Appeals and DREFs dashboard</h2></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">  
+                    <p>A dashboard of DREF data since 1924. Use the charts and map to filter to the subset you are interested in by clicking the fields.  Data can be downloaded <a>here</a>.  Use the help button for further instructions.</p>
+                </div>
+            </div>
+            <div class="row">                           
+                <div class="col-xs-2">
+                    <a class="reset btn btn-primary btn-sm" id="intro">Help</a>
+                </div>                  
+                <div class="col-xs-2">
+                    <a class="reset btn btn-primary btn-sm" id="reset" href="javascript:dc.filterAll();dc.redrawAll();">Reset All</a>
+                </div>                     
+            </div>                   
+            <div class="row borders">                
+                <div id="dreftotal" class="col-xs-4 headline">
+                    DREF Total (CHF): <span class="filter-count"></span>
+                </div>
+                <div id="bentotal" class="col-xs-4 headline">
+                    Beneficiaries Total: <span class="filter-count"></span>
+                </div>
+                <div id="count-info" class="col-xs-4 headline">
+                    <span class="filter-count count"></span> selected out of <span class="total-count count"></span> DREFs.
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h4>Active DREFs</h4>
+                    Filter chart by: <a id="lasttwelve" class="filterlink">Last 1 Year</a>
+                    <a id="lastsix" class="filterlink">Last 6 months</a>
+                    <a id="filter2016" class="filterlink">2016</a>
+                    <a id="filter2015" class="filterlink">2015</a>
+                    <a id="filter2014" class="filterlink">2014</a>
+                    <a id="filter2013" class="filterlink">2013</a>
+                    <a id="filter2012" class="filterlink">2012</a>
+                    <a id="filter2011" class="filterlink">2011</a>
+                    <a id="filter2010" class="filterlink">2010</a>
+                    <a id="filter2000" class="filterlink">2000s</a>
+                    <div id="time_chart" class="viz_chart">
+                        Current filter: <span class='filter' style='display: none;'></span> 
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Disaster Type</h4>
+                    <div id="disastertype_chart" class="viz_chart">
+                        Current filter: <span class='filter' style='display: none;'></span>                        
+                    </div>
+                </div>                
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Map</h4>
+                            Current filter: <span id="mapfilter"></span>
+                            <div id="map" class="viz_chart">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">                        
+                        <div class="col-md-12">
+                            <h4>Region</h4>
+                            <div id="region_chart" class="viz_chart">
+                                Current filter: <span class='filter' style='display: none;'></span> 
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>Data Table</h3>
+                    <table class="table table-hover" id="data-table">
+                        <thead>
+                            <tr class="header" id="tabletip">
+                                <th>Country</th>
+                                <th>Region</th>
+                                <th>Disaster Type</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Amount (CHF)</th>
+                                <th>Beneficiaries</th>                        
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>            
+        </div>
+        <script src="js/site.js"></script> 
+    </body>
+</html>
