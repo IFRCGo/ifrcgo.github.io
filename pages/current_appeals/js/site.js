@@ -268,6 +268,7 @@ function dataPrep(data){
 
 var map = '';
 var table='';
+$('#loadingmodal').modal('show');
 
 var dataCall = $.ajax({ 
     type: 'GET', 
@@ -285,5 +286,6 @@ $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
     var data = dataPrep(hxlProxyToJSON(dataArgs[0]));
     console.log(data);
     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
+    $('#loadingmodal').modal('hide');
     generateDash(data,geom)
 });
