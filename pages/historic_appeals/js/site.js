@@ -333,7 +333,33 @@ function generateDash(data,geom){
 
     $('#filter2000').on("click",function(){
         filterDates(new Date(2000,0,1),new Date(2009,11,31));
-    });                             
+    });
+
+    $('#filter1990').on("click",function(){
+        filterDates(new Date(1990,0,1),new Date(1999,11,31));
+    }); 
+
+    $('#filter1980').on("click",function(){
+        filterDates(new Date(1980,0,1),new Date(1989,11,31));
+    }); 
+    $('#filter1970').on("click",function(){
+        filterDates(new Date(1970,0,1),new Date(1979,11,31));
+    }); 
+    $('#filter1960').on("click",function(){
+        filterDates(new Date(1960,0,1),new Date(1969,11,31));
+    }); 
+    $('#filter1950').on("click",function(){
+        filterDates(new Date(1950,0,1),new Date(1959,11,31));
+    }); 
+    $('#filter1940').on("click",function(){
+        filterDates(new Date(1940,0,1),new Date(1949,11,31));
+    }); 
+    $('#filter1930').on("click",function(){
+        filterDates(new Date(1930,0,1),new Date(1939,11,31));
+    }); 
+    $('#filter1920').on("click",function(){
+        filterDates(new Date(1920,0,1),new Date(1929,11,31));
+    });                                  
 
     function filterDates(start,end){
         timeLine.filterAll();
