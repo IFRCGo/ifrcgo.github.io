@@ -359,7 +359,12 @@ function generateDash(data,geom){
     }); 
     $('#filter1920').on("click",function(){
         filterDates(new Date(1920,0,1),new Date(1929,11,31));
-    });                                  
+    });        
+
+    $('#reset').on('click',function(){
+        dc.filterAll();
+        dc.redrawAll();
+    });                          
 
     function filterDates(start,end){
         timeLine.filterAll();
