@@ -256,10 +256,10 @@ function generateDash(data,geom){
                    return d['#date+end'].getDate()  + "-" + (d['#date+end'].getMonth()+1) + "-" + d['#date+end'].getFullYear();; 
                 },
                 function(d){
-                   return d['#meta+value']; 
+                   return niceFormatNumber(d['#meta+value'],false); 
                 },
                 function(d){
-                   return d['#affected']; 
+                   return niceFormatNumber(d['#targeted'],false); 
                 }
             ]);            
                            
@@ -480,6 +480,26 @@ $('#intro').click(function(){
     intro.start();
 });
 
+function niceFormatNumber(num,round){
+    if(!round){
+        var format = d3.format("0,000");
+        return format(num);
+    } else {
+        var output = d3.format(".4s")(num);
+        if(output.slice(-1)=='k'){
+            output = Math.round(output.slice(0, -1) * 1000);
+            output = d3.format("0,000")(output);
+        } else if(output.slice(-1)=='M'){
+            output = d3.format(".1f")(output.slice(0, -1))+' million';
+        } else if (output.slice(-1) == 'G') {
+            output = output.slice(0, -1) + ' billion';
+        } else {
+            output = ''+d3.format(".3s")(num);
+        }            
+        return output;
+    }
+}
+
 function hxlProxyToJSON(input,headers){
     var output = [];
     var keys=[]
@@ -508,6 +528,8 @@ function hxlProxyToJSON(input,headers){
     return output;
 }
 
+$('#loadingmodal').modal('show');
+
 var dataCall = $.ajax({ 
     type: 'GET', 
     url: 'https://proxy.hxlstandard.org/data.json?replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&merge-tags02=country%2Bcode&filter02=merge&filter01=replace-map&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&merge-keys02=country%2Bname',
@@ -525,5 +547,6 @@ $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
     data = dataPrep(hxlProxyToJSON(data));
     data = roundMonths(data);
     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
+    $('#loadingmodal').modal('hide');
     generateDash(data,geom);
 });
