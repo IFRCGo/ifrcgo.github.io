@@ -213,22 +213,26 @@ function createPie(id,width,inner,percent){
 }
 
 function niceFormatNumber(num,round){
-	if(!round){
-		var format = d3.format("0,000");
-		return format(num);
+	if(isNaN(num)){
+		return num;
 	} else {
-		var output = d3.format(".4s")(num);
-        if(output.slice(-1)=='k'){
-            output = Math.round(output.slice(0, -1) * 1000);
-            output = d3.format("0,000")(output);
-        } else if(output.slice(-1)=='M'){
-            output = d3.format(".1f")(output.slice(0, -1))+' million';
-        } else if (output.slice(-1) == 'G') {
-            output = output.slice(0, -1) + ' billion';
-        } else {
-            output = ''+d3.format(".3s")(num);
-        }            
-        return output;
+		if(!round){
+			var format = d3.format("0,000");
+			return format(num);
+		} else {
+			var output = d3.format(".4s")(num);
+	        if(output.slice(-1)=='k'){
+	            output = Math.round(output.slice(0, -1) * 1000);
+	            output = d3.format("0,000")(output);
+	        } else if(output.slice(-1)=='M'){
+	            output = d3.format(".1f")(output.slice(0, -1))+' million';
+	        } else if (output.slice(-1) == 'G') {
+	            output = output.slice(0, -1) + ' billion';
+	        } else {
+	            output = ''+d3.format(".3s")(num);
+	        }            
+	        return output;
+		}
 	}
 }
 
@@ -269,7 +273,22 @@ function dataPrep(data){
 		} else {
 			d['#meta+coverage']=parseInt(d['#meta+coverage'].slice(0, -1));
 			d['#meta+type']='EA';
+		}	
+		if(isNaN(parseFloat(d['#meta+value']))){
+			console.log("Data Error - #meta+value: "+d['#meta+value']);
+			console.log(d);
+			d['#meta+value']=0;
 		}
+		if(isNaN(parseFloat(d['#targeted']))){
+			console.log("Data Error - #targeted: "+d['#targeted']);
+			console.log(d);
+			d['#targeted']=0;
+		}
+		if(isNaN(parseFloat(d['#meta+funding']))){
+			console.log("Data Error - #meta+funding: "+d['#meta+funding']);
+			console.log(d);
+			d['#meta+funding']=0;
+		}				
 	});
 	return data;
 }
@@ -282,7 +301,7 @@ $('#loadingmodal').modal('show');
 
 var dataCall = $.ajax({ 
     type: 'GET', 
-    url: 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E2016-10-06&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0', 
+    url: 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E2016-10-07&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0', 
     dataType: 'json',
 });
 
