@@ -57,13 +57,23 @@ function updateTable(data){
 	$('#data-table').html("");
 	var html = "";
 	data.forEach(function(d,i){
-		html += '<tr><td>'+d['#meta+type']+'</td><td>'+d['#crises+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">'+d['#meta+id']+'</a></td></tr>';
+		html += '<tr><td class="details-controls"></td><td>'+d['#meta+type']+'</td><td>'+d['#crises+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">'+d['#meta+id']+'</a></td></tr>';
 	});
 	$('#tcontents').html(html);
 	data.forEach(function(d,i){
 		createPie('#coverage'+i,75,10,d['#meta+coverage']/100);
 	});
-    table = $('#datatable').DataTable({ "pageLength": 100,"bFilter": false});
+    table = $('#datatable').DataTable({
+    	"pageLength": 100,
+    	"bFilter": false,
+    	"aoColumnDefs" : [
+	 		{
+	   			'bSortable' : false,
+	   			'aTargets' : [ 'sorting_disabled' ]
+	 		}
+	 	],
+	 	"order": [[ 5, "desc" ]]
+ 	});
 }
 
 function updateMap(data,region){
