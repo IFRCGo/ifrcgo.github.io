@@ -375,7 +375,7 @@ function generateDash(data,geom){
 
 function dataPrep(data){
 
-    var dateFormat = d3.time.format("%d/%m/%Y");
+    var dateFormat = d3.time.format("%Y-%m-%d");
 
     var today = new Date();
     var oneDay = 24*60*60*1000;
