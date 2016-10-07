@@ -34,6 +34,7 @@ function generateButtons(regions,data){
 				updateTable(data);
 				updateKeyFigures(data);
 				updateMap(data,r);
+				updateDownload(r);
 			});
 		} else {
 			$('#nav'+i).on('click',function(){
@@ -45,9 +46,22 @@ function generateButtons(regions,data){
 				updateTable(newData);
 				updateKeyFigures(newData);
 				updateMap(data,r);
+				updateDownload(r);
 			});
 		}
 	});
+}
+
+function updateDownload(region){
+	var url = "https://proxy.hxlstandard.org/data.csv?strip-headers=on&filter03=merge&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&select-query06-01=%23region%3D999999&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&force=on&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&filter06=select&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&select-query02-01=%23date%2Bend%3E2016-09-01&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0"
+	if(region!='All'){
+		url = url.replace('999999',encodeURIComponent(region));
+		console.log('url:' + url);
+		$('#regiondownload').html('Download for <a href="'+url+'">'+region+'</a>')		
+	} else {
+		$('#regiondownload').html('');
+	}
+
 }
 
 function updateTable(data){
@@ -298,6 +312,19 @@ function dataPrep(data){
 var map = '';
 var table='';
 $('#loadingmodal').modal('show');
+var appealsurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E999999&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0'
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+if(dd<10) {
+    dd='0'+dd
+} 
+if(mm<10) {
+    mm='0'+mm
+} 
+var date = yyyy + '-' + mm + '-' + dd;
+appealsurl = appealsurl.replace('999999',date);
 
 var dataCall = $.ajax({ 
     type: 'GET', 
