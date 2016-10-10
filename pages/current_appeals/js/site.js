@@ -10,10 +10,11 @@ function generateDash(data,geom){
 function processHash(data,regions){
 	var hash = decodeURIComponent(window.location.hash).substring(1);
 	console.log(hash);
-	if(hash=='#All'){
+	if(hash=='All' || hash==''){
+		hash = 'All';
 		$('.regionbuttons').removeClass('highlight');
 	    $('#nav0').addClass('highlight');
-		update(data,data,r);
+		update(data,data,hash);
 	} else {
 		$('.regionbuttons').removeClass('highlight');
 		var i = regions.indexOf(hash)+1;
