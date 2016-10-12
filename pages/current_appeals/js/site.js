@@ -85,6 +85,32 @@ function updateDownload(region){
 
 }
 
+function getAppealDocs(id){
+	var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&select-query01-01=%23meta%2Bid%3D' + id + '&filter02=cut&filter01=select&cut-include-tags02=%23meta%2Bdocumentname%2C%23date%2C%23meta%2Burl&force=on&url=https%3A//docs.google.com/spreadsheets/d/1gJ4N_PYBqtwVuJ10d8zXWxQle_i84vDx5dHNBomYWdU/edit%3Fusp%3Dsharing';
+	
+	console.log(url);
+
+	$.ajax({
+		    type: 'GET', 
+    		url: url,
+    		dataType: 'json',
+			success: function(result){
+				var html = ''
+				console.log(result);
+				result.forEach(function(row,i){
+					console.log(row);
+					if(i>0){
+						if(row[0].substring(0,1)=='/'){
+							row[0] = 'http://www.ifrc.org'+row[0];
+						}
+						html+='<p><a href="'+row[0]+'" target="blank">'+row[1]+'</a> ('+row[2]+')</p>'
+					}
+				});
+        		$("#"+id).html(html);
+    		}
+    	});
+}
+
 function updateTable(data){
 	if ( $.fn.dataTable.isDataTable( '#datatable' ) ) {
     	table.destroy();
@@ -92,7 +118,7 @@ function updateTable(data){
 	$('#data-table').html("");
 	var html = "";
 	data.forEach(function(d,i){
-		html += '<tr><td class="details-controls"></td><td>'+d['#meta+type']+'</td><td>'+d['#crises+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">'+d['#meta+id']+'</a></td></tr>';
+		html += '<tr><td class="details-controls" data-id="'+d['#meta+id']+'"></td><td>'+d['#meta+type']+'</td><td>'+d['#crises+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">'+d['#meta+id']+'</a></td></tr>';
 	});
 	$('#tcontents').html(html);
 	data.forEach(function(d,i){
@@ -108,6 +134,20 @@ function updateTable(data){
 	 		}
 	 	],
 	 	"order": [[ 5, "desc" ]]
+ 	});
+ 	$('.details-controls').on('click',function () {
+ 		var appealID = $(this).attr('data-id');
+ 		var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        if ( row.child.isShown() ) {
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            row.child('<h4>Latest Documents</h4><div id="'+appealID+'"></div>').show();
+            getAppealDocs(appealID);
+            tr.addClass('shown');
+        }
  	});
 }
 
@@ -349,7 +389,7 @@ appealsurl = appealsurl.replace('999999',date);
 
 var dataCall = $.ajax({ 
     type: 'GET', 
-    url: 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E2016-10-07&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0', 
+    url: appealsurl, 
     dataType: 'json',
 });
 
