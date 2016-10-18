@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title class="appeal_name"></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/leaflet.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/introjs.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/site.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+        <script src="/libs/jquery.js"></script>
+        <script src="/libs/d3.min.js"></script>
+        <script src="/libs/leaflet.js"></script>
+        <script src="/libs/d3.tip.min.js"></script>
+        <script src="/libs/intro.js"></script>
+        <script src="/libs/topojson.v1.min.js"></script>
+        <script src="/libs/bootstrap.min.js"></script>
+        <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js"></script>
+        <script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-84297335-1', 'auto');
+          ga('send', 'pageview');
+        </script>         
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><a href="/">Home</a> > <a href="index.html">Appeal Pages</a> > <b class="appeal_name"></b></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 bottomspacer">  
+                    <p><h2 id="title" class="appeal_name"></h2></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Overview</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div id="beneficiaries" class="col-md-12">
+                                    <h4 class="keyfiguretitle">Targeted Beneficiaries</h4>
+                                </div>
+                                <div id="funding" class="col-md-12">
+                                    <h4 class="keyfiguretitle">Funding</h4>
+                                </div>
+                                <div id="appeal_amount" class="col-md-12">
+                                    <h4 class="keyfiguretitle">Appeal Amount</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="coverage" class="col-md-6">
+                            <h4 class="keyfiguretitle">Coverage</h4>
+                        </div>
+                    </div>
+                </div>
+                <div id="map" class="col-md-6">
+                </div>                
+            </div>
+            <div id="keyfigures" class="row">
+            </div>
+            <div id="contacts" class="row">
+            </div>              
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Latest Appeal Documents</h3>
+                </div>
+            </div>
+            <div id="latestdocs" class="row">
+            </div>
+            <div id="links" class="row">
+            </div>                                                                    
+        </div>        
+        <script src="../js/site.js"></script> 
+    </body>
+</html>
