@@ -1,5 +1,5 @@
 function generateKeyFigs(data){
-	$('.appeal_name').html(data['#crises+name']);
+	$('.appeal_name').html(data['#crisis+name']);
 	var coverage = parseInt(data['#meta+coverage'].substring(-1))*0.01;
 	createPie('#coverage',220,40,coverage);
 	$('#beneficiaries').append('<p class="keyfigure">'+niceFormatNumber(data['#targeted'])+'</p>');
