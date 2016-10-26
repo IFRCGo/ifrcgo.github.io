@@ -1,0 +1,27 @@
+.dc-table-label{
+    color:#fff;
+}
+
+.dc-chart g.row text {
+    fill: black;
+    font-size:0.8em;
+}
+
+#wherechart {
+    height:600px;
+    width:100%;
+}
+
+.hdx-3w-info{
+    padding:5px;
+    background-color:white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    font-size:1.5em;
+    color:#D32F2F;
+ }
+
+ .viz_chart {
+    width:100%;
+}
