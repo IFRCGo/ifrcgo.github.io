@@ -104,7 +104,7 @@ function appealsplus(id){
 }
 
 function loadKeyFigures(url){
-	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	var hxlurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
 	$.ajax({
 		    type: 'GET', 
     		url: hxlurl,
