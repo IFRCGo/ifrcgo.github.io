@@ -113,7 +113,7 @@ function loadKeyFigures(url){
 				var data = hxlProxyToJSON(result);
 				var html = '<div class="col-md-12"><h3>Key Figures</h3></div>';
 				data.forEach(function(d){
-					html+='<div class="col-md-3"><h4 class="keyfiguretitle">'+d['#meta+title']+'</h4><p class="keyfigure">'+niceFormatNumber(d['#indicator'])+'</p><p>Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div>';
+					html+='<div class="col-md-3"><h4 class="keyfiguretitle minheight">'+d['#meta+title']+'</h4><p class="keyfigure">'+niceFormatNumber(d['#indicator'])+'</p><p>Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div>';
 				});
 				$('#keyfigures').html(html);
     		}

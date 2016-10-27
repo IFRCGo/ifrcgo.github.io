@@ -21,3 +21,7 @@ h3 {
     padding-bottom:10px;
     border-bottom: 1px solid #aaa;
 }
+
+.minheight {
+	min-height:38px;
+}

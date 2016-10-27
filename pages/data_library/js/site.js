@@ -1,8 +1,30 @@
 function generateDash(data){
     html='';
     data.forEach(function(d){
-        html+='<td>'+d['#meta+title']+'</td><td>'+d['#description']+'</td><td>'+d['#meta+title']+'</td><td>'+d['#meta+title']+'</td><td>'+d['#meta+title']+'</td>';
+        html+='<tr class="tablerow"><td>'+d['#meta+title']+'</td><td>'+d['#description']+'</td>'
+        if(d['#meta+download']!=''){
+            html+='<td><a href="'+d['#meta+download']+'" target="_blank">Link</a></td>'
+        } else {
+            html+= '<td></td>';
+        }
+        if(d['#meta+googlesheet']!=''){
+            html+='<td><a href="'+d['#meta+googlesheet']+'" target="_blank">Link</a></td>'
+        } else {
+            html+= '<td></td>';
+        }
+        if(d['#meta+hxlproxy']!=''){
+            html+='<td><a href="'+d['#meta+hxlproxy']+'" target="_blank">Link</a></td>'
+        } else {
+            html+= '<td></td>';
+        }
+        if(d['#meta+viz']!=''){
+            html+='<td><a href="'+d['#meta+viz']+'" target="_blank">Link</a></td>'
+        } else {
+            html+= '<td></td>';
+        }
+        html += '<td>'+d['#meta+collaborate']+'</td></tr>';
     });
+    $('#content').html(html);
 }
 
 function hxlProxyToJSON(input,headers){
