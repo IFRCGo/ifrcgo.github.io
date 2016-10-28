@@ -97,7 +97,10 @@ function appealsplus(id){
 					}
 					if(d['#meta+feature']=='links'){
 						loadLinks(encodeURIComponent(d['#meta+url']));
-					}					
+					}
+					if(d['#meta+feature']=='freetext'){
+						loadFreeText(encodeURIComponent(d['#meta+url']));
+					}
 				});
     		}
     });
@@ -118,6 +121,46 @@ function loadKeyFigures(url){
 				$('#keyfigures').html(html);
     		}
     });
+}
+
+function loadFreeText(url){
+	var hxlurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	$.ajax({
+		    type: 'GET', 
+    		url: hxlurl,
+    		dataType: 'json',
+			success: function(result){
+				var data = hxlProxyToJSON(result);
+				console.log(data);
+				var html = '<div class="col-md-12"><h3>Text Updates</h3></div><div class="col-md-12"><ul class="nav nav-tabs">';
+				data.forEach(function(d,i){
+					if(i==0){
+						html+='<li class="nav active"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
+					} else {
+						html+='<li class="nav"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
+					}
+					
+				});
+				html+='</ul></div>';
+				data.forEach(function(d,i){
+					if(i==0){
+						html+='<div id="info'+i+'" class="col-md-12 info">'+d['#meta+contents']+'</div>';
+					} else {
+						html+='<div id="info'+i+'" class="col-md-12 info">'+d['#meta+contents']+'</div>';
+					}
+				});
+				$('#freetext').html(html);
+				data.forEach(function(d,i){
+					if(i>0){
+						$('#info'+i).hide();
+					}
+					$('#tab'+i).on('click',function(){
+						$('.info').hide();
+						$('#info'+i).show();
+					});
+				});
+    		}
+    });	
 }
 
 function loadContacts(url){
