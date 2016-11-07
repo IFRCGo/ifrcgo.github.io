@@ -87,7 +87,7 @@ td.details-controls {
     background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
     cursor: pointer;
 }
+
 tr.shown td.details-controls {
     background: url('https://datatables.net/examples/resources/details_close.png') no-repeat center center;
 }
-
