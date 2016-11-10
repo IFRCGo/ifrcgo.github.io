@@ -1,0 +1,46 @@
+####################
+## HEADER CONTENT ##
+####################
+
+nav:
+  - text:         "CONTRIBUTE"
+    url:          "/contribute/"
+  - text:         "EVENTS"
+    links:
+      - text:     "CURRENT EVENTS"
+        url:      "/events/"
+      - text:     "ORGANIZE AN EVENT"
+        url:      "/host/"
+  - text:         "ABOUT"
+    url:          "/about/"
+  - text:         "BLOG"
+    url:          "/blog/"
+  - text:         "DISCOVER"
+    links:
+      - text:     "USER PROFILES"
+        url:      "http://www.missingmaps.org/users/"
+      - text:     "LEADERBOARDS"
+        url:      "http://www.missingmaps.org/leaderboards/"
+      - text:     "OSMSTATS"
+        url:      "/osmstats/"
+
+#####################
+## LANDING CONTENT ##
+#####################
+landing:
+    title: "Welcome to the IFRC Go Project Lab Website."
+
+###################
+## ABOUT CONTENT ##
+###################
+about:
+  title: "About"
+
+
+#####################
+## 404 ##
+#####################
+lost:
+    title: "This page is missing."
+    message: "This is kind of embarrasing. You seem to be somewhere that we haven't mapped yet."
+    link: "Help us map the world."

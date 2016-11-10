@@ -1,0 +1,132 @@
+/*----------------------------------------------*/
+/* Actionable Bits */
+/*----------------------------------------------*/
+.action-container{
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 120px;
+  padding: 10px 0px 10px 15px;
+  max-width: 1000px;
+  border-radius: 20px;
+  .textbox{
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  .columns {
+    padding-left: 0;
+  }
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 80px;
+  }
+}
+
+.contribute-base {
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+.image-action {
+  @media screen and (max-width: 340px) {
+    width: 200px;
+  }
+}
+
+.contribute-container {
+  background-color: black;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: center;
+  padding: 30px 0px 20px 0px;
+}
+
+.actions-img{
+  text-align: center;
+}
+
+.contribute-image{
+  p {
+    margin-top:10px;
+  }
+@media screen and (max-width: 1024px) {
+    width: 100%;
+    text-align: center;
+}
+}
+
+.right-box{
+  text-align: right;
+}
+
+@media screen and (min-width: 64em){
+  .large-push-4 {
+    left: -33.333%;
+  }
+}
+
+/*----------------------------------------------*/
+/* Footer Analytics */
+/*----------------------------------------------*/
+.footer-container{
+	padding: 30px 0px 0px 0px;
+	background-color: $lightgrey;
+	width: 100%;
+	.sectionheader{
+		padding-bottom: 36px;
+    padding-top: 20px;
+	}
+}
+
+.footer-mm{
+	margin-top:50px;
+	height: 50px;
+	width: 100%;
+	line-height: 50px;
+	color: $lightgrey;
+}
+
+/*----------------------------------------------*/
+/* landing grid */
+/*----------------------------------------------*/
+
+.overlay{
+    // position: absolute;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    display: none;
+    opacity:0.9;
+    cursor: pointer;
+    margin: 20px 15px 0px 15px;
+    padding-top:10px;
+}
+
+.grid-title {
+    text-align:center;
+    color:#fff;
+    padding-top:20px;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.overlaydesc {
+    color:#fff;
+    font-size:1.25em;
+    padding-left:15px;
+    padding-right:15px;
+}
+
+.grid-item {
+    padding: 0 15px 0px 15px;
+    margin-bottom:30px;
+    min-height:150px;
+}
+
+.inner {
+    min-height:150px;
+    background-color:#D33F49;
+}

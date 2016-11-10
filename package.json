@@ -1,0 +1,55 @@
+{
+  "name": "GO_Appeals",
+  "version": "0.1.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": {
+    "name": "GO Project",
+    "url": "http://ifrcgo.github.io"
+  },
+  "license": "BSD 3-clause",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "scripts": {
+    "postinstall": "[ -f _config-dev.yml ] || echo 'domain: http://localhost:3000\npath_prefix:' > _config-dev.yml",
+    "serve": "gulp serve",
+    "build": "gulp",
+    "lint": "semistandard app/assets/scripts/**/*.js",
+    "test": "echo NO TESTS YET",
+    "install": "bundle install --path bundle/cache"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "require-globify",
+      "envify"
+    ]
+  },
+  "devDependencies": {
+    "async": "*",
+    "bower": "*",
+    "browser-sync": "*",
+    "chai": "*",
+    "colors": "*",
+    "glob": "*",
+    "glob-all": "*",
+    "gulp": "*",
+    "gulp-clean": "*",
+    "gulp-compass": "*",
+    "gulp-concat": "*",
+    "gulp-plumber": "*",
+    "gulp-uglify": "*",
+    "gulp-git": "*",
+    "js-yaml": "*",
+    "lodash": "*",
+    "run-sequence": "*"
+  },
+  "dependencies": {
+    "request": "*"
+  }
+}
