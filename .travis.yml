@@ -10,7 +10,6 @@ env:
   global:
   - GH_REF=github.com/IFRCGo/ifrc.github.io
   - DEPLOY_BRANCH=publish
-  # - secure: ""
 
 cache:
   directories:

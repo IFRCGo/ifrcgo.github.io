@@ -145,7 +145,7 @@ body{
 }
 
 /*----------------------------------------------*/
-/*Nav Bar Style*/
+/*Header & Nav Bar Style*/
 /*----------------------------------------------*/
 
 header{
@@ -164,6 +164,23 @@ header{
     display: inline-block;
     margin: 0px;
   }
+}
+
+.header-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: cover;
+  height: 15rem;
+  margin-bottom: 4rem;
+}
+
+.header-landing {
+  background-image: url("/assets/graphics/banner/rcrc_banner.jpg");
+}
+
+.header-appeals {
+  background-image: url("/assets/graphics/banner/appeals.jpg");
 }
 
 .navbar-background{
@@ -263,7 +280,7 @@ a:hover{
 }
 
 .title{
-  font-family: 'Hind';
+  // font-family: 'Hind';
   font-weight: 700;
   font-size: 2em;
   color: $darkgrey;
@@ -273,7 +290,7 @@ a:hover{
 }
 
 .titlewhite{
-  font-family: 'Hind';
+  // font-family: 'Hind';
   font-weight: 700;
   font-size: 2em;
   color: white;
@@ -281,7 +298,7 @@ a:hover{
   display: inline-block;
   line-height: 1em;
   p{
-     font-family: 'Hind';
+    //  font-family: 'Hind';
      font-weight: 700;
      font-size: 0.9em;
      color: white;
@@ -305,7 +322,7 @@ a:hover{
 }
 
 .feature-header {
-  padding-top: 195px;
+  padding-top: 60px;
   text-shadow: 1px 1px $dark-gray;
   color: #fff;
   display: block;
@@ -597,4 +614,14 @@ input[type="text"]{
 
 .center-text{
   text-align: center;
+}
+
+.keyfiguretitle {
+    color:#D33F49;
+    font-size:1.2em;
+}
+
+.keyfigure {
+    color: #999;
+    font-size:1.6em;
 }

@@ -1,34 +1,19 @@
-####################
-## HEADER CONTENT ##
-####################
-
-nav:
-  - text:         "CONTRIBUTE"
-    url:          "/contribute/"
-  - text:         "EVENTS"
-    links:
-      - text:     "CURRENT EVENTS"
-        url:      "/events/"
-      - text:     "ORGANIZE AN EVENT"
-        url:      "/host/"
-  - text:         "ABOUT"
-    url:          "/about/"
-  - text:         "BLOG"
-    url:          "/blog/"
-  - text:         "DISCOVER"
-    links:
-      - text:     "USER PROFILES"
-        url:      "http://www.missingmaps.org/users/"
-      - text:     "LEADERBOARDS"
-        url:      "http://www.missingmaps.org/leaderboards/"
-      - text:     "OSMSTATS"
-        url:      "/osmstats/"
-
 #####################
 ## LANDING CONTENT ##
 #####################
 landing:
-    title: "Welcome to the IFRC Go Project Lab Website."
+    title: "IFRC Go"
+    tagline: "GO to the data."
+    welcome: "Welcome to the IFRC Go Project Lab Website."
+
+####################
+## Appeals CONTENT ##
+####################
+appeals:
+    title: "Appeals"
+    description: "Below is a directory of the current appeal pages and appeal plus pages. Appeal plus pages have extra information provided by those working in the operation such as key figures, contacts and useful links. If you want an appeal page upgraded to an appeal plus page please contact <a href=\"mailto:ifrcgoproject@gmail.com\">ifrcgoproject@gmail.com</a> with the request."
+    plus: "Appeals Plus Pages"
+    normal: "Regular Appeal Pages"
 
 ###################
 ## ABOUT CONTENT ##
@@ -36,11 +21,9 @@ landing:
 about:
   title: "About"
 
-
 #####################
 ## 404 ##
 #####################
 lost:
     title: "This page is missing."
     message: "This is kind of embarrasing. You seem to be somewhere that we haven't mapped yet."
-    link: "Help us map the world."

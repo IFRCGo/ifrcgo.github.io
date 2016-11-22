@@ -1,7 +1,32 @@
-<h1>Appeals</h1>
+<div id="site-canvas">
+  <div class="header-image header-appeals">
+    <div class="dark-overlay center-text">
+      <h1 class="title feature-header">{{site.data[locale].appeals.title}}</h1>
+    </div>
+  </div>
+</div>
 
-<ul>
-{% for appeal in site.data.appealsplus %}
-  <li><a href="{{ appeal.meta_id }}">{{appeal.meta_id}}</a></li>
-{% endfor %}
-</ul>
+<div class="row">
+  <div class="small-8 large-8 columns large-centered">{{site.data[locale].appeals.description}}</div>
+</div>
+
+<div class="row">
+<div class="title section-header small-centered">{{site.data[locale].appeals.plus}}</div>
+<div class="row small-up-1 medium-up-2 large-up-3">
+  {% for appeal in site.data.appealsplus %}
+  {% if appeal.meta_appealplus != "" %}
+  <div class="column"><a href="{{ appeal.meta_id }}">{{appeal.crisis_name}}</a></div>
+  {% endif %}
+  {% endfor %}
+</div>
+</div>
+<div class="row">
+<div class="title section-header small-centered">{{site.data[locale].appeals.normal}}</div>
+<div class="row small-up-1 medium-up-2 large-up-3">
+  {% for appeal in site.data.appealsplus %}
+  {% if appeal.meta_appealplus == "" %}
+  <div class="column"><a href="{{ appeal.meta_id }}">{{appeal.crisis_name}}</a></div>
+  {% endif %}
+  {% endfor %}
+</div>
+</div>
