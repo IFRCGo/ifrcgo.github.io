@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "node"
+
+language: ruby
+rvm:
+  - 2.3.1
+
+env:
+  global:
+  - GH_REF=github.com/IFRCGo/ifrc.github.io
+  - DEPLOY_BRANCH=publish
+  # - secure: ""
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+- chmod +x ./.build_scripts/deploy.sh
+
+before_script:
+  - npm install
+script: gulp prod
+
+after_success:
+- ./.build_scripts/deploy.sh
