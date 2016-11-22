@@ -25,3 +25,11 @@ authorized_locales: ["en"]
 # add support for an atom feed
 gems:
   - jekyll-feed
+
+#page generator for appeals
+# page_gen-dirs: true
+page_gen:
+  - data: 'appealsplus'
+    template: 'appeals'
+    name: 'meta_id'
+    dir: 'appeals'

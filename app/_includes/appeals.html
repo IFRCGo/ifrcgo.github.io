@@ -1,0 +1,7 @@
+<h1>Appeals</h1>
+
+<ul>
+{% for appeal in site.data.appealsplus %}
+  <li><a href="{{ appeal.meta_id }}">{{appeal.meta_id}}</a></li>
+{% endfor %}
+</ul>

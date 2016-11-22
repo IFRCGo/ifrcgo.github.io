@@ -12,6 +12,8 @@ _site
 _config-dev.yml
 npm-debug.log
 app/assets/scripts/config/local.js
+app/_data/temp
+appealsplus.json
 
 #Foundation additions
 .sass-cache

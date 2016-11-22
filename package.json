@@ -21,7 +21,8 @@
     "build": "gulp",
     "lint": "semistandard app/assets/scripts/**/*.js",
     "test": "echo NO TESTS YET",
-    "install": "bundle install --path bundle/cache"
+    "install": "bundle install --path bundle/cache",
+    "update:packages": "node updatedep.js && rm -rf node_modules && npm update --save-dev && npm update --save"
   },
   "browserify": {
     "transform": [
@@ -31,25 +32,29 @@
     ]
   },
   "devDependencies": {
-    "async": "*",
-    "bower": "*",
-    "browser-sync": "*",
-    "chai": "*",
-    "colors": "*",
-    "glob": "*",
-    "glob-all": "*",
-    "gulp": "*",
+    "async": "^2.1.2",
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.2",
+    "chai": "^3.5.0",
+    "colors": "^1.1.2",
+    "glob": "^7.1.1",
+    "glob-all": "^3.1.0",
+    "gulp": "^3.9.1",
     "gulp-clean": "*",
-    "gulp-compass": "*",
-    "gulp-concat": "*",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-git": "^1.12.0",
     "gulp-plumber": "*",
-    "gulp-uglify": "*",
-    "gulp-git": "*",
-    "js-yaml": "*",
-    "lodash": "*",
-    "run-sequence": "*"
+    "gulp-uglify": "^2.0.0",
+    "js-yaml": "^3.7.0",
+    "lodash": "^4.17.2"
   },
   "dependencies": {
-    "request": "*"
+    "csv2json": "^1.1.0",
+    "gulp-download-stream": "*",
+    "replaceall": "^0.1.6",
+    "request": "^2.79.0",
+    "run-sequence": "^1.2.2",
+    "stream-replace": "^1.0.0"
   }
 }

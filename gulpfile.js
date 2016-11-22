@@ -7,10 +7,11 @@ var clean = require('gulp-clean');
 var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
 var plumber = require('gulp-plumber');
-var cp = require('child_process');
-var fs = require('fs');
 var request = require('request');
-var git = require('gulp-git');
+var download = require("gulp-download-stream");
+var csv2json = require('csv2json');
+var fs = require("fs");
+var replace = require('stream-replace');
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +23,7 @@ var git = require('gulp-git');
 // renders the site. Once the rendering has finished the assets are copied.
 gulp.task('copy:assets', function(done) {
   return gulp.src('.tmp/assets/**')
-    .pipe(gulp.dest('_site/assets'));
+  .pipe(gulp.dest('_site/assets'));
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,39 +32,39 @@ gulp.task('copy:assets', function(done) {
 
 gulp.task('compass', function() {
   return gulp.src('app/assets/styles/*.scss')
-    .pipe(plumber())
-    .pipe(compass({
-      css: '.tmp/assets/styles',
-      sass: 'app/assets/styles',
-      style: 'expanded',
-      sourcemap: true,
-      require: ['sass-css-importer'],
-      bundle_exec: true
-    }))
-    .on('error', function(err) {
-      this.emit('end');
-    })
-    .pipe(browserSync.reload({stream:true}));
+  .pipe(plumber())
+  .pipe(compass({
+    css: '.tmp/assets/styles',
+    sass: 'app/assets/styles',
+    style: 'expanded',
+    sourcemap: true,
+    require: ['sass-css-importer'],
+    bundle_exec: true
+  }))
+  .on('error', function(err) {
+    this.emit('end');
+  })
+  .pipe(browserSync.reload({stream:true}));
 });
 
 gulp.task('compress:main', function() {
   // main.min.js
   var task = gulp.src([
-      'app/assets/scripts/*.js',
-    ])
-    .pipe(plumber());
+    'app/assets/scripts/*.js',
+  ])
+  .pipe(plumber());
 
-    if (environment == 'development') {
-      task = task.pipe(concat('main.min.js'));
-    }
-    else {
-      task = task.pipe(uglify('main.min.js', {
-        outSourceMap: true,
-        mangle: false
-      }));
-    }
+  if (environment == 'development') {
+    task = task.pipe(concat('main.min.js'));
+  }
+  else {
+    task = task.pipe(uglify('main.min.js', {
+      outSourceMap: true,
+      mangle: false
+    }));
+  }
 
-    return task.pipe(gulp.dest('.tmp/assets/scripts'));
+  return task.pipe(gulp.dest('.tmp/assets/scripts'));
 });
 
 // Build the jekyll website.
@@ -72,18 +73,18 @@ gulp.task('jekyll', function (done) {
 
   switch (environment) {
     case 'development':
-      args.push('--config=_config.yml,_config-dev.yml');
+    args.push('--config=_config.yml,_config-dev.yml');
     break;
     case 'stage':
-      args.push('--config=_config.yml,_config-stage.yml');
+    args.push('--config=_config.yml,_config-stage.yml');
     break;
     case 'production':
-      args.push('--config=_config.yml');
+    args.push('--config=_config.yml');
     break;
   }
 
   return cp.spawn('bundle', args, {stdio: 'inherit'})
-    .on('close', done);
+  .on('close', done);
 });
 
 // Build the jekyll website.
@@ -93,7 +94,7 @@ gulp.task('jekyll:rebuild', ['jekyll'], function () {
 });
 
 gulp.task('build', function(done) {
-  runSequence(['jekyll', 'compress:main', 'compass'], ['copy:assets'], done);
+  runSequence('get-data', ['jekyll', 'compress:main', 'compass'], ['copy:assets'], done);
 });
 
 // Default task.
@@ -146,7 +147,7 @@ gulp.task('stage', function(done) {
 // Removes jekyll's _site folder
 gulp.task('clean', function() {
   return gulp.src(['_site', '.tmp'], {read: false})
-    .pipe(clean());
+  .pipe(clean());
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -159,6 +160,34 @@ function browserReload() {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//-------------------------- Download JOSN -----------------------------------//
+//----------------------------------------------------------------------------//
+
+gulp.task('get-data', function(datacb) {
+  var dlstream = download({
+    file: "appealsplus.csv",
+    url: "https://beta.proxy.hxlstandard.org/data/r_Jouy/download/appealplus.csv"
+  })
+  .pipe(gulp.dest("app/_data/temp"));
+
+  dlstream.on('finish', function () {
+    fs.createReadStream('app/_data/temp/appealsplus.csv')
+      .pipe(replace(/\#/g, ''))
+      .pipe(replace(/\+/g, '_'))
+      .pipe(csv2json({
+        // Defaults to comma.
+        separator: ','
+      }))
+      .pipe(
+        fs.createWriteStream('app/_data/appealsplus.json')
+      );
+      datacb();
+  });
+
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 //--------------------------- Humans task -----------------------------------//
 //---------------------------------------------------------------------------//
@@ -166,7 +195,7 @@ gulp.task('get-humans', function(){
 
   var getHumans = function(callback){
     var options = {
-      url: 'https://api.github.com/repos/MissingMaps/missingmaps.github.io/contributors',
+      url: 'https://api.github.com/repos/IFRCgo/ifrcgo.github.io/contributors',
       headers: {
         'User-Agent': 'request'
       }
