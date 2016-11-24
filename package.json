@@ -52,6 +52,7 @@
   "dependencies": {
     "csv2json": "^1.1.0",
     "gulp-download-stream": "*",
+    "isotope-layout": "^3.0.1",
     "request": "^2.79.0",
     "run-sequence": "^1.2.2",
     "stream-replace": "^1.0.0"

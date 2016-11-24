@@ -25,14 +25,14 @@ function initGrid(data){
   var $grid;
   $('.container').imagesLoaded(function(){
 
-    // $grid =  $('#grid').isotope({
-    //   // options
-    //   itemSelector: '.column',
-    //   // layoutMode: 'fitRows',
-    //   // masonry: {
-    //   //   columnWidth: '.column'
-    //   // }
-    // });
+     $grid =  $('#grid').isotope({
+       // options
+       itemSelector: '.column',
+       // layoutMode: 'fitRows',
+       // masonry: {
+       //   columnWidth: '.column'
+       // }
+     });
   });
 
 

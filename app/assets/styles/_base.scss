@@ -83,7 +83,8 @@ body, ul, li, ol, p{
 }
 
 h1 {
-    font-size:3em;
+    font-size: 6em;
+    line-height: 120%;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -281,12 +282,12 @@ a:hover{
 
 .title{
   // font-family: 'Hind';
-  font-weight: 700;
+  font-weight: 100;
   font-size: 2em;
-  color: $darkgrey;
+  color: $lightgrey;
   margin: 0px;
   display: inline-block;
-  line-height: 1em;
+  line-height: 1.5em;
 }
 
 .titlewhite{
@@ -326,7 +327,7 @@ a:hover{
   text-shadow: 1px 1px $dark-gray;
   color: #fff;
   display: block;
-  font-size: 2.5em;
+  font-size: 3.5em;
 }
 
 .dark-overlay {

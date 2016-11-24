@@ -1,5 +1,9 @@
 ## [IFRC GO LABS](http://ifrcgo.github.io)
 
+### Understanding Jekyll
+
+- Good introductory tutorial to Jekyll: <https://www.taniarascia.com/make-a-static-website-with-jekyll/>
+
 ### Adding Language support
 
 The site is configured to support 2-letter core language codes. So english is 'en' not 'en-US' and/or 'en-GB'. Using a longer code will not function.
@@ -33,10 +37,35 @@ To set up the development environment for this website, you'll need to install t
 - Gulp ( $ npm install -g gulp )
 
 After these basic requirements are met, run the following commands in the website's folder:
+
+##### Command #1
+
 ```
-$ npm install
+$ npm install (Mac)
+$ npm install express (Ubuntu)
 ```
-Will also run `bundle install`
+
+##### Command #2: Installing Bundler
+
+```
+$ bundle install (Mac)
+$ gem bundle install (Ubuntu)
+```
+
+##### Command #3: Installing Jeykll
+
+```
+$ gem install jekyll --no-rdoc --no-ri (Ubuntu)
+```
+
+##### Command #4: Installing earlier version of Chunky PNG (version 1.3.7)
+
+When trying to compile everything with 'gulp serve', it threw an error that my "bundle [was] locked to chunky_png (1.3.8), but that version could not be found in any of the sources listed in your Gemfile", so recommended installing a different version.
+
+```
+$ gem install chunky_png -v 1.3.7 (Ubuntu)
+```
+
 
 ### Getting started
 
@@ -48,6 +77,37 @@ The system will watch files and execute tasks whenever one of them changes.
 The site will automatically refresh since it is bundled with livereload.
 
 The `_config-dev.yml` file will be loaded alongside `_config.yml`.
+
+##### Running on Cloud9 IDE:
+
+You need to change the IP and port for it to run on a cloud IDE: <https://docs.c9.io/docs/run-an-application>.
+> If you're developing a server application, please note that you need to listen to 0.0.0.0 ($IP) and 8080 ($PORT). 
+
+Follow these instructions to change the port and IP for gulp serve: <https://github.com/Swiip/generator-gulp-angular/issues/848>
+
+###### Step #1
+Changed the port in the gulpfile.js on line 107 as follows:
+```
+gulp.task('serve', ['build'], function () {
+  browserSync({
+    port: 8080,
+    server: {
+      baseDir: ['.tmp', '_site']
+    }
+  });
+```
+###### Step #2
+Click on the local host link in the terminal
+```
+[16:58:31] Finished 'serve' after 246 ms
+[BS] Access URLs:
+ -------------------------------------
+       Local: http://localhost:8080
+    External: http://172.17.0.154:8080
+ -------------------------------------
+ ```
+ You will need to open it in a new tab to view.
+
 
 ### Other commands
 Clean the compiled site. I.e. the `_site` folder
