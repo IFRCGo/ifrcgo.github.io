@@ -1,6 +1,25 @@
 /*----------------------------------------------*/
 /* Actionable Bits */
 /*----------------------------------------------*/
+button {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #D33F49;
+  border-radius: 10px;
+  font-size: 1.2em;
+  background-color: #fff;
+  padding: 10px;
+  margin-right: 10px;
+  color: #D33F49;
+  outline: 0;
+  margin-bottom: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.highlight {
+  background-color: #FFEBEE;
+}
+
 .container{
   margin-left: auto;
   margin-right: auto;
@@ -126,6 +145,8 @@
 .grid-item {
     padding: 0 15px 0px 15px;
     margin-top: 20px;
+    
+    
     margin-bottom: 60px;
     min-height: 225px;
 }
