@@ -60,17 +60,19 @@ function generateGrid(data){
     $('#grid').append(html);
 
     // $('#grid'+i).height($('#overlay'+i).height());
+    
+    $('#image'+i).css({"max-width": "100%", "max-height": "auto"});
 
     var color = Math.floor((Math.random() * (colors.length-1)));
     $('#overlay'+i).css({'background-color':colors[color]});
 
     $('#overlay'+i).on('click touchstart',function(){
       if($('#overlay'+i).css('opacity')>0.5){
-        if(d['#meta+url'].substring(0,1).toLowerCase()=='h'){
-          window.open(d['#meta+url'], '_blank');
+        if(d['#meta+url+jekyll'].substring(0,1).toLowerCase()=='h'){
+          window.open(d['#meta+url+jekyll'], '_blank');
           console.log('external');
         } else {
-          window.open(d['#meta+url'],'_self');
+          window.open(d['#meta+url+jekyll'],'_self');
           console.log('internal');
         }
       }
