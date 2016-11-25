@@ -61,7 +61,7 @@ function generateGrid(data){
 
     // $('#grid'+i).height($('#overlay'+i).height());
     
-    $('#image'+i).css({"max-width": "100%", "max-height": "auto"});
+    $('#meta+image'+i).css({"max-width": "100%", "max-height": "auto", "-webkit-filter": "grayscale(100%)", "filter": "grayscale(100%)", "opacity": "0.6"});
 
     var color = Math.floor((Math.random() * (colors.length-1)));
     $('#overlay'+i).css({'background-color':colors[color]});

@@ -68,8 +68,9 @@ button {
 /*----------------------------------------------*/
 
 .grid-item {
-    margin: 0px auto;
+    margin: 5px auto;
     min-height: 175px;
+    border-radius: 10px;
 }
 
 .inner {
@@ -77,6 +78,7 @@ button {
     min-width: 175px;
     background-color: #D33F49;
     margin: 10px auto;
+    border-radius: 10px;
 }
 
 .grid-title {
@@ -92,6 +94,7 @@ button {
 }
 
 .overlay{
+    border-radius: 10px;
     position: absolute;
     height: 75%;
     overflow: hidden;
