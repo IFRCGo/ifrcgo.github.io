@@ -20,67 +20,20 @@ button {
   background-color: #FFEBEE;
 }
 
-.container{
+.container {
   margin-left: auto;
   margin-right: auto;
-  padding: 10px;
+  padding: 0px;
   max-width: 1500px;
   border-radius: 20px;
-  
-  .textbox{
-    padding-top: 10px;
-    padding-bottom: 20px;
-  }
-  
   .columns {
     padding: 0;
   }
-  
-  @media screen and (max-width: 1024px) {
-    margin-bottom: 80px;
-  }
 }
-
-.contribute-base {
-  @media screen and (max-width: 1024px) {
-    width: 80%;
-    text-align: center;
-    margin: auto;
-  }
-}
-
-.image-action {
-  @media screen and (max-width: 340px) {
-    width: 200px;
-  }
-}
-
-.contribute-container {
-  background-color: black;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  text-align: center;
-  padding: 0px 0px 20px 0px;
-}
-
-.actions-img{
-  text-align: center;
-}
-
-.contribute-image{
-  p {
-    margin-top:10px;
-  }
 
 @media screen and (max-width: 1024px) {
     width: 100%;
     text-align: center;
-}
-}
-
-.right-box{
-  text-align: right;
 }
 
 @media screen and (min-width: 64em){
@@ -97,13 +50,13 @@ button {
 	// background-color: $lightgrey;
 	width: 100%;
 	.sectionheader{
-		padding-bottom: 36px;
-    padding-top: 20px;
+		padding-bottom: 0px;
+    padding-top: 0px;
 	}
 }
 
 .footer-mm{
-	margin: 10px 0px 10px 0px;
+	margin: 0px 0px 10px 0px;
 	// height: 25px;
 	width: 100%;
 	// line-height: 50px;
@@ -114,6 +67,30 @@ button {
 /* landing grid */
 /*----------------------------------------------*/
 
+.grid-item {
+    margin: 0px auto;
+    min-height: 175px;
+}
+
+.inner {
+    min-height: 175px;
+    min-width: 175px;
+    background-color: #D33F49;
+    margin: 10px auto;
+}
+
+.grid-title {
+    text-align: center;
+    vertical-align: center;
+    color:#fff;
+    line-height: 1.25em;
+    font-size: 1.25em;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .overlay{
     // position: absolute;
     height: 50%;
@@ -121,18 +98,9 @@ button {
     top: 0;
     left: 0;
     display: none;
-    opacity:0.9;
+    opacity:0.5;
     cursor: pointer;
-    margin: 20px 15px 0px 15px;
-    padding-top:10px;
-}
-
-.grid-title {
-    text-align:center;
-    color:#fff;
-    padding-top: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin: 0px 15px 0px 15px;
 }
 
 .overlaydesc {
@@ -140,19 +108,4 @@ button {
     font-size:0.8em;
     padding-left: 15px;
     padding-right: 15px;
-}
-
-.grid-item {
-    padding: 0 15px 0px 15px;
-    margin-top: 20px;
-    
-    
-    margin-bottom: 60px;
-    min-height: 225px;
-}
-
-.inner {
-    height: 225px;
-    width: 225px;
-    background-color: #D33F49;
 }

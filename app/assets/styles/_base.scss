@@ -74,6 +74,7 @@ $border-color-lighten: lighten($border-color, 5%);
 /*Fixing Default CSS*/
 /*----------------------------------------------*/
 body, ul, li, ol, p{
+  min-height: 100.05%
   margin: 0px;
   padding: 0px;
   font-family: 'Roboto', serif;
