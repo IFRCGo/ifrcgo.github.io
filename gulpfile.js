@@ -104,7 +104,7 @@ gulp.task('default', function(done) {
 
 gulp.task('serve', ['build'], function () {
   browserSync({
-    port: 8080,
+    port: 3000,
     server: {
       baseDir: ['.tmp', '_site']
     }
