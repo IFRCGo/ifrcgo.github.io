@@ -33,10 +33,20 @@ To set up the development environment for this website, you'll need to install t
 - Gulp ( $ npm install -g gulp )
 
 After these basic requirements are met, run the following commands in the website's folder:
+
+##### Command #1
+
 ```
-$ npm install
+$ npm install (Mac)
+$ npm install express (Ubuntu)
 ```
-Will also run `bundle install`
+
+##### Command #2: Installing Bundler
+
+```
+$ bundle install (Mac)
+$ gem bundle install (Ubuntu)
+```
 
 ### Getting started
 
@@ -48,6 +58,7 @@ The system will watch files and execute tasks whenever one of them changes.
 The site will automatically refresh since it is bundled with livereload.
 
 The `_config-dev.yml` file will be loaded alongside `_config.yml`.
+
 
 ### Other commands
 Clean the compiled site. I.e. the `_site` folder

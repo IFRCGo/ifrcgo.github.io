@@ -1,5 +1,5 @@
 # Site settings
-title: GO Labs
+title: Go Project Lab
 safe:           false
 source:         app
 exclude:

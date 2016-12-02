@@ -73,6 +73,10 @@ $border-color-lighten: lighten($border-color, 5%);
 /*----------------------------------------------*/
 /*Fixing Default CSS*/
 /*----------------------------------------------*/
+html {
+  overflow-y: scroll;
+}
+
 body, ul, li, ol, p{
   margin: 0px;
   padding: 0px;
@@ -83,7 +87,8 @@ body, ul, li, ol, p{
 }
 
 h1 {
-    font-size:3em;
+    font-size: 6em;
+    line-height: 120%;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -144,6 +149,11 @@ body{
   z-index: -1;
 }
 
+.row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 /*----------------------------------------------*/
 /*Header & Nav Bar Style*/
 /*----------------------------------------------*/
@@ -176,7 +186,8 @@ header{
 }
 
 .header-landing {
-  background-image: url("/assets/graphics/banner/rcrc_banner.jpg");
+  background-image: url("/assets/graphics/banner/landing_banner.jpg");
+  opacity: 0.8;
 }
 
 .header-appeals {
@@ -281,12 +292,12 @@ a:hover{
 
 .title{
   // font-family: 'Hind';
-  font-weight: 700;
+  font-weight: 100;
   font-size: 2em;
-  color: $darkgrey;
+  color: $lightgrey;
   margin: 0px;
   display: inline-block;
-  line-height: 1em;
+  line-height: 1.5em;
 }
 
 .titlewhite{
@@ -326,7 +337,7 @@ a:hover{
   text-shadow: 1px 1px $dark-gray;
   color: #fff;
   display: block;
-  font-size: 2.5em;
+  font-size: 3.5em;
 }
 
 .dark-overlay {
