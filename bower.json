@@ -1,0 +1,25 @@
+{
+  "name": "IFRCGo.github.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/IFRCGo/IFRCGo.github.io",
+  "authors": [
+    "Dale Kunce <dale@normalhabit.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~4.4.0",
+    "jquery": "~3.1.1",
+    "leaflet": "~1.0.2"
+  }
+}
