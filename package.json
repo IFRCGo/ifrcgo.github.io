@@ -52,6 +52,7 @@
     "csv2json": "^1.1.0",
     "gulp-download-stream": "*",
     "gulp-filter": "^4.0.0",
+    "gulp-inject": "^4.1.0",
     "isotope-layout": "^3.0.1",
     "request": "^2.79.0",
     "run-sequence": "^1.2.2",

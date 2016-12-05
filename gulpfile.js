@@ -67,6 +67,12 @@ gulp.task('compress:main', function() {
   return task.pipe(gulp.dest('.tmp/assets/scripts'));
 });
 
+//should eventually move this to a bower with an inject function for each page
+gulp.task('compress:vendor', function (done) {
+  return  gulp.src('app/assets/scripts/vendor/*.js')
+  .pipe(gulp.dest('.tmp/assets/scripts'));
+});
+
 // Build the jekyll website.
 gulp.task('jekyll', function (done) {
   var args = ['exec', 'jekyll', 'build'];
@@ -94,7 +100,7 @@ gulp.task('jekyll:rebuild', ['jekyll'], function () {
 });
 
 gulp.task('build', function(done) {
-  runSequence('get-data', ['jekyll', 'compress:main', 'bower', 'compass'], ['copy:assets'], done);
+  runSequence('get-data', ['jekyll', 'compress:main', 'compress:vendor', 'compass'], 'copy:assets', done);
 });
 
 // Default task.
