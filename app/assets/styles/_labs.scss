@@ -1,0 +1,49 @@
+/*----------------------------------------------*/
+/* landing grid */
+/*----------------------------------------------*/
+
+.grid-item {
+    margin: 5px auto;
+    min-height: 175px;
+    border-radius: 5px;
+}
+
+.inner {
+    min-height: 175px;
+    min-width: 175px;
+    background-color: #D33F49;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.grid-title {
+    text-align: center;
+    vertical-align: center;
+    color:#fff;
+    line-height: 1.25em;
+    font-size: 1.25em;
+    font-weight: bold;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.overlay{
+    border-radius: 5px;
+    position: absolute;
+    height: 75%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    display: none;
+    opacity: 0.9;
+    cursor: pointer;
+    margin: 25px 15px 0 15px;
+}
+
+.overlaydesc {
+    color:#fff;
+    font-size: 1em;
+    padding-left: 15px;
+    padding-right: 15px;
+}

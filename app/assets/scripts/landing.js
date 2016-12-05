@@ -60,7 +60,7 @@ function generateGrid(data){
     $('#grid').append(html);
 
     // $('#grid'+i).height($('#overlay'+i).height());
-    
+
     $('#meta+image'+i).css({"max-width": "100%", "max-height": "auto", "-webkit-filter": "grayscale(100%)", "filter": "grayscale(100%)", "opacity": "0.6"});
 
     var color = Math.floor((Math.random() * (colors.length-1)));
@@ -128,3 +128,16 @@ function hxlProxyToJSON(input,headers){
   });
   return output;
 }
+
+//javascript for homepage
+//should be replaced by css functions instead
+$(document).foundation();
+
+$(document).ready(function() {
+  $('.rollover').css('display', 'none');
+  $('.icons').hover(function() {
+    $(this).children('.rollover').fadeIn(250);
+  }, function() {
+    $(this).children('.rollover').fadeOut(250);
+  });
+});

@@ -50,7 +50,7 @@ gulp.task('compass', function() {
 gulp.task('compress:main', function() {
   // main.min.js
   var task = gulp.src([
-    'app/assets/scripts/*.js',
+    'app/assets/scripts/*.js'
   ])
   .pipe(plumber());
 
@@ -94,7 +94,7 @@ gulp.task('jekyll:rebuild', ['jekyll'], function () {
 });
 
 gulp.task('build', function(done) {
-  runSequence('get-data', ['jekyll', 'compress:main', 'compass'], ['copy:assets'], done);
+  runSequence('get-data', ['jekyll', 'compress:main', 'bower', 'compass'], ['copy:assets'], done);
 });
 
 // Default task.
