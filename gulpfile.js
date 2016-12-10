@@ -179,6 +179,13 @@ gulp.task('get-data', function(datacb) {
   })
   .pipe(gulp.dest("app/_data/temp"));
 
+  //allow the site to build using the old appeals if the download errors out
+  //useful for offline debugging
+  dlstream.on('error', function () {
+    datacb(console.log("dl using local"));
+  });
+
+  //download and unhxl the appealsplus.csv 
   dlstream.on('finish', function () {
     fs.createReadStream('app/_data/temp/appealsplus.csv')
       .pipe(replace(/\#/g, ''))
@@ -190,7 +197,7 @@ gulp.task('get-data', function(datacb) {
       .pipe(
         fs.createWriteStream('app/_data/appealsplus.json')
       );
-      datacb();
+      datacb(console.log("dl finished"));
   });
 
 });
