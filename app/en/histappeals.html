@@ -2,6 +2,7 @@
 layout: null
 permalink: /histappeals/
 id: histappeals
+title: Historic Appeals and DREFs Dashboard
 lang: en
 ---
 
@@ -19,17 +20,7 @@ lang: en
         <link rel="stylesheet" type="text/css" href="css/site.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
-        <script src="{{ site.baseurl }}/assets/scripts/jquery-3.1.1.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/d3.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/crossfilter.v1.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/dc.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/leaflet.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/dc.leaflet.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/d3.tip.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/intro.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/topojson.v1.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/papaparse.min.js"></script>
-        <script src="{{ site.baseurl }}/assets/scripts/vendor/bootstrap.min.js"></script>
+
         <script type="text/javascript">
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -155,6 +146,9 @@ lang: en
                 </div>
             </div>
         </div>
-        <script src="js/site.js"></script>
+        {% include footer_simon.html %}
+        <!-- got to figure out a smart way to bring over simon scripts -->
+        <script src="../js/site.js"></script>
+
     </body>
 </html>
