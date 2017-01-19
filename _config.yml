@@ -30,6 +30,6 @@ gems:
 # page_gen-dirs: true
 page_gen:
   - data: 'appealsplus'
-    template: 'appeals'
+    template: 'build/appeals'
     name: 'meta_id'
     dir: 'appeals'

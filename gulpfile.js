@@ -12,6 +12,9 @@ var download = require("gulp-download-stream");
 var csv2json = require('csv2json');
 var fs = require("fs");
 var replace = require('stream-replace');
+var wiredep = require('wiredep');
+var inject = require('gulp-inject');
+var greplace = require('gulp-replace');
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +25,10 @@ var replace = require('stream-replace');
 // To reduce build times the assets are compiles at the same time as jekyll
 // renders the site. Once the rendering has finished the assets are copied.
 gulp.task('copy:assets', function(done) {
-  return gulp.src('.tmp/assets/**')
+  gulp.src('.tmp/assets/**')
+  .pipe(gulp.dest('_site/assets'));
+
+  return gulp.src('')
   .pipe(gulp.dest('_site/assets'));
 });
 
@@ -67,10 +73,30 @@ gulp.task('compress:main', function() {
   return task.pipe(gulp.dest('.tmp/assets/scripts'));
 });
 
-//should eventually move this to a bower with an inject function for each page
-gulp.task('compress:vendor', function (done) {
-  return  gulp.src('app/assets/scripts/vendor/*.js')
-  .pipe(gulp.dest('.tmp/assets/scripts'));
+gulp.task('inject-vendor', function () {
+    return gulp.src('./app/_layouts/*.html')
+        //make the js
+        .pipe(inject(gulp.src(wiredep().js)
+        // .pipe(concat('bower.js')) //no concat for now, causes problems
+        .pipe(gulp.dest('.tmp/assets/scripts/vendor'))))
+        //make the css
+        .pipe(inject(gulp.src(wiredep().css)
+        // .pipe(concat('bower.css')) //no concat for now, causes problems
+        .pipe(gulp.dest('.tmp/assets/styles/vendor/'))))
+        //push all to the template
+        .pipe(gulp.dest('./app/_layouts/'));
+});
+
+gulp.task('inject-own', function() {
+  return gulp.src('./app/_layouts/*.html')
+    .pipe(inject(gulp.src('.tmp/assets/scripts/*.js')))
+    .pipe(gulp.dest('./app/_layouts/'));
+});
+
+gulp.task('fixin', function (){
+  return gulp.src('./app/_layouts/*.html')
+    .pipe(greplace('/.tmp/assets/', '{{ site.baseurl }}/assets/'))
+    .pipe(gulp.dest('./app/_layouts/build/'));
 });
 
 // Build the jekyll website.
@@ -100,7 +126,7 @@ gulp.task('jekyll:rebuild', ['jekyll'], function () {
 });
 
 gulp.task('build', function(done) {
-  runSequence('get-data', ['jekyll', 'compress:main', 'compress:vendor', 'compass'], 'copy:assets', done);
+  runSequence(['get-data'], ['inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
 });
 
 // Default task.
@@ -185,7 +211,7 @@ gulp.task('get-data', function(datacb) {
     datacb(console.log("dl using local"));
   });
 
-  //download and unhxl the appealsplus.csv 
+  //download and unhxl the appealsplus.csv
   dlstream.on('finish', function () {
     fs.createReadStream('app/_data/temp/appealsplus.csv')
       .pipe(replace(/\#/g, ''))

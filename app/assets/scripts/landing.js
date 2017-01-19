@@ -52,7 +52,7 @@ function generateGrid(data){
     d.tags.forEach(function(tag){
       classes += ' '+tag.replace(/ /g, '_').toLowerCase();
     });
-    console.log(classes);
+    // console.log(classes);
     var html = '<div id="grid'+i+'" class="'+classes+'"><div class="inner"><h3 class="grid-title">'+d['#meta+title']+'</h3><div id="overlay'+i+'" class="overlay">';
     html+='<p class="overlaydesc">'+d['#meta+description']+'</p>';
     html +='</div></div></div>';
@@ -70,10 +70,10 @@ function generateGrid(data){
       if($('#overlay'+i).css('opacity')>0.5){
         if(d['#meta+url+jekyll'].substring(0,1).toLowerCase()=='h'){
           window.open(d['#meta+url+jekyll'], '_blank');
-          console.log('external');
+          // console.log('external');
         } else {
           window.open(d['#meta+url+jekyll'],'_self');
-          console.log('internal');
+          // console.log('internal');
         }
       }
     });

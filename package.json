@@ -10,7 +10,7 @@
     "name": "GO Project",
     "url": "http://ifrcgo.github.io"
   },
-  "license": "BSD 3-clause",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": ""
   },
@@ -44,6 +44,8 @@
     "gulp-concat": "^2.6.1",
     "gulp-git": "^1.12.0",
     "gulp-plumber": "*",
+    "gulp-replace": "^0.5.4",
+    "gulp-string-replace": "^0.3.1",
     "gulp-uglify": "^2.0.0",
     "js-yaml": "^3.7.0",
     "lodash": "^4.17.2"
@@ -52,10 +54,14 @@
     "csv2json": "^1.1.0",
     "gulp-download-stream": "*",
     "gulp-filter": "^4.0.0",
-    "gulp-inject": "^4.1.0",
+    "gulp-inject": "^4.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-wiredep": "0.0.0",
     "isotope-layout": "^3.0.1",
+    "main-bower-files": "^2.13.1",
     "request": "^2.79.0",
     "run-sequence": "^1.2.2",
-    "stream-replace": "^1.0.0"
+    "stream-replace": "^1.0.0",
+    "wiredep": "^4.0.0"
   }
 }

@@ -1,14 +1,14 @@
 <div id="site-canvas">
   <div class="header-image header-appeals">
     <div class="dark-overlay center-text">
-      <h1 class="title feature-header">{{page.crisis_name}}</h1>
-      <h1 class="title feature-header">{{page.meta_id}}</h1>
+      <h6 class="title feature-header">{{page.crisis_name }}</h6>
+      <!-- <h5 class="title feature-header">{{page.meta_id}}</h5> -->
     </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="medium-12"><a href="/">Home</a> > <a href="../index.html">Appeal Pages</a> > <b class="appeal_name">{{page.meta_id}}</b></div>
+<!-- <div class="row">
+  <div class="medium-12"><a href="{{ site.baseurl }}">Home</a> > <a href="{{ site.baseurl }}{{ page.url }}">Appeal Pages</a> > <b class="appeal_name">{{page.meta_id}}</b></div>
 </div>
 <div class="row">
   <div class="medium-6">
@@ -32,7 +32,6 @@
       </div>
       <div id="coverage" class="medium-6">
         <h4 class="keyfiguretitle">Coverage</h4>
-        <!--Simon Fix this -->
       </div>
     </div>
   </div>
@@ -53,6 +52,48 @@
 <div id="latestdocs" class="row">
 </div>
 <div id="links" class="row">
+</div> -->
+
+<div class="row">
+    <div class="medium-6">
+        <h3>Overview</h3>
+        <div class="row">
+            <div class="medium-6">
+                <div class="row">
+                    <div id="beneficiaries" class="medium-12">
+                        <h4 class="keyfiguretitle">Targeted Beneficiaries</h4>
+                    </div>
+                    <div id="funding" class="medium-12">
+                        <h4 class="keyfiguretitle">Funding</h4>
+                    </div>
+                    <div id="appeal_amount" class="medium-12">
+                        <h4 class="keyfiguretitle">Appeal Amount</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="coverage" class="medium-6">
+                <h4 class="keyfiguretitle">Coverage</h4>
+            </div>
+        </div>
+    </div>
+    <div id="map" class="medium-6">
+    </div>
+</div>
+<div id="keyfigures" class="row">
+</div>
+<div id="freetext" class="row">
+</div>
+<div id="contacts" class="row">
+</div>
+<div class="row">
+    <div class="medium-12">
+        <h3>Latest Appeal Documents</h3>
+    </div>
+</div>
+<div id="latestdocs" class="row">
+</div>
+<div id="links" class="row">
+</div>
 </div>
 
 {{page.date_start}}

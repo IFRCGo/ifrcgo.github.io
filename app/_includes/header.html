@@ -1,34 +1,24 @@
-<!-- <header>
-</header> -->
-<!-- old header -->
-<!-- <div id="site-canvas">
-<div class="header-image header-landing">
-<div class="dark-overlay center-text">
-<h1 class="title feature-header">{{site.data[locale].landing.title}}</h1>
-<h6 class="title tagline">{{site.data[locale].landing.welcome}}</h1>
-</div>
-</div>
-</div> -->
-
 <!-- Start Top Bar -->
-<div class="top-bar">
+<div class="top-bar" id="particles-js">
   <div class="top-bar-left">
     <ul class="menu">
       <li class="menu-text"><img class="logo" src="{{ site.baseurl }}/assets/graphics/ifrc_logo.png"></li>
     </ul>
   </div>
-  <!--<div class="top-bar-right">
-  <ul class="menu">
-  <li><a href="#">Three</a></li>
-  <li><a href="#">Four</a></li>
-  <li><a href="#">Five</a></li>
-  <li><a href="#">Six</a></li>
-</ul>
-</div>-->
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><a href="{{ site.baseurl }}/3w/">3W</a></li>
+      <li><a href="{{ site.baseurl }}/appeals">Appeals</a></li>
+      <li><a href="{{ site.baseurl }}/eru">ERU Readiness</a></li>
+      <!-- <li><a href="{{ site.baseurl }}/eru">Six</a></li> -->
+    </ul>
+  </div>
 </div>
 <!-- End Top Bar -->
 
 <div class="header-image large">
   <div class="landing-pic row column text-center">
+    <h1 class="title feature-header">{{ page.title }}</h1>
+    <h6 class="title tagline">{{ page.tagline }}</h6>
   </div>
 </div>

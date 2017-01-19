@@ -49,6 +49,13 @@
   <meta name="twitter:creator" content="@author_handle" >
   <meta name="twitter:image" content="" >
 
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/.tmp/assets/styles/vendor/leaflet.css">
+  <link rel="stylesheet" href="/.tmp/assets/styles/vendor/dc.css">
+  <link rel="stylesheet" href="/.tmp/assets/styles/vendor/introjs.css">
+  <link rel="stylesheet" href="/.tmp/assets/styles/vendor/jquery.dataTables.css">
+  <!-- endinject -->
+
   {% feed_meta %}
 </head>
 
@@ -78,6 +85,26 @@ ga('send', 'pageview');
 <!-- build:js assets/scripts/main.js -->
 <script src="{{ site.baseurl }}/assets/scripts/main.min.js"></script>
 <!-- endbuild -->
+
+<!-- inject:js -->
+<script src="/.tmp/assets/scripts/vendor/d3.js"></script>
+<script src="/.tmp/assets/scripts/vendor/jquery.js"></script>
+<script src="/.tmp/assets/scripts/vendor/leaflet-src.js"></script>
+<script src="/.tmp/assets/scripts/vendor/matches-selector.js"></script>
+<script src="/.tmp/assets/scripts/vendor/utils.js"></script>
+<script src="/.tmp/assets/scripts/vendor/get-size.js"></script>
+<script src="/.tmp/assets/scripts/vendor/ev-emitter.js"></script>
+<script src="/.tmp/assets/scripts/vendor/outlayer.js"></script>
+<script src="/.tmp/assets/scripts/vendor/masonry.js"></script>
+<script src="/.tmp/assets/scripts/vendor/isotope.js"></script>
+<script src="/.tmp/assets/scripts/vendor/papaparse.js"></script>
+<script src="/.tmp/assets/scripts/vendor/crossfilter.min.js"></script>
+<script src="/.tmp/assets/scripts/vendor/dc.js"></script>
+<script src="/.tmp/assets/scripts/vendor/intro.js"></script>
+<script src="/.tmp/assets/scripts/vendor/jquery.dataTables.js"></script>
+<!-- endinject -->
+
+<script src="{{site.baseurl}}/assets/scripts/appeals.js"></script>
 
 </body>
 
