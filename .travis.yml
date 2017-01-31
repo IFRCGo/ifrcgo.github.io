@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "node"
+  - "6.1"
 
 language: ruby
 rvm:
@@ -19,7 +19,9 @@ before_install:
 - chmod +x ./.build_scripts/deploy.sh
 
 before_script:
+  - npm install -g bower
   - npm install
+  - bower install
 script: gulp prod
 
 after_success:
