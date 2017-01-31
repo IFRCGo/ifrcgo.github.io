@@ -23,8 +23,7 @@ function createMap(data,geom){
 
     map = L.map('map',{
                 center: [52,0],
-                zoom: 1,
-                layers: [baselayer,baselayer2]
+                zoom: 1
             });
 
     var style = function(feature) {
