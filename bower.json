@@ -23,12 +23,18 @@
     "leaflet": "~1.0.2",
     "isotope": "~3.0.1",
     "papaparse": "~4.1.2",
-    "dcjs": "~2.0.0",
     "introjs": "~1.0.0",
     "datatables": "~1.10.13",
-    "modernizer": "~2.8.2"
+    "modernizer": "~2.8.2",
+    "topojson": "~2.2.0"
   },
   "resolutions": {
     "d3": "~4.4.0"
+  },
+  "overrides": {
+    "isotope": {
+      "main": "dist/isotope.pkgd.min.js",
+      "dependencies": {}
+    }
   }
 }

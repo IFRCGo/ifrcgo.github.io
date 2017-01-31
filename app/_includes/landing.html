@@ -1,127 +1,141 @@
 <div class="row column alerts">
-  <h4>Alerts</h4>
+  <p class="marquee"><span id="feed"></span></p>
 </div>
-
-<div class="row">
-  <div class="medium-6 columns medium-push-6">
-    <img class="thumbnail-map" src="http://placehold.it/750x350">
-  </div>
-  <div class="medium-6 columns medium-pull-6">
-    <h2>Welcome to IFRC GO</h2>
-    <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor.</p>
-  </div>
-</div>
-
-<div class="row details-row">
-  <a class="details" href="http://rcrcsims.org/" target="_blank">
-    <div class="medium-4 columns network-detail">
-      <h3>SIMS</h3>
-      <p>Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement.</p>
-    </div>
-  </a>
-  <a class="details" href="http://www.ifrc.org/en/who-we-are/data-explorer/" target="_blank">
-    <div class="medium-4 columns network-detail">
-      <h3>FDRS</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quis ante sed mollis. Integer fringilla finibus rhoncus. Integer convallis nisi non mi efficitur, nec sollicitudin felis lobortis. Mauris sed lectus imperdiet, rhoncus sapien elementum, ullamcorper tortor.</p>
-    </div>
-  </a>
-  <a class="details" href="https://ifrcgo.github.io/" target="_blank">
-    <div class="medium-4 columns network-detail">
-      <h3>Go Lab</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quis ante sed mollis. Integer fringilla finibus rhoncus. Integer convallis nisi non mi efficitur, nec sollicitudin felis lobortis. Mauris sed lectus imperdiet, rhoncus sapien elementum, ullamcorper tortor.</p>
-    </div>
-  </a>
-</div>
-
-<hr>
 
 <div class="row column">
   <ul class="vertical medium-horizontal menu expanded text-center">
-    <li><a href="#"><div class="stat">5</div><span>Core Datasets</span></a></li>
-    <li><a href="#"><div class="stat">190</div><span>National Societies</span></a></li>
-    <li><a href="#"><div class="stat">50</div><span>Emergency Appeals</span></a></li>
-    <li><a href="#"><div class="stat">19</div><span>DREFs</span></a></li>
-    <li><a href="#"><div class="stat">86M</div><span>Beneficiaries</span></a></li>
+    <li><a href="#"><div class="stat">43</div><span>Emergency Appeals</span></a></li>
+    <li><a href="#"><div class="stat">15</div><span>DREFs</span></a></li>
+    <li><a href="#"><div class="stat">75%</div><span>Coverage</span></a></li>
+    <li><a href="#"><div class="stat">650M</div><span>Total Appeals</span></a></li>
+    <li><a href="#"><div class="stat">29M</div><span>Beneficiaries</span></a></li>
   </ul>
 </div>
 
 <hr>
 
-<div class="row column">
-  <h3>Core Datasets</h3>
-</div>
-
-<div class="row medium-up-3 large-up-5">
-  <div class="column core">
-    <a href="https://ifrcgo.github.io/pages/current_appeals/" target="_blank" class="icons">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/dref_icon.png">
-      <span class="rollover">
-        <h3>DREFs & Appeals</h3>
-      </span>
-    </a>
+<div class="row">
+  <div class="medium-6 columns">
+    <h1>Current Operations</h1>
+    <div id="map" class="leaflet-container"></div>
   </div>
-  <div class="column core">
-    <a href="https://ifrcgo.github.io/pages/global_pns_3w/" target="_blank" class="icons">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/3w_icon.png">
-      <span class="rollover">
-        <h3>3W</h3>
-      </span>
-    </a>
-  </div>
-  <div class="column core">
-    <a href="https://ifrcgo.github.io/pages/appeals/" target="_blank" class="icons">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/appealsplus_icon.png">
-      <span class="rollover">
-        <h3>Operations</h3>
-      </span>
-    </a>
-  </div>
-  <div class="column core">
-    <a href="" target="_blank" class="icons">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/fieldreports_icon.png">
-      <span class="rollover">
-        <h3>Field Reports</h3>
-      </span>
-    </a>
-  </div>
-  <div class="column core">
-    <a href="" target="_blank" class="icons">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/surge_icon.png">
-      <span class="rollover">
-        <h3>Surge</h3>
-      </span>
-    </a>
+  <div id="updates" class="medium-6 columns">
+    <h1>Latest Field Reports</h1>
+    <table id="fieldreports">
+    </table>
+    <h1>Latest Alerts</h1>
+    <table>
+      <tr><td>No alerts have been issued in the last 30 days</td></tr>
+    </table>
   </div>
 </div>
 
 <hr>
 
 <div class="row column">
-  <h3>IFRC Regions</h3>
+  <h1>Core Datasets</h1>
+ </div>
+
+<div class="row small-up-2 large-up-5">
+  <span class="column">
+    <div class="network-data">
+      <h1>Current Operations</h1>
+      <a href="https://ifrcgo.github.io/pages/current_appeals/#All" class="button-data"> Go to the data </a>
+    </div>
+  </span>
+  <span class="column">
+    <div class="network-data">
+      <h1>3W</h1>
+      <a href="https://ifrcgo.github.io/pages/global_pns_3w/" class="button-data"> Go to the data </a>
+    </div>
+  </span>
+  <span class="column">
+    <div class="network-data">
+      <h1>DREFs & Appeals</h1>
+      <a href="https://ifrcgo.github.io/pages/historic_appeals/" class="button-data"> Go to the data </a>
+    </div>
+  </span>
+  <span class="column">
+    <div class="network-data">
+      <h1>IFRC Field Reports</h1>
+      <a href="#" class="button-data"> Go to the data </a>
+    </div>
+  </span>
+  <span class="column">
+    <div class="network-data">
+      <h1>Surge Capacity</h1>
+      <a href="#" class="button-data"> Go to the data </a>
+    </div>
+  </span>
 </div>
+
+<hr>
+
+<div class="row column">
+  <h1>IFRC Regions</h1>
+ </div>
 
 <div class="row medium-up-3 large-up-5">
   <div class="column core">
-    <a href="https://app.klipfolio.com/published/55d90b1ce9a9a02a2fce082e80dbe76f/dcprr-ops" target="_blank">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/dref_icon.png">
+    <a href="americas.html" target="_blank" class="icons-regions">
+      <img class="thumbnail-icons" src="assets/icon maps/icons/icon map americas.png">
+        <h2>Americas</h2>
     </a>
   </div>
   <div class="column core">
-    <a href="https://ifrc-europe.github.io/migration-portal/" target="_blank">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/3w_icon.png">
+    <a href="americas.html" target="_blank" class="icons-regions">
+      <img class="thumbnail-icons" src="assets/icon maps/icons/icon map europe.png">
+        <h2>Europe</h2>
     </a>
   </div>
   <div class="column core">
-    <a href="" target="_blank">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/appealsplus_icon.png">
+    <a href="americas.html" target="_blank" class="icons-regions">
+      <img class="thumbnail-icons" src="assets/icon maps/icons/icon map mena.png">
+        <h2>MENA</h2>
     </a>
   </div>
   <div class="column core">
-    <a href="" target="_blank">
-      <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/fieldreports_icon.png">
+    <a href="americas.html" target="_blank" class="icons-regions">
+      <img class="thumbnail-icons" src="assets/icon maps/icons/icon map asia_pac.png">
+        <h2>Asia Pacific</h2>
+    </a>
+  </div>
+  <div class="column core">
+    <a href="americas.html" target="_blank" class="icons-regions">
+      <img class="thumbnail-icons" src="assets/icon maps/icons/icon map africa.png">
+        <h2>Africa</h2>
+    </a>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <h1>Welcome to IFRC GO</h1>
+    <p>Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor.</p>
+  </div>
+</div>
+
+<hr>
+
+<div class="row details-row">
+  <a class="details" href="http://rcrcsims.org/" target="_blank">
+    <div class="medium-4 columns network-detail">
+      <h1>SIMS</h1>
+      <p>Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement.</p>
     </div>
-    <div class="column core">
-      <a href="" target="_blank">
-        <img class="thumbnail" src="{{ site.baseurl }}/assets/icons/surge_icon.png">
-      </div>
+  </a>
+  <a class="details" href="http://data.ifrc.org/" target="_blank">
+    <div class="medium-4 columns network-detail">
+      <h1>IFRC Data Initiatives</h1>
+      <p>IFRC is a data-driven organization dedicated to making evidence-based decision-making.
+      Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies.</p>
     </div>
+  </a>
+  <a class="details" href="https://ifrcgo.github.io/" target="_blank">
+    <div class="medium-4 columns network-detail">
+      <h1>Go Lab</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan quis ante sed mollis. Integer fringilla finibus rhoncus. Integer convallis nisi non mi efficitur. Integer accumsa Integer accumsa. Integer accumsa. Integer accumsa.</p>
+    </div>
+  </a>
+</div>

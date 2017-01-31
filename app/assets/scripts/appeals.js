@@ -62,12 +62,6 @@ function processHash(){
 	    dataType: 'json',
 	});
 
-	var geomCall = $.ajax({
-	    type: 'GET',
-	    url: '/data/worldmap.json',
-	    dataType: 'json'
-	});
-
 	getAppealDocs(appealid);
 	appealsplus(appealid);
 

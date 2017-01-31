@@ -12,6 +12,7 @@ _site
 _config-dev.yml
 npm-debug.log
 app/assets/scripts/config/local.js
+app/assets/scripts/vendor/
 app/_data/temp
 appealsplus.json
 
