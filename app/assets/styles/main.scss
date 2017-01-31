@@ -3,8 +3,8 @@
 @import "compass";
 
 //Foundation
-@import "settings";
-@import "./foundation-sites/scss/foundation";
+@import "../scripts/vendor/foundation-sites/scss/settings/settings";
+@import "../scripts/vendor/foundation-sites/scss/foundation";
 @include foundation-everything;
 
 // Reset and normalize
@@ -14,5 +14,4 @@
 @import "base";
 @import "landing";
 @import "labs";
-@import "homepage";
 @import "leaflet_custom";
