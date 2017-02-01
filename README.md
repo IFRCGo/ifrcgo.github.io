@@ -37,15 +37,19 @@ After these basic requirements are met, run the following commands in the websit
 ##### Command #1
 
 ```
-$ npm install (Mac)
-$ npm install express (Ubuntu)
+$ npm install
 ```
 
 ##### Command #2: Installing Bundler
 
 ```
-$ bundle install (Mac)
-$ gem bundle install (Ubuntu)
+$ bundle install
+```
+
+##### Command #3: Installing Bundler
+
+```
+$ bower install
 ```
 
 ### Getting started
@@ -53,7 +57,7 @@ $ gem bundle install (Ubuntu)
 ```
 $ gulp serve
 ```
-Compiles the compass files, javascripts, and launches the server making the site available at `http://localhost:3000/`
+Compiles the compass files, javascript, and launches the server making the site available at `http://localhost:3000/`
 The system will watch files and execute tasks whenever one of them changes.
 The site will automatically refresh since it is bundled with livereload.
 
