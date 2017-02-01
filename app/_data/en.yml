@@ -1,4 +1,16 @@
 #####################
+## NAV CONTENT ##
+#####################
+nav:
+    home: "Home"
+    coredatasets: "Core Datasets"
+    ifrcregions: "IFRC Regions"
+    about: "About"
+    ifrclink: "IFRC.org"
+    fednet: "FedNet"
+    dmis: "DMIS"
+
+#####################
 ## LANDING CONTENT ##
 #####################
 landing:
@@ -26,4 +38,4 @@ about:
 #####################
 lost:
     title: "This page is missing."
-    message: "This is kind of embarrasing. You seem to be somewhere that we haven't mapped yet."
+    message: "This is kind of embarrasing. You seem to be somewhere that we haven't visualized the data yet."
