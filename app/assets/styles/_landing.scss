@@ -71,6 +71,11 @@ h1, h2, h3, h4, h5, h6, body, p {
   margin-bottom: 1rem;
 }
 
+.thumbnail-icons:hover {
+  -webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(50%);
+}
+
 #map {
   height:400px;
   width:100%;
