@@ -6,7 +6,6 @@
 
 .menu-text {
     padding: 0;
-    margin-right: 80px;
     font-weight: bold;
     font-size: 12px;
 }
@@ -14,8 +13,14 @@
 .top-bar {
     padding: 0;
     margin: 0 auto;
+    margin-top: 10px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+}
+
+.menu {
+  margin-top: 15px;
 }
 
 .callout {
@@ -40,11 +45,6 @@
     border: none;
     background-color: #606161;
     min-height: 150px;
-}
-
-
-.top-bar, .menu-text {
-    background-color: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6, body, p {
