@@ -26,8 +26,7 @@
     "introjs": "~1.0.0",
     "datatables": "~1.10.13",
     "modernizer": "~2.8.2",
-    "topojson": "~2.2.0",
-    "foundation-sites": "~6.3.0"
+    "topojson": "~2.2.0"
   },
   "resolutions": {
     "d3": "~4.4.0",
