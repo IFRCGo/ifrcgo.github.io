@@ -130,9 +130,9 @@ gulp.task('build', function(done) {
 });
 
 // Default task.
-gulp.task('default', function(done) {
-  runSequence('build', done);
-});
+//gulp.task('default', function(done) {
+// runSequence('build', done);
+//});
 
 gulp.task('serve', ['build'], function () {
   browserSync({
