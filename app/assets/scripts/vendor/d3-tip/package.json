@@ -1,6 +1,6 @@
 {
   "name": "d3-tip",
-  "version": "0.7.1",
+  "version": "0.6.8",
   "description": "Tooltips for d3 svg visualizations",
   "author": "Justin Palmer <justin@labratrevenge.com> (http://labratrevenge.com/d3-tip)",
   "main": "index.js",
@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/Caged/d3-tip",
   "dependencies": {
-    "d3": "^4.2"
+    "d3": "^3.5.5"
   }
 }

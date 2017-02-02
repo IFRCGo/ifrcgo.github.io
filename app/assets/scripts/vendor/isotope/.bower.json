@@ -41,12 +41,12 @@
     "jquery-plugin"
   ],
   "license": "GPL-3.0",
-  "version": "3.0.1",
-  "_release": "3.0.1",
+  "version": "3.0.2",
+  "_release": "3.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "v3.0.1",
-    "commit": "1b4d16b5e84c44e8b81c4e86b04a1386cd58da42"
+    "tag": "v3.0.2",
+    "commit": "9c391a1eb79b02e87a97818f8b0c3641dc7d47dd"
   },
   "_source": "https://github.com/metafizzy/isotope.git",
   "_target": "~3.0.1",

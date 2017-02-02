@@ -1,5 +1,5 @@
 /*!
- *  dc 2.0.0
+ *  dc 2.1.3
  *  http://dc-js.github.io/dc.js/
  *  Copyright 2012-2016 Nick Zhu & the dc.js Developers
  *  https://github.com/dc-js/dc.js/blob/master/AUTHORS
@@ -29,7 +29,7 @@
  * such as {@link dc.baseMixin#svg .svg} and {@link dc.coordinateGridMixin#xAxis .xAxis},
  * return values that are themselves chainable d3 objects.
  * @namespace dc
- * @version 2.0.0
+ * @version 2.1.3
  * @example
  * // Example chaining
  * chart.width(300)
@@ -38,7 +38,7 @@
  */
 /*jshint -W079*/
 var dc = {
-    version: '2.0.0',
+    version: '2.1.3',
     constants: {
         CHART_CLASS: 'dc-chart',
         DEBUG_GROUP_CLASS: 'debug',
@@ -1537,11 +1537,11 @@ dc.baseMixin = function (_chart) {
      * @param {Boolean} [controlsUseVisibility=false]
      * @returns {Boolean|dc.baseMixin}
      **/
-    _chart.controlsUseVisibility = function (_) {
+    _chart.controlsUseVisibility = function (useVisibility) {
         if (!arguments.length) {
             return _controlsUseVisibility;
         }
-        _controlsUseVisibility = _;
+        _controlsUseVisibility = useVisibility;
         return _chart;
     };
 
@@ -1796,14 +1796,14 @@ dc.baseMixin = function (_chart) {
     };
 
     /**
-     * Set or get the has filter handler. The has filter handler is a function that checks to see if
-     * the chart's current filters include a specific filter.  Using a custom has filter handler allows
+     * Set or get the has-filter handler. The has-filter handler is a function that checks to see if
+     * the chart's current filters (first argument) include a specific filter (second argument).  Using a custom has-filter handler allows
      * you to change the way filters are checked for and replaced.
      * @method hasFilterHandler
      * @memberof dc.baseMixin
      * @instance
      * @example
-     * // default has filter handler
+     * // default has-filter handler
      * chart.hasFilterHandler(function (filters, filter) {
      *     if (filter === null || typeof(filter) === 'undefined') {
      *         return filters.length > 0;
@@ -1858,7 +1858,7 @@ dc.baseMixin = function (_chart) {
      * change how filters are removed or perform additional work when removing a filter, e.g. when
      * using a filter server other than crossfilter.
      *
-     * Any changes should modify the `filters` array argument and return that array.
+     * The handler should return a new or modified array as the result.
      * @method removeFilterHandler
      * @memberof dc.baseMixin
      * @instance
@@ -1900,7 +1900,7 @@ dc.baseMixin = function (_chart) {
      * are added or perform additional work when adding a filter, e.g. when using a filter server other
      * than crossfilter.
      *
-     * Any changes should modify the `filters` array argument and return that array.
+     * The handler should return a new or modified array as the result.
      * @method addFilterHandler
      * @memberof dc.baseMixin
      * @instance
@@ -1936,7 +1936,7 @@ dc.baseMixin = function (_chart) {
      * change the way filters are reset, or perform additional work when resetting the filters,
      * e.g. when using a filter server other than crossfilter.
      *
-     * This function should return an array.
+     * The handler should return a new or modified array as the result.
      * @method resetFilterHandler
      * @memberof dc.baseMixin
      * @instance
@@ -1961,11 +1961,14 @@ dc.baseMixin = function (_chart) {
         return _chart;
     };
 
-    function applyFilters () {
+    function applyFilters (filters) {
         if (_chart.dimension() && _chart.dimension().filter) {
-            var fs = _filterHandler(_chart.dimension(), _filters);
-            _filters = fs ? fs : _filters;
+            var fs = _filterHandler(_chart.dimension(), filters);
+            if (fs) {
+                filters = fs;
+            }
         }
+        return filters;
     }
 
     /**
@@ -2040,24 +2043,26 @@ dc.baseMixin = function (_chart) {
         if (!arguments.length) {
             return _filters.length > 0 ? _filters[0] : null;
         }
+        var filters = _filters;
         if (filter instanceof Array && filter[0] instanceof Array && !filter.isFiltered) {
-            filter[0].forEach(function (d) {
-                if (_chart.hasFilter(d)) {
-                    _removeFilterHandler(_filters, d);
+            // toggle each filter
+            filter[0].forEach(function (f) {
+                if (_hasFilterHandler(filters, f)) {
+                    filters = _removeFilterHandler(filters, f);
                 } else {
-                    _addFilterHandler(_filters, d);
+                    filters = _addFilterHandler(filters, f);
                 }
             });
         } else if (filter === null) {
-            _filters = _resetFilterHandler(_filters);
+            filters = _resetFilterHandler(filters);
         } else {
-            if (_chart.hasFilter(filter)) {
-                _removeFilterHandler(_filters, filter);
+            if (_hasFilterHandler(filters, filter)) {
+                filters = _removeFilterHandler(filters, filter);
             } else {
-                _addFilterHandler(_filters, filter);
+                filters = _addFilterHandler(filters, filter);
             }
         }
-        applyFilters();
+        _filters = applyFilters(filters);
         _chart._invokeFilteredListener(filter);
 
         if (_root !== null && _chart.hasFilter()) {
@@ -4395,9 +4400,7 @@ dc.stackMixin = function (_chart) {
  * @returns {dc.capMixin}
  */
 dc.capMixin = function (_chart) {
-
-    var _cap = Infinity;
-
+    var _cap = Infinity, _takeFront = true;
     var _othersLabel = 'Others';
 
     var _othersGrouper = function (topRows) {
@@ -4432,16 +4435,28 @@ dc.capMixin = function (_chart) {
         return _chart.valueAccessor()(d, i);
     };
 
+    // return N "top" groups, where N is the cap, sorted by baseMixin.ordering
+    // whether top means front or back depends on takeFront
     _chart.data(function (group) {
         if (_cap === Infinity) {
             return _chart._computeOrderedGroups(group.all());
         } else {
-            var topRows = group.top(_cap); // ordered by crossfilter group order (default value)
-            topRows = _chart._computeOrderedGroups(topRows); // re-order using ordering (default key)
-            if (_othersGrouper) {
-                return _othersGrouper(topRows);
+            var items = group.all();
+            items = _chart._computeOrderedGroups(items); // sort by baseMixin.ordering
+
+            if (_cap) {
+                if (_takeFront) {
+                    items = items.slice(0, _cap);
+                } else {
+                    var start = Math.max(0, items.length - _cap);
+                    items = items.slice(start);
+                }
             }
-            return topRows;
+
+            if (_othersGrouper) {
+                return _othersGrouper(items);
+            }
+            return items;
         }
     });
 
@@ -4449,6 +4464,25 @@ dc.capMixin = function (_chart) {
      * Get or set the count of elements to that will be included in the cap. If there is an
      * {@link dc.capMixin#othersGrouper othersGrouper}, any further elements will be combined in an
      * extra element with its name determined by {@link dc.capMixin#othersLabel othersLabel}.
+     *
+     * As of dc.js 2.1 and onward, the capped charts use
+     * {@link https://github.com/crossfilter/crossfilter/wiki/API-Reference#group_all group.all()}
+     * and {@link dc.baseMixin#ordering baseMixin.ordering()} to determine the order of
+     * elements. Then `cap` and {@link dc.capMixin#takeFront takeFront} determine how many elements
+     * to keep, from which end of the resulting array.
+     *
+     * **Migration note:** Up through dc.js 2.0.*, capping used
+     * {@link https://github.com/crossfilter/crossfilter/wiki/API-Reference#group_top group.top(N)},
+     * which selects the largest items according to
+     * {@link https://github.com/crossfilter/crossfilter/wiki/API-Reference#group_order group.order()}.
+     * The chart then sorted the items according to {@link dc.baseMixin#ordering baseMixin.ordering()}.
+     * So the two values essentially had to agree, but if the `group.order()` was incorrect (it's
+     * easy to forget about), the wrong rows or slices would be displayed, in the correct order.
+     *
+     * If your chart previously relied on `group.order()`, use `chart.ordering()` instead. If you
+     * actually want to cap by size but e.g. sort alphabetically by key, please
+     * [file an issue](https://github.com/dc-js/dc.js/issues/new) - it's still possible but we'll
+     * need to work up an example.
      * @method cap
      * @memberof dc.capMixin
      * @instance
@@ -4460,6 +4494,24 @@ dc.capMixin = function (_chart) {
             return _cap;
         }
         _cap = count;
+        return _chart;
+    };
+
+    /**
+     * Get or set the direction of capping. If set, the chart takes the first
+     * {@link dc.capMixin#cap cap} elements from the sorted array of elements; otherwise
+     * it takes the last `cap` elements.
+     * @method takeFront
+     * @memberof dc.capMixin
+     * @instance
+     * @param {Boolean} [takeFront=true]
+     * @returns {Boolean|dc.capMixin}
+     */
+    _chart.takeFront = function (takeFront) {
+        if (!arguments.length) {
+            return _takeFront;
+        }
+        _takeFront = takeFront;
         return _chart;
     };
 
@@ -4553,6 +4605,8 @@ dc.capMixin = function (_chart) {
 dc.bubbleMixin = function (_chart) {
     var _maxBubbleRelativeSize = 0.3;
     var _minRadiusWithLabel = 10;
+    var _sortBubbleSize = false;
+    var _elasticRadius = false;
 
     _chart.BUBBLE_NODE_CLASS = 'node';
     _chart.BUBBLE_CLASS = 'bubble';
@@ -4563,7 +4617,13 @@ dc.bubbleMixin = function (_chart) {
     _chart.renderLabel(true);
 
     _chart.data(function (group) {
-        return group.top(Infinity);
+        var data = group.all();
+        if (_sortBubbleSize) {
+            // sort descending so smaller bubbles are on top
+            var radiusAccessor = _chart.radiusValueAccessor();
+            data.sort(function (a, b) { return d3.descending(radiusAccessor(a), radiusAccessor(b)); });
+        }
+        return data;
     });
 
     var _r = d3.scale.linear().domain([0, 100]);
@@ -4589,6 +4649,29 @@ dc.bubbleMixin = function (_chart) {
         }
         _r = bubbleRadiusScale;
         return _chart;
+    };
+
+    /**
+     * Turn on or off the elastic bubble radius feature, or return the value of the flag. If this
+     * feature is turned on, then bubble radii will be automatically rescaled to fit the chart better.
+     * @method elasticRadius
+     * @memberof dc.bubbleChart
+     * @instance
+     * @param {Boolean} [elasticRadius=false]
+     * @returns {Boolean|dc.bubbleChart}
+     */
+    _chart.elasticRadius = function (elasticRadius) {
+        if (!arguments.length) {
+            return _elasticRadius;
+        }
+        _elasticRadius = elasticRadius;
+        return _chart;
+    };
+
+    _chart.calculateRadiusDomain = function () {
+        if (_elasticRadius) {
+            _chart.r().domain([_chart.rMin(), _chart.rMax()]);
+        }
     };
 
     /**
@@ -4697,6 +4780,23 @@ dc.bubbleMixin = function (_chart) {
         if (_chart.renderTitle()) {
             g.select('title').text(titleFunction);
         }
+    };
+
+    /**
+     * Turn on or off the bubble sorting feature, or return the value of the flag. If enabled,
+     * bubbles will be sorted by their radius, with smaller bubbles in front.
+     * @method sortBubbleSize
+     * @memberof dc.bubbleChart
+     * @instance
+     * @param {Boolean} [sortBubbleSize=false]
+     * @returns {Boolean|dc.bubbleChart}
+     */
+    _chart.sortBubbleSize = function (sortBubbleSize) {
+        if (!arguments.length) {
+            return _sortBubbleSize;
+        }
+        _sortBubbleSize = sortBubbleSize;
+        return _chart;
     };
 
     /**
@@ -7074,9 +7174,6 @@ dc.dataGrid = function (parent, chartGroup) {
 dc.bubbleChart = function (parent, chartGroup) {
     var _chart = dc.bubbleMixin(dc.coordinateGridMixin({}));
 
-    var _elasticRadius = false;
-    var _sortBubbleSize = false;
-
     _chart.transitionDuration(750);
 
     _chart.transitionDelay(0);
@@ -7085,57 +7182,15 @@ dc.bubbleChart = function (parent, chartGroup) {
         return 'translate(' + (bubbleX(d)) + ',' + (bubbleY(d)) + ')';
     };
 
-    /**
-     * Turn on or off the elastic bubble radius feature, or return the value of the flag. If this
-     * feature is turned on, then bubble radii will be automatically rescaled to fit the chart better.
-     * @method elasticRadius
-     * @memberof dc.bubbleChart
-     * @instance
-     * @param {Boolean} [elasticRadius=false]
-     * @returns {Boolean|dc.bubbleChart}
-     */
-    _chart.elasticRadius = function (elasticRadius) {
-        if (!arguments.length) {
-            return _elasticRadius;
-        }
-        _elasticRadius = elasticRadius;
-        return _chart;
-    };
-
-    /**
-     * Turn on or off the bubble sorting feature, or return the value of the flag. If enabled,
-     * bubbles will be sorted by their radius, with smaller bubbles in front.
-     * @method sortBubbleSize
-     * @memberof dc.bubbleChart
-     * @instance
-     * @param {Boolean} [sortBubbleSize=false]
-     * @returns {Boolean|dc.bubbleChart}
-     */
-    _chart.sortBubbleSize = function (sortBubbleSize) {
-        if (!arguments.length) {
-            return _sortBubbleSize;
-        }
-        _sortBubbleSize = sortBubbleSize;
-        return _chart;
-    };
-
     _chart.plotData = function () {
-        if (_elasticRadius) {
-            _chart.r().domain([_chart.rMin(), _chart.rMax()]);
-        }
-
+        _chart.calculateRadiusDomain();
         _chart.r().range([_chart.MIN_RADIUS, _chart.xAxisLength() * _chart.maxBubbleRelativeSize()]);
 
         var data = _chart.data();
-        if (_sortBubbleSize) {
-            // sort descending so smaller bubbles are on top
-            var radiusAccessor = _chart.radiusValueAccessor();
-            data.sort(function (a, b) { return d3.descending(radiusAccessor(a), radiusAccessor(b)); });
-        }
         var bubbleG = _chart.chartBodyG().selectAll('g.' + _chart.BUBBLE_NODE_CLASS)
                 .data(data, function (d) { return d.key; });
-        if (_sortBubbleSize) {
-            // Call order here to update dom order based on sort
+        if (_chart.sortBubbleSize()) {
+            // update dom order based on sort
             bubbleG.order();
         }
 
@@ -8327,6 +8382,7 @@ dc.bubbleOverlay = function (parent, chartGroup) {
 
     function initializeBubbles () {
         var data = mapData();
+        _chart.calculateRadiusDomain();
 
         _points.forEach(function (point) {
             var nodeG = getNodeG(point, data);
@@ -8386,6 +8442,7 @@ dc.bubbleOverlay = function (parent, chartGroup) {
 
     function updateBubbles () {
         var data = mapData();
+        _chart.calculateRadiusDomain();
 
         _points.forEach(function (point) {
             var nodeG = getNodeG(point, data);
@@ -9589,6 +9646,9 @@ dc.numberDisplay = function (parent, chartGroup) {
     // dimension not required
     _chart._mandatoryAttributes(['group']);
 
+    // default to ordering by value, to emulate old group.top(1) behavior when multiple groups
+    _chart.ordering(function (kv) { return kv.value; });
+
     /**
      * Gets or sets an optional object specifying HTML templates to use depending on the number
      * displayed.  The text `%number` will be replaced with the current value.
@@ -9641,8 +9701,23 @@ dc.numberDisplay = function (parent, chartGroup) {
         return _chart.data();
     };
 
+    // probably unnecessary efficiency over computeOrderedGroups sort
+    function maxBin (all) {
+        if (all.length < 1) {
+            return null;
+        }
+        var maxi = 0, max = _chart.ordering()(all[0]);
+        for (var i = 1; i < all.length; ++i) {
+            var v = _chart.ordering()(all[i]);
+            if (v > max) {
+                max = v;
+                maxi = i;
+            }
+        }
+        return all[maxi];
+    }
     _chart.data(function (group) {
-        var valObj = group.value ? group.value() : group.top(1)[0];
+        var valObj = group.value ? group.value() : maxBin(group.all());
         return _chart.valueAccessor()(valObj);
     });
 
@@ -9734,6 +9809,11 @@ dc.heatMap = function (parent, chartGroup) {
 
     var _cols;
     var _rows;
+    var _colOrdering = d3.ascending;
+    var _rowOrdering = d3.ascending;
+    var _colScale = d3.scale.ordinal();
+    var _rowScale = d3.scale.ordinal();
+
     var _xBorderRadius = DEFAULT_BORDER_RADIUS;
     var _yBorderRadius = DEFAULT_BORDER_RADIUS;
 
@@ -9823,37 +9903,39 @@ dc.heatMap = function (parent, chartGroup) {
         return _chart._filter(dc.filters.TwoDimensionalFilter(filter));
     });
 
-    function uniq (d, i, a) {
-        return !i || a[i - 1] !== d;
-    }
-
     /**
      * Gets or sets the values used to create the rows of the heatmap, as an array. By default, all
-     * the values will be fetched from the data using the value accessor, and they will be sorted in
-     * ascending order.
+     * the values will be fetched from the data using the value accessor.
      * @method rows
      * @memberof dc.heatMap
      * @instance
      * @param  {Array<String|Number>} [rows]
      * @returns {Array<String|Number>|dc.heatMap}
      */
+
     _chart.rows = function (rows) {
-        if (arguments.length) {
-            _rows = rows;
-            return _chart;
-        }
-        if (_rows) {
+        if (!arguments.length) {
             return _rows;
         }
-        var rowValues = _chart.data().map(_chart.valueAccessor());
-        rowValues.sort(d3.ascending);
-        return d3.scale.ordinal().domain(rowValues.filter(uniq));
+        _rows = rows;
+        return _chart;
+    };
+
+    /**
+     #### .rowOrdering([orderFunction])
+     Get or set an accessor to order the rows.  Default is d3.ascending.
+     */
+    _chart.rowOrdering = function (_) {
+        if (!arguments.length) {
+            return _rowOrdering;
+        }
+        _rowOrdering = _;
+        return _chart;
     };
 
     /**
      * Gets or sets the keys used to create the columns of the heatmap, as an array. By default, all
-     * the values will be fetched from the data using the key accessor, and they will be sorted in
-     * ascending order.
+     * the values will be fetched from the data using the key accessor.
      * @method cols
      * @memberof dc.heatMap
      * @instance
@@ -9861,16 +9943,23 @@ dc.heatMap = function (parent, chartGroup) {
      * @returns {Array<String|Number>|dc.heatMap}
      */
     _chart.cols = function (cols) {
-        if (arguments.length) {
-            _cols = cols;
-            return _chart;
-        }
-        if (_cols) {
+        if (!arguments.length) {
             return _cols;
         }
-        var colValues = _chart.data().map(_chart.keyAccessor());
-        colValues.sort(d3.ascending);
-        return d3.scale.ordinal().domain(colValues.filter(uniq));
+        _cols = cols;
+        return _chart;
+    };
+
+    /**
+     #### .colOrdering([orderFunction])
+     Get or set an accessor to order the cols.  Default is ascending.
+     */
+    _chart.colOrdering = function (_) {
+        if (!arguments.length) {
+            return _colOrdering;
+        }
+        _colOrdering = _;
+        return _chart;
     };
 
     _chart._doRender = function () {
@@ -9885,9 +9974,19 @@ dc.heatMap = function (parent, chartGroup) {
     };
 
     _chart._doRedraw = function () {
-        var rows = _chart.rows(),
-            cols = _chart.cols(),
-            rowCount = rows.domain().length,
+        var data = _chart.data(),
+            rows = _chart.rows() || data.map(_chart.valueAccessor()),
+            cols = _chart.cols() || data.map(_chart.keyAccessor());
+        if (_rowOrdering) {
+            rows = rows.sort(_rowOrdering);
+        }
+        if (_colOrdering) {
+            cols = cols.sort(_colOrdering);
+        }
+        rows = _rowScale.domain(rows);
+        cols = _colScale.domain(cols);
+
+        var rowCount = rows.domain().length,
             colCount = cols.domain().length,
             boxWidth = Math.floor(_chart.effectiveWidth() / colCount),
             boxHeight = Math.floor(_chart.effectiveHeight() / rowCount);
@@ -10669,6 +10768,274 @@ dc.boxPlot = function (parent, chartGroup) {
         _tickFormat = tickFormat;
         return _chart;
     };
+
+    return _chart.anchor(parent, chartGroup);
+};
+
+/**
+ * The select menu is a simple widget designed to filter a dimension by selecting an option from
+ * an HTML `<select/>` menu. The menu can be optionally turned into a multiselect.
+ * @class selectMenu
+ * @memberof dc
+ * @mixes dc.baseMixin
+ * @example
+ * // create a select menu under #select-container using the default global chart group
+ * var select = dc.selectMenu('#select-container')
+ *                .dimension(states)
+ *                .group(stateGroup);
+ * // the option text can be set via the title() function
+ * // by default the option text is '`key`: `value`'
+ * select.title(function (d){
+ *     return 'STATE: ' + d.key;
+ * })
+ * @param {String|node|d3.selection|dc.compositeChart} parent - Any valid
+ * [d3 single selector](https://github.com/mbostock/d3/wiki/Selections#selecting-elements) specifying
+ * a dom block element such as a div; or a dom element or d3 selection.
+ * @param {String} [chartGroup] - The name of the chart group this widget should be placed in.
+ * Interaction with the widget will only trigger events and redraws within its group.
+ * @returns {selectMenu}
+ **/
+dc.selectMenu = function (parent, chartGroup) {
+    var SELECT_CSS_CLASS = 'dc-select-menu';
+    var OPTION_CSS_CLASS = 'dc-select-option';
+
+    var _chart = dc.baseMixin({});
+
+    var _select;
+    var _promptText = 'Select all';
+    var _multiple = false;
+    var _promptValue = null;
+    var _numberVisible = null;
+    var _order = function (a, b) {
+        return _chart.keyAccessor()(a) > _chart.keyAccessor()(b) ?
+             1 : _chart.keyAccessor()(b) > _chart.keyAccessor()(a) ?
+            -1 : 0;
+    };
+
+    var _filterDisplayed = function (d) {
+        return _chart.valueAccessor()(d) > 0;
+    };
+
+    _chart.data(function (group) {
+        return group.all().filter(_filterDisplayed);
+    });
+
+    _chart._doRender = function () {
+        _chart.select('select').remove();
+        _select = _chart.root().append('select')
+                        .classed(SELECT_CSS_CLASS, true);
+        _select.append('option').text(_promptText).attr('value', '');
+
+        _chart._doRedraw();
+        return _chart;
+    };
+
+    _chart._doRedraw = function () {
+        setAttributes();
+        renderOptions();
+        // select the option(s) corresponding to current filter(s)
+        if (_chart.hasFilter() && _multiple) {
+            _select.selectAll('option')
+                .property('selected', function (d) {
+                    return d && _chart.filters().indexOf(String(_chart.keyAccessor()(d))) >= 0;
+                });
+        } else if (_chart.hasFilter()) {
+            _select.property('value', _chart.filter());
+        } else {
+            _select.property('value', '');
+        }
+        return _chart;
+    };
+
+    function renderOptions () {
+        var options = _select.selectAll('option.' + OPTION_CSS_CLASS)
+          .data(_chart.data(), function (d) { return _chart.keyAccessor()(d); });
+
+        options.enter()
+              .append('option')
+              .classed(OPTION_CSS_CLASS, true)
+              .attr('value', function (d) { return _chart.keyAccessor()(d); });
+
+        options.text(_chart.title());
+        options.exit().remove();
+        _select.selectAll('option.' + OPTION_CSS_CLASS).sort(_order);
+
+        _select.on('change', onChange);
+        return options;
+    }
+
+    function onChange (d, i) {
+        var values;
+        var target = d3.event.target;
+        if (target.selectedOptions) {
+            var selectedOptions = Array.prototype.slice.call(target.selectedOptions);
+            values = selectedOptions.map(function (d) {
+                return d.value;
+            });
+        } else { // IE and other browsers do not support selectedOptions
+            // adapted from this polyfill: https://gist.github.com/brettz9/4212217
+            var options = [].slice.call(d3.event.target.options);
+            values = options.filter(function (option) {
+                return option.selected;
+            }).map(function (option) {
+                return option.value;
+            });
+        }
+        // console.log(values);
+        // check if only prompt option is selected
+        if (values.length === 1 && values[0] === '') {
+            values = _promptValue || null;
+        } else if (!_multiple && values.length === 1) {
+            values = values[0];
+        }
+        _chart.onChange(values);
+    }
+
+    _chart.onChange = function (val) {
+        if (val && _multiple) {
+            _chart.replaceFilter([val]);
+        } else if (val) {
+            _chart.replaceFilter(val);
+        } else {
+            _chart.filterAll();
+        }
+        dc.events.trigger(function () {
+            _chart.redrawGroup();
+        });
+    };
+
+    function setAttributes () {
+        if (_multiple) {
+            _select.attr('multiple', true);
+        } else {
+            _select.attr('multiple', null);
+        }
+        if (_numberVisible !== null) {
+            _select.attr('size', _numberVisible);
+        } else {
+            _select.attr('size', null);
+        }
+    }
+
+    /**
+     * Get or set the function that controls the ordering of option tags in the
+     * select menu. By default options are ordered by the group key in ascending
+     * order.
+     * @name order
+     * @memberof dc.selectMenu
+     * @instance
+     * @param {Function} [order]
+     * @example
+     * // order by the group's value
+     * chart.order(function (a,b) {
+     *     return a.value > b.value ? 1 : b.value > a.value ? -1 : 0;
+     * });
+     **/
+    _chart.order = function (order) {
+        if (!arguments.length) {
+            return _order;
+        }
+        _order = order;
+        return _chart;
+    };
+
+    /**
+     * Get or set the text displayed in the options used to prompt selection.
+     * @name promptText
+     * @memberof dc.selectMenu
+     * @instance
+     * @param {String} [promptText='Select all']
+     * @example
+     * chart.promptText('All states');
+     **/
+    _chart.promptText = function (_) {
+        if (!arguments.length) {
+            return _promptText;
+        }
+        _promptText = _;
+        return _chart;
+    };
+
+    /**
+     * Get or set the function that filters option tags prior to display. By default options
+     * with a value of < 1 are not displayed.
+     * @name filterDisplayed
+     * @memberof dc.selectMenu
+     * @instance
+     * @param {function} [filterDisplayed]
+     * @example
+     * // display all options override the `filterDisplayed` function:
+     * chart.filterDisplayed(function () {
+     *     return true;
+     * });
+     **/
+    _chart.filterDisplayed = function (filterDisplayed) {
+        if (!arguments.length) {
+            return _filterDisplayed;
+        }
+        _filterDisplayed = filterDisplayed;
+        return _chart;
+    };
+
+    /**
+     * Controls the type of select menu. Setting it to true converts the underlying
+     * HTML tag into a multiple select.
+     * @name multiple
+     * @memberof dc.selectMenu
+     * @instance
+     * @param {boolean} [multiple=false]
+     * @example
+     * chart.multiple(true);
+     **/
+    _chart.multiple = function (multiple) {
+        if (!arguments.length) {
+            return _multiple;
+        }
+        _multiple = multiple;
+
+        return _chart;
+    };
+
+    /**
+     * Controls the default value to be used for
+     * [dimension.filter](https://github.com/crossfilter/crossfilter/wiki/API-Reference#dimension_filter)
+     * when only the prompt value is selected. If `null` (the default), no filtering will occur when
+     * just the prompt is selected.
+     * @name promptValue
+     * @memberof dc.selectMenu
+     * @instance
+     * @param {?*} [promptValue=null]
+     **/
+    _chart.promptValue = function (promptValue) {
+        if (!arguments.length) {
+            return _promptValue;
+        }
+        _promptValue = promptValue;
+
+        return _chart;
+    };
+
+    /**
+     * Controls the number of items to show in the select menu, when `.multiple()` is true. This
+     * controls the [`size` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#Attributes) of
+     * the `select` element. If `null` (the default), uses the browser's default height.
+     * @name numberItems
+     * @memberof dc.selectMenu
+     * @instance
+     * @param {?number} [numberVisible=null]
+     * @example
+     * chart.numberVisible(10);
+     **/
+    _chart.numberVisible = function (numberVisible) {
+        if (!arguments.length) {
+            return _numberVisible;
+        }
+        _numberVisible = numberVisible;
+
+        return _chart;
+    };
+
+    _chart.size = dc.logger.deprecate(_chart.numberVisible, 'selectMenu.size is ambiguous - use numberVisible instead');
 
     return _chart.anchor(parent, chartGroup);
 };

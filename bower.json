@@ -18,24 +18,25 @@
     "tests"
   ],
   "dependencies": {
-    "d3": "~4.4.0",
+    "d3": "~3.5.17",
+    "d3-tip": "0.6",
     "jquery": "~3.1.1",
-    "leaflet": "~1.0.2",
+    "leaflet": "~1.0.3",
     "isotope": "~3.0.1",
     "papaparse": "~4.1.2",
     "introjs": "~1.0.0",
     "datatables": "~1.10.13",
     "modernizer": "~2.8.2",
-    "topojson": "~2.2.0"
-  },
-  "resolutions": {
-    "d3": "~4.4.0",
-    "jquery": "~3.1.1"
+    "topojson": "~2.2.0",
+    "dcjs": "~2.1.3"
   },
   "overrides": {
     "isotope": {
       "main": "dist/isotope.pkgd.min.js",
       "dependencies": {}
     }
+  },
+  "resolutions": {
+    "d3": "3.x"
   }
 }

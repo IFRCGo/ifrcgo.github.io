@@ -1,13 +1,8 @@
-function generateDash(data,geom,config){
-    console.log(data);
-    console.log(config);
-    $('#datadownload').attr('href',config['download']);
-    $('.title3w').html(config['title']);
-    $('#description').html(config['description']);
+function generateDash(data,geom){
     var cf = crossfilter(data);
-        cf.whereDim = cf.dimension(function(d){return d[config['whereFieldName']]});
-        cf.whoDim = cf.dimension(function(d){return d[config['whoFieldName']]});
-        cf.whatDim = cf.dimension(function(d){return d[config['whatFieldName']]});
+        cf.whereDim = cf.dimension(function(d){return d['#country+code']});
+        cf.whoDim = cf.dimension(function(d){return d['#org']});
+        cf.whatDim = cf.dimension(function(d){return d['#sector']});
 
         cf.whereGroup = cf.whereDim.group();
         cf.whoGroup = cf.whoDim.group();
@@ -17,7 +12,7 @@ function generateDash(data,geom,config){
         cf.whatChart = dc.rowChart('#whatchart');
         cf.whereChart = dc.leafletChoroplethChart('#wherechart');
 
-        cf.whoChart.width($('#whochart').width()).height(650)
+        cf.whoChart.width($('#whochart').width()).height(700)
             .dimension(cf.whoDim)
             .group(cf.whoGroup)
             .elasticX(true)
@@ -27,7 +22,7 @@ function generateDash(data,geom,config){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-        cf.whatChart.width($('#whatchart').width()).height(650)
+        cf.whatChart.width($('#whatchart').width()).height(700)
             .dimension(cf.whatDim)
             .group(cf.whatGroup)
             .elasticX(true)
@@ -37,7 +32,7 @@ function generateDash(data,geom,config){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-        cf.whereChart.width($('#wherechart').width()).height(650)
+        cf.whereChart.width($('#wherechart').width()).height(700)
             .dimension(cf.whereDim)
             .group(cf.whereGroup)
             .center([0,0])
@@ -53,10 +48,10 @@ function generateDash(data,geom,config){
                     return c;
                 })
             .featureKeyAccessor(function(feature){
-                return feature.properties[config['joinAttribute']];
+                return feature.properties['ISO_A3'];
             })
             .popup(function(feature){
-                return feature.properties[config['nameAttribute']];
+                return feature.properties['NAME'];
             })
             .renderPopup(true)
             .featureOptions({
@@ -75,8 +70,6 @@ function generateDash(data,geom,config){
                 $('#mapfilter').html(html);
             }));
 
-        //config()
-        /*
         dc.dataTable("#data-table")
             .dimension(cf.whereDim)
             .group(function (d) {
@@ -104,17 +97,8 @@ function generateDash(data,geom,config){
             ]).sortBy(function(d) {
                 return d['#country+name'];
             });
-            */
-    dc.renderAll();
 
-    var map = cf.whereChart.map();
-
-    zoomToGeom(geom);
-
-    function zoomToGeom(geom){
-        var bounds = d3.geo.bounds(geom);
-        map.fitBounds([[bounds[0][1],bounds[0][0]],[bounds[1][1],bounds[1][0]]]);
-    }
+            dc.renderAll();
 
     var g = d3.selectAll('#whochart').select('svg').append('g');
 
@@ -168,60 +152,24 @@ function hxlProxyToJSON(input,headers){
     return output;
 }
 
-function createConfig(data){
-    var config = {};
-    data.forEach(function(d,i){
-        config[d['#meta+key']]=d['#meta+value'];
-    });
-    return config;
-}
-
-
 // $('#loadingmodal').modal('show');
 
-function processHash(){
-    var hashid = decodeURIComponent(window.location.hash).substring(1);
-    var hashurl = 'https://beta.proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/17Qm5o5YTiSA7seoLDa8OQWcX8NPQW62PXfNG3BCn7mQ/edit%3Fusp%3Dsharing&strip-headers=on&filter01=select&force=on&select-query01-01=%23meta%2Bid%3D'+hashid;
+var dataCall = $.ajax({
+    type: 'GET',
+    url: 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url=https%3A//docs.google.com/spreadsheets/d/1Yq9uFEM0FKFDfhi7rlkhU2L6TmNOSky91MZSFn24F7Y/edit%23gid%3D0',
+    dataType: 'json',
+});
 
-    var hashCall = $.ajax({
-        type: 'GET',
-        url: hashurl,
-        dataType: 'json',
-        success: function(data){
-            var data = hxlProxyToJSON(data)[0];
-            var configCall = $.ajax({
-                type: 'GET',
-                url: data['#meta+config'],
-                dataType: 'json',
-            });
+var geomCall = $.ajax({
+    type: 'GET',
+    url: '/assets/map/worldmap.json',
+    dataType: 'json'
+});
 
-            var dataCall = $.ajax({
-                type: 'GET',
-                url: data['#meta+data'],
-                dataType: 'json',
-            });
-
-            var geomCall = $.ajax({
-                type: 'GET',
-                url: data['#meta+geo'],
-                dataType: 'json'
-            });
-
-            $.when(configCall, dataCall, geomCall).then(function(configArgs, dataArgs, geomArgs){
-                var data = dataArgs[0];
-                var config = createConfig(hxlProxyToJSON(configArgs[0]));
-                data = hxlProxyToJSON(data);
-                if(config['topojson']=='TRUE'){
-                    var geom = topojson.feature(geomArgs[0],geomArgs[0].objects[config['toponame']]);
-                } else  {
-                    geom = geomArgs[0];
-                }
-                // $('#loadingmodal').modal('hide');
-                generateDash(data,geom,config);
-            });
-
-        }
-    });
-}
-
-processHash();
+$.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
+    var data = dataArgs[0];
+    data = hxlProxyToJSON(data);
+    var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
+    // $('#loadingmodal').modal('hide');
+    generateDash(data,geom);
+});

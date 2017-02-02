@@ -1,6 +1,6 @@
 ---
 layout: build/default
-permalink: /3w/
+permalink: /3w
 id: 3w
 title: 3W
 lang: en
@@ -8,14 +8,8 @@ custom_css: 3w
 custom_js: 3w
 ---
 
-{% if page.custom_css %}
-  {% for stylesheet in page.custom_css %}
-  <link rel="stylesheet" href="{{site.baseurl}}/assets/custom/{{ stylesheet }}.css" media="screen" type="text/css">
-  {% endfor %}
-{% endif %}
-
 <div class="row">
-  <div class="medium-12"><a href="{{site.baseurl}}">{{site.data[locale].landing.home}}</a> > <b class="title3w">3W</b></div>
+  <div class="medium-12"><a href="{{site.baseurl}}">Home</a> > <b class="title3w">3W</b></div>
 </div>
 <div class="row">
   <div class="small-12">
@@ -38,15 +32,15 @@ custom_js: 3w
   </div>
 </div>
 <div class="row">
-  <div class="medium-6">
+  <div class="medium-6 column">
     Current filter: <span id="mapfilter"></span>
     <div id="wherechart" class="viz_chart">
     </div>
   </div>
-  <div class="medium-3">
+  <div class="medium-3 column">
     <div id="whochart" class="viz_chart">Current filter: <span class='filter' style='display: none;'></span> </div>
   </div>
-  <div class="medium-3">
+  <div class="medium-3 column">
     <div id="whatchart" class="viz_chart">Current filter: <span class='filter' style='display: none;'></span> </div>
   </div>
 </div>
@@ -61,9 +55,3 @@ custom_js: 3w
   </div>
 </div>
 <!-- got to figure out a smart way to bring over simon scripts -->
-
-{% if page.custom_js %}
-  {% for js_file in page.custom_js %}
-  <script src='{{site.baseurl}}/assets/custom/{{ js_file }}.js' type="text/javascript"></script>
-  {% endfor %}
-{% endif %}

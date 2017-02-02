@@ -54,7 +54,14 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/leaflet.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/introjs.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/jquery.dataTables.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/dc.css">
   <!-- endinject -->
+
+  {% if page.custom_css %}
+    {% for stylesheet in page.custom_css %}
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/custom/{{ stylesheet }}.css" media="screen" type="text/css">
+    {% endfor %}
+  {% endif %}
 
   {% feed_meta %}
 </head>
@@ -85,6 +92,7 @@ ga('send', 'pageview');
 
 <!-- inject:js -->
 <script src="{{ site.baseurl }}/assets/scripts/vendor/d3.js"></script>
+<script src="{{ site.baseurl }}/assets/scripts/vendor/index.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/jquery.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/leaflet-src.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/isotope.pkgd.min.js"></script>
@@ -92,9 +100,20 @@ ga('send', 'pageview');
 <script src="{{ site.baseurl }}/assets/scripts/vendor/intro.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/jquery.dataTables.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/topojson.js"></script>
+<script src="{{ site.baseurl }}/assets/scripts/vendor/crossfilter.min.js"></script>
+<script src="{{ site.baseurl }}/assets/scripts/vendor/dc.js"></script>
 <!-- endinject -->
 
-<script src="/assets/scripts/main.min.js"></script>
+<script src="https://rawgit.com/SimonbJohnson/HDX-3W/master/js/dc.leaflet.js" type="text/javascript"></script>
+
+<!-- <script src="/assets/scripts/main.min.js"></script> -->
+
+{% if page.custom_js %}
+  {% for js_file in page.custom_js %}
+  <script src='{{site.baseurl}}/assets/custom/{{ js_file }}.js' type="text/javascript"></script>
+  {% endfor %}
+{% endif %}
+
 </body>
 
 </html>
