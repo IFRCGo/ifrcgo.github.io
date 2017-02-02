@@ -1,0 +1,43 @@
+
+#map {
+    height:400px;
+}
+
+
+.headline {
+    color:#777;
+    font-size:16px;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.borders {
+    border-top-style:solid;
+    border-top-color:#ccc;
+    border-top-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#ccc;
+    border-bottom-width:1px;
+}
+
+#type {
+    height:600px;
+}
+
+#region {
+    height:400px;
+}
+
+#months {
+    height:200px;
+}
+
+.country {
+    fill:#aaaaaa;
+    stroke:#fff;
+    stroke-width:0.25;
+}
+
+.selected {
+    fill:#D33F49;
+}
