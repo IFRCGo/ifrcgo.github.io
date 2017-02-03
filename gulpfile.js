@@ -131,15 +131,9 @@ gulp.task('build', function(done) {
 
 // causes gulp to crash on windows
 // Default task.
-<<<<<<< HEAD
 // gulp.task('default', function(done) {
 //   runSequence('build', done);
 // });
-=======
-//gulp.task('default', function(done) {
-// runSequence('build', done);
-//});
->>>>>>> 6d93bd28755f3a28c08e98df54f2645a4471a9e1
 
 gulp.task('serve', ['build'], function () {
   browserSync({
