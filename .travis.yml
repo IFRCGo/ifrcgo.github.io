@@ -1,6 +1,11 @@
 language: node_js
 node_js:
 - '6.1'
+
+language: ruby
+rvm:
+  - 2.3.1
+  
 env:
   global:
   - GH_REF=github.com/IFRCGo/ifrc.github.io
