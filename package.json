@@ -59,7 +59,6 @@
     "gulp-download-stream": "*",
     "gulp-filter": "^4.0.0",
     "gulp-inject": "^4.2.0",
-    "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.1.0",
     "gulp-wiredep": "0.0.0",
     "isotope-layout": "^3.0.1",
