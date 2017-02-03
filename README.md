@@ -34,24 +34,13 @@ To set up the development environment for this website, you'll need to install t
 
 After these basic requirements are met, run the following commands in the website's folder:
 
-##### Command #1
+##### Environment Setup
 
 ```
 $ npm install
-```
-
-##### Command #2: Installing Bundler
-
-```
 $ bundle install
-```
-
-##### Command #3: Installing Bundler
-
-```
 $ bower install
 ```
-
 ### Getting started
 
 ```

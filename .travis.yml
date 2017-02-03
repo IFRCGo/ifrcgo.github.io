@@ -1,28 +1,23 @@
 language: node_js
 node_js:
   - "6.1"
-
 language: ruby
 rvm:
   - 2.3.1
-
 env:
   global:
   - GH_REF=github.com/IFRCGo/ifrc.github.io
   - DEPLOY_BRANCH=publish
-
+  - secure: JXZw7bh9KsXlKSv4cxeEZtF3S1ZAchwQxtKn8zwnzWL7rkE4+4GR6NyvjmRmnOtQaLJbvzoQo3QkD5mM/cJsRCGW2mDFc4/Ff+JswNcUgJtgf3sz6Gs3wxSWJ01JUQEpBPATgy1wHBV/N+1AYDXrX7W1xnlz9GjAgTJaZHY5Fl3rJLR66h3oXjyAeIw2R7qP4ckF5Upxw4WZqhsenBb+hw41EiTTv+K+xJbaEHAZtV58ZnpYHGDPAxIj5FXZ4AGRmydyhJfPSZ+e+A4Aspb0M8YLVCtsqxTNej0EHQlocEATckSRhExga48kMJmkSZnV1p+B9fa57pJVU0MgcJPNcOAkor5I0FQkI0KDxztqmWYdtEoNfuTZj/6plO2U03oGkXVloGQg4wpkmKcB1bgm/jftptfC0gWSbWd5cghUokkHJwOUpGwZTesnnb8WqQlmBIibLnDNiudeAQ3lV+/zAu3DD9ox6nEqq/BOd3Na71HjYGfK746AljWtjYN6gbRV1ZvNCkNZ2eW+nGbnF3C9D9P7E2EwvJ0eW0Vcq4qtxCs77gA11cpKCVgzS4kYg41+3gKKHHwAX3j59uOxYTTDkcr1KEbz6LnIRNXo85dR9fTqGYNGveVVZ1oPxytRyc5SQXt+EQh0E2SQ1KrA1WAN7j55GjG8pOQvIw+Zi3UCf7w=
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
-- chmod +x ./.build_scripts/deploy.sh
-
+  - chmod +x ./.build_scripts/deploy.sh
 before_script:
   - npm install -g bower
   - npm install
   - bower install
 script: gulp prod
-
 after_success:
-- ./.build_scripts/deploy.sh
+  - "./.build_scripts/deploy.sh"

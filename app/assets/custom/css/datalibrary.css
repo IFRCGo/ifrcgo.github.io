@@ -1,0 +1,15 @@
+.tablerow > td, th {
+    padding-bottom: 1.5em;
+    padding-top:0.5em;
+}
+
+td, th {
+    vertical-align:top;
+    min-width:100px;
+}
+
+tr {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #ccc;
+}

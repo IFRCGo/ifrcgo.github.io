@@ -129,10 +129,11 @@ gulp.task('build', function(done) {
   runSequence(['get-data', 'compress:main'], [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
 });
 
+// causes gulp to crash on windows
 // Default task.
-//gulp.task('default', function(done) {
-// runSequence('build', done);
-//});
+// gulp.task('default', function(done) {
+//   runSequence('build', done);
+// });
 
 gulp.task('serve', ['build'], function () {
   browserSync({

@@ -54,7 +54,14 @@
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/introjs.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/jquery.dataTables.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/dc.css">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/styles/vendor/c3.css">
   <!-- endinject -->
+
+  {% if page.custom_css %}
+    {% for stylesheet in page.custom_css %}
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/custom/css/{{ stylesheet }}.css" media="screen" type="text/css">
+    {% endfor %}
+  {% endif %}
 
   {% feed_meta %}
 </head>
@@ -98,9 +105,14 @@ ga('send', 'pageview');
 <script src="{{ site.baseurl }}/assets/scripts/vendor/topojson.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/crossfilter.min.js"></script>
 <script src="{{ site.baseurl }}/assets/scripts/vendor/dc.js"></script>
+<script src="{{ site.baseurl }}/assets/scripts/vendor/c3.js"></script>
 <!-- endinject -->
 
-<script src="{{site.baseurl}}/assets/scripts/main.min.js"></script>
+{% if page.custom_js %}
+  {% for js_file in page.custom_js %}
+  <script src='{{site.baseurl}}/assets/custom/js/{{ js_file }}.js' type="text/javascript"></script>
+  {% endfor %}
+{% endif %}
 
 </body>
 
