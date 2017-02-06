@@ -563,7 +563,7 @@ var dataCall = $.ajax({
 
 var geomCall = $.ajax({
     type: 'GET',
-    url: 'https://ifrcgo.github.io/ifrcgo_v2/assets/map/worldmap.json',
+    url: worldmap,
     dataType: 'json'
 });
 
