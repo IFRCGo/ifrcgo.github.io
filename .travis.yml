@@ -1,9 +1,6 @@
 language: node_js
 node_js:
-  - "6.1"
-language: ruby
-rvm:
-  - 2.3.1
+  - "6"
 env:
   global:
   - GH_REF=github.com/IFRCGo/ifrcgo_v2
@@ -15,6 +12,7 @@ cache:
   - node_modules
 before_install:
   - chmod +x ./.build_scripts/deploy.sh
+  - rvm install 2.3.1
 before_script:
   - npm install -g bower
   - npm install
