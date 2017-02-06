@@ -10,7 +10,7 @@ exclude:
 timezone: America/New_York
 highlighter: false
 
-baseurl: ""
+baseurl: "/ifrcgo_v2"
 
 permalink: pretty
 
