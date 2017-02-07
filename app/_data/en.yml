@@ -1,14 +1,24 @@
 #####################
 ## NAV CONTENT ##
 #####################
+
 nav:
-    home: "Home"
-    coredatasets: "Core Datasets"
-    ifrcregions: "IFRC Regions"
-    about: "About"
-    ifrclink: "IFRC.org"
-    fednet: "FedNet"
-    dmis: "DMIS"
+  - text: "Home"
+    url:  "/"
+  - text: "Core Datasets"
+    url:  "/#coredatasets"
+  - text: "IFRC Regions"
+    url:  "/#regions"
+  - text: "IFRC.org"
+    url:  "http://ifrc.org"
+  - text: "FedNet"
+    url:  "https://fednet.ifrc.org/CookieAuth.dll?GetLogon?curl=Z2F&reason=0&formdir=2"
+  - text: "DMIS"
+    url:  "https://www-secure.ifrc.org/DMISII/Pages/00_Home/login.aspx"
+
+# TODO make an about page with the logos of supporting PNS
+  # - text: "About"
+  #   url:  ""
 
 #####################
 ## LANDING CONTENT ##
