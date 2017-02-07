@@ -12,6 +12,7 @@ cache:
   - node_modules
 before_install:
   - chmod +x ./.build_scripts/deploy.sh
+  - apt-get install curl
   - rvm install 2.3.1
 before_script:
   - npm install -g bower
