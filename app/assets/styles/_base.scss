@@ -281,7 +281,7 @@ header{
 
 a{
   text-decoration: none;
-  color: #D33F49;
+  color:#D33F49;
   transition: color 0.2s;
 }
 
@@ -650,4 +650,8 @@ input[type="text"]{
 
 .menu.expanded {
   table-layout: initial;
+}
+
+.download_link {
+  font-size: 2em;
 }

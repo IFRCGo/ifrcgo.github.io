@@ -28,6 +28,7 @@
 .icon-users:before { content: '\e81a'; } /* '' */
 .icon-user-1:before { content: '\e81b'; } /* '' */
 .icon-github-circled:before { content: '\e81c'; } /* '' */
+.icon-chart-bar:before { content: '\e81d'; } /* '' */
 .icon-warehouse:before { content: '\e840'; } /* '' */
 .icon-resize-full-alt:before { content: '\f0b2'; } /* '' */
 .icon-list-bullet:before { content: '\f0ca'; } /* '' */
@@ -43,5 +44,6 @@
 .icon-file-video:before { content: '\f1c8'; } /* '' */
 .icon-codeopen:before { content: '\f1cb'; } /* '' */
 .icon-share:before { content: '\f1e0'; } /* '' */
+.icon-chart-area:before { content: '\f1fe'; } /* '' */
 .icon-chart-line:before { content: '\f201'; } /* '' */
 .icon-hashtag:before { content: '\f292'; } /* '' */
