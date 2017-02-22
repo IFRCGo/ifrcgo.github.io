@@ -1,0 +1,356 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "197375a3cea8cb90b02d06e4ddf1433d",
+      "css": "globe",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "3a230e539a4f3b904debd04c6c155034",
+      "css": "help",
+      "code": 59393,
+      "src": "entypo"
+    },
+    {
+      "uid": "347c38a8b96a509270fdcabc951e7571",
+      "css": "database",
+      "code": 61888,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "e36d581e4f2844db345bddc205d15dda",
+      "css": "group",
+      "code": 59394,
+      "src": "elusive"
+    },
+    {
+      "uid": "76675011e906d50af404186b489fc76f",
+      "css": "codeopen",
+      "code": 61899,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "ea2d9a8c51ca42b38ef0d2a07f16d9a7",
+      "css": "chart-line",
+      "code": 61953,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "2d6150442079cbda7df64522dc24f482",
+      "css": "down-dir",
+      "code": 59395,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1c4068ed75209e21af36017df8871802",
+      "css": "down-big",
+      "code": 59396,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "ccddff8e8670dcd130e3cb55fdfc2fd0",
+      "css": "down-open",
+      "code": 59397,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "code": 59398,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "e594fc6e5870b4ab7e49f52571d52577",
+      "css": "resize-full",
+      "code": 59399,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "3d4ea8a78dc34efe891f3a0f3d961274",
+      "css": "info",
+      "code": 61737,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1a5cfa186647e8c929c2b17b9fc4dac1",
+      "css": "plus-squared",
+      "code": 61694,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9755f76110ae4d12ac5f9466c9152031",
+      "css": "book",
+      "code": 59401,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "a2a74f5e7b7d9ba054897d8c795a326a",
+      "css": "list-bullet",
+      "code": 61642,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "acf41aa4018e58d49525665469e35665",
+      "css": "thumbs-up",
+      "code": 59402,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "5211af474d3a9848f67f945e2ccaf143",
+      "css": "cancel",
+      "code": 59400,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9a76bc135eac17d2c8b8ad4a5774fc87",
+      "css": "download",
+      "code": 59403,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "8b80d36d4ef43889db10bc1f0dc9a862",
+      "css": "user",
+      "code": 59404,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "0d20938846444af8deb1920dc85a29fb",
+      "css": "logout",
+      "code": 59405,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "bc6ef9c6531c54e927e9dc18e45524b2",
+      "css": "warehouse",
+      "code": 59456,
+      "src": "maki"
+    },
+    {
+      "uid": "12f4ece88e46abd864e40b35e05b11cd",
+      "css": "ok",
+      "code": 59406,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "555ef8c86832e686fef85f7af2eb7cde",
+      "css": "left-big",
+      "code": 59407,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "ad6b3fbb5324abe71a9c0b6609cbb9f1",
+      "css": "right-big",
+      "code": 59408,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "7277ded7695b2a307a5f9d50097bb64c",
+      "css": "print",
+      "code": 59409,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "41087bc74d4b20b55059c60a33bf4008",
+      "css": "edit",
+      "code": 59410,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9daa1fdf0838118518a7e22715e83abc",
+      "css": "file-pdf",
+      "code": 61889,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "5408be43f7c42bccee419c6be53fdef5",
+      "css": "doc-text",
+      "code": 61686,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "3c961c1a8d874815856fc6637dc5a13c",
+      "css": "file-image",
+      "code": 61893,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "dd69d9aa589ea7bc0a82a3fe67039f4b",
+      "css": "file-video",
+      "code": 61896,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "edcd4022de8d8df266ef7c42d2658ca5",
+      "css": "file-powerpoint",
+      "code": 61892,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "f761c3bbe16ba2d332914ecb28e7a042",
+      "css": "file-excel",
+      "code": 61891,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "310ffd629da85142bc8669f010556f2d",
+      "css": "file-word",
+      "code": 61890,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "1b5a5d7b7e3c71437f5a26befdd045ed",
+      "css": "doc",
+      "code": 59411,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "531bc468eecbb8867d822f1c11f1e039",
+      "css": "calendar",
+      "code": 59412,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "aa991e8e66ac54b33f0a4b0555597b08",
+      "css": "barcode",
+      "code": 59413,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "5840fe162df3bcc8e390c58ef4e2acf9",
+      "css": "sun-filled",
+      "code": 59414,
+      "src": "typicons"
+    },
+    {
+      "uid": "68a1b5d463ecbf27fc847a1947e02753",
+      "css": "landscape-with-mountains",
+      "code": 59415,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M590.9 227.3L418.2 454.5 550 627.3 477.3 681.8C400 581.8 272.7 409.1 272.7 409.1L0 772.7H1000L590.9 227.3Z",
+        "width": 1000
+      },
+      "search": [
+        "landscape-with-mountains"
+      ]
+    },
+    {
+      "uid": "090c79ed8971e478a27fae8a3eb3eb11",
+      "css": "hashtag",
+      "code": 62098,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "5c49851100aa021825b346d16d7f3abf",
+      "css": "temperatire",
+      "code": 59416,
+      "src": "typicons"
+    },
+    {
+      "uid": "b013f6403e5ab0326614e68d1850fd6b",
+      "css": "resize-full-alt",
+      "code": 61618,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "bea166201e55bff89c15bb91a39737a3",
+      "css": "terrain",
+      "code": 59417,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M872.9 264.3C872.9 321.4 854.3 375.7 822.9 418.6 774.3 485.7 608.6 701.4 608.6 701.4S441.4 485.7 392.9 417.1C362.9 374.3 344.3 321.4 344.3 264.3 344.3 118.6 462.9 0 608.6 0S872.9 118.6 872.9 264.3ZM1200 731.4L1085.7 641.4C1084.3 640 1082.9 640 1081.4 638.6L884.3 570 775.7 522.9C768.6 531.4 762.9 540 755.7 550L870 598.6C855.7 601.4 692.9 631.4 692.9 631.4 690 634.3 688.6 637.1 685.7 641.4L700 638.6C701.4 640 847.1 690 858.6 694.3L581.4 764.3C581.4 764.3 411.4 695.7 401.4 692.9L548.6 662.9C545.7 660 544.3 657.1 541.4 654.3L384.3 685.7C382.9 685.7 257.1 597.1 248.6 591.4L477.1 568.6C470 558.6 461.4 548.6 454.3 538.6L230 560C228.6 560 11.4 628.6 11.4 628.6 5.7 630 1.4 634.3 0 640-1.4 645.7 0 651.4 4.3 655.7L120 780C121.4 781.4 335.7 871.4 335.7 871.4L468.6 997.1C471.4 1000 475.7 1001.4 480 1001.4 482.9 1001.4 484.3 1001.4 487.1 1000L708.6 904.3 982.9 831.4C982.9 831.4 982.9 831.4 984.3 831.4L1195.7 761.4C1201.4 760 1205.7 754.3 1207.1 748.6 1207.1 741.4 1204.3 735.7 1200 731.4ZM704.3 637.1C704.3 637.1 854.3 602.9 870 600L1042.9 660C1032.9 661.4 881.4 688.6 878.6 690 877.1 688.6 705.7 637.1 704.3 637.1ZM141.4 754.3L45.7 651.4 247.1 590C255.7 597.1 371.4 687.1 371.4 687.1 334.3 698.6 170 752.9 154.3 758.6L141.4 754.3ZM351.4 841.4L154.3 760C170 755.7 382.9 695.7 382.9 695.7 397.1 701.4 567.1 768.6 567.1 768.6S374.3 837.1 357.1 844.3C355.7 842.9 354.3 842.9 351.4 841.4ZM697.1 872.9L485.7 964.3 357.1 844.3C375.7 838.6 580 772.9 580 772.9 598.6 788.6 684.3 861.4 694.3 868.6 685.7 860 607.1 785.7 590 770L872.9 698.6C881.4 707.1 964.3 792.9 970 798.6 971.4 800 697.1 872.9 697.1 872.9ZM972.9 798.6C967.1 791.4 891.4 704.3 885.7 695.7 887.1 695.7 1035.7 662.9 1047.1 660L1068.6 667.1 1157.1 737.1 972.9 798.6Z",
+        "width": 1214
+      },
+      "search": [
+        "terrain"
+      ]
+    },
+    {
+      "uid": "31972e4e9d080eaa796290349ae6c1fd",
+      "css": "users",
+      "code": 59418,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "bbd66ef66bb8fa9edde54d9a90b89150",
+      "css": "user-1",
+      "code": 59419,
+      "src": "entypo"
+    },
+    {
+      "uid": "ff16079eb4be12c49bf3014d2322acdd",
+      "css": "github-circled",
+      "code": 59420,
+      "src": "zocial"
+    },
+    {
+      "uid": "7d1ca956f4181a023de4b9efbed92524",
+      "css": "chart-area",
+      "code": 61950,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4aad6bb50b02c18508aae9cbe14e784e",
+      "css": "share",
+      "code": 61920,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "266d5d9adf15a61800477a5acf9a4462",
+      "css": "chart-bar",
+      "code": 59421,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "96d5f42b7996927e0637c8b4328c3fe4",
+      "css": "landscape-with-mountains",
+      "code": 59392,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M590.9 227.3L418.2 454.5 550 627.3 477.3 681.8C400 581.8 272.7 409.1 272.7 409.1L0 772.7H1000L590.9 227.3Z",
+        "width": 1000
+      },
+      "search": [
+        "landscape-with-mountains"
+      ]
+    },
+    {
+      "uid": "a0aa7f666cb04f391b1847da40fce565",
+      "css": "weather1",
+      "code": 59416,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M740 412.5C700 290 585 200 447.5 200 277.5 200 140 337.5 140 507.5 140 582.5 167.5 650 210 702.5M880 715C875 715 870 715 862.5 717.5 862.5 712.5 862.5 710 862.5 705 862.5 590 770 497.5 655 497.5 570 497.5 497.5 547.5 465 620 460 620 452.5 620 447.5 620 367.5 620 300 685 300 767.5 300 847.5 365 915 447.5 915H877.5C932.5 915 975 870 975 817.5 977.5 760 932.5 715 880 715Z",
+        "width": 1000
+      },
+      "search": [
+        "weather1"
+      ]
+    },
+    {
+      "uid": "710b04c11233d85d8576de2c4ad257b5",
+      "css": "population-displacement",
+      "code": 59396,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M491.8 79C500.2 130.4 465.5 178.8 414.2 187.3 362.8 195.7 314.3 160.9 305.9 109.6 297.5 58.2 332.2 9.7 383.6 1.3 434.9-7.2 483.5 27.6 491.8 79ZM462.4 452.6L545.8 585.8C557.6 604.5 582.2 610.6 601.3 599.4 620.4 588.1 627 563.7 616.3 544.3L595.2 506C576.8 473.3 558.9 440.5 540.7 407.6L503.4 340.1C499.2 332.4 495 323.6 490.5 314.3 467.6 266.3 431.9 192.1 353.6 198.9 286.7 204.7 218.7 236.5 151.8 293.4 72.3 356 17 446.7 14.7 450.6 12.1 454.7 9.7 458.7 7.7 462.5 7.6 462.7 7.4 462.8 7.3 462.9V463C-0.1 477-3.8 489.8 5.5 506 12.8 518.9 26.4 526.8 41.2 526.8 59 526.8 68.1 518.4 76.9 505.6L76.9 505.6C77.1 505.5 77.1 505.4 77.2 505.2 79.6 501.6 82 497.6 84.7 493.5 85.2 492.6 131.6 418.1 203.6 356.8 225.7 339.4 246.8 327.5 266.7 320.8L250.7 514.8C249.1 534 243 567.1 237.8 585.6L201.8 712C197.1 728 183.5 754.4 172.9 767.4L75.5 888.1C63.2 903.5 49.2 920.8 60.8 944.9 67.5 959.1 81.9 968.1 97.7 968.1 116.5 968.1 126.7 957.2 139.5 943.4L238.2 837C255.7 818.1 278.6 785 290 761.8L339 662.2 520 966.3C528.9 981.4 540.1 1000 564.6 1000L564.6 1000C578.6 1000 591.6 992.8 599.1 981.1 612 961.1 603.4 942.7 595.9 926.4L449.6 608.5C443.8 596 440.7 570.5 443.1 557L462.4 452.6Z",
+        "width": 1053
+      },
+      "search": [
+        "population-displacement"
+      ]
+    }
+  ]
+}

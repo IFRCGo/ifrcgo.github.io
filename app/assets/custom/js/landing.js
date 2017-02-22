@@ -167,7 +167,7 @@ var fieldReportsCall = $.ajax({
 
 var geomCall = $.ajax({
     type: 'GET',
-    url: '/assets/map/worldmap.json',
+    url: worldmap,
     dataType: 'json'
 });
 

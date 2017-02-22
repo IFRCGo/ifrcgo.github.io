@@ -87,17 +87,17 @@ body, ul, li, ol, p{
 }
 
 h1 {
-    font-size: 6em;
-    line-height: 120%;
-    font-family: 'Open Sans', sans-serif;
+  font-size: 6em;
+  line-height: 120%;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h2 {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h3 {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 ul{
@@ -127,11 +127,11 @@ body{
 }
 
 ::-moz-selection { /* Code for Firefox */
-    background: desaturate(lighten($goYellow, 24), 20);
+  background: desaturate(lighten($goYellow, 24), 20);
 }
 
 ::selection {
-    background: desaturate(lighten($goYellow, 24), 20);
+  background: desaturate(lighten($goYellow, 24), 20);
 }
 
 .centerme{
@@ -219,11 +219,11 @@ header{
 }
 
 .nav-input{
-    float: right;
-    display: inline-block;
-    position: relative;
-    bottom:3px;
-    padding: 0px 16px 0px 40px;
+  float: right;
+  display: inline-block;
+  position: relative;
+  bottom:3px;
+  padding: 0px 16px 0px 40px;
 }
 
 .mobile-languages {
@@ -270,8 +270,8 @@ header{
 }
 
 .nav-dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 /*----------------------------------------------*/
@@ -281,7 +281,7 @@ header{
 
 a{
   text-decoration: none;
-  color: #D33F49;
+  color:#D33F49;
   transition: color 0.2s;
 }
 
@@ -310,12 +310,12 @@ a:hover{
   line-height: 1em;
   p{
     //  font-family: 'Hind';
-     font-weight: 700;
-     font-size: 0.9em;
-     color: white;
-     display: inline-block;
-     line-height: 1em;
-     padding-top: 1em;
+    font-weight: 700;
+    font-size: 0.9em;
+    color: white;
+    display: inline-block;
+    line-height: 1em;
+    padding-top: 1em;
     @media screen and (max-width: 712px) {
       font-size: .9em;
     }
@@ -402,13 +402,13 @@ a:hover{
   padding: 0px 0px 0.75em 0px;
   letter-spacing: 0.01em;
   p{
-  font-family: 'Lato';
-  font-weight: 400;
-  font-size: 1em;
-  margin-left:1.5em;
-  margin-right:1.5em;
-  padding: 0.5em 0px .5em 0px;
-  letter-spacing: 0.01em;
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 1em;
+    margin-left:1.5em;
+    margin-right:1.5em;
+    padding: 0.5em 0px .5em 0px;
+    letter-spacing: 0.01em;
   }
 }
 
@@ -447,12 +447,12 @@ input[type="text"]{
   margin: none;
   color: $darkgrey;
   -webkit-border-radius: 5px;
-    background-color: lighten($lightgrey, 10);
-    box-shadow: -1px -2px $lightgrey;
-    padding: 2px 6px 4px 6px;
-    &:focus{
-      background-color: lighten($lightgrey, 8);
-    }
+  background-color: lighten($lightgrey, 10);
+  box-shadow: -1px -2px $lightgrey;
+  padding: 2px 6px 4px 6px;
+  &:focus{
+    background-color: lighten($lightgrey, 8);
+  }
   outline: none;
 }
 
@@ -629,19 +629,29 @@ input[type="text"]{
 }
 
 .keyfiguretitle {
-    color:#D33F49;
-    font-size:1.2em;
+  color:#D33F49;
+  font-size:1.2em;
 }
 
 .keyfigure {
-    color: #999;
-    font-size:1.6em;
+  color: #999;
+  font-size:1.6em;
 }
 
 .top-bar, .top-bar ul {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 
-.iconmap {
-  border: none;
+@media only screen and (min-width: 40.063em) { /* medium, large */
+  .iconmap {
+    border: none;
+  }
+}
+
+.menu.expanded {
+  table-layout: initial;
+}
+
+.download_link {
+  font-size: 2em;
 }

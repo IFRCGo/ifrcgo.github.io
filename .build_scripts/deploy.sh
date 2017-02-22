@@ -9,8 +9,9 @@ if [ $TRAVIS_PULL_REQUEST = "false" ] && [ $TRAVIS_BRANCH = ${DEPLOY_BRANCH} ]; 
   git config user.name "Travis-CI"
   git config user.email "travis@somewhere.com"
   git add .
-  git commit -m "CI deploy to gh-pages"
-  git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+  git commit -m 'Build successful, build $TRAVIS_BUILD_NUMBER'
+  git push --force "https://${GH_TOKEN}@${GH_REF}" master:${TARGET_BRANCH}
+  echo "publishing to ${GH_REF} on ${TARGET_BRANCH}"
 else
   echo "Not a publishable branch so we're all done here"
 fi

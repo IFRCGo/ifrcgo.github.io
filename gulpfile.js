@@ -28,6 +28,9 @@ gulp.task('copy:assets', function(done) {
   gulp.src('.tmp/assets/**')
   .pipe(gulp.dest('_site/assets'));
 
+  gulp.src('CNAME')
+  .pipe(gulp.dest('_site/'));
+
   return gulp.src('')
   .pipe(gulp.dest('_site/assets'));
 });

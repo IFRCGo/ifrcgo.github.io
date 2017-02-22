@@ -1,7 +1,7 @@
 # Site settings
 title: Go Project Lab
-safe:           false
-source:         app
+safe: false
+source: app
 exclude:
   - assets/scripts
   - assets/vendor
@@ -10,10 +10,8 @@ exclude:
 timezone: America/New_York
 highlighter: false
 
-baseurl: ""
-
+baseurl: "/ifrcgo_v2"
 permalink: pretty
-
 collections:
   events:
     output: true

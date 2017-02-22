@@ -12,7 +12,6 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
     "app/assets/vendor",
     "test",
     "tests"
