@@ -15,6 +15,15 @@ var replace = require('stream-replace');
 var wiredep = require('wiredep');
 var inject = require('gulp-inject');
 var greplace = require('gulp-replace');
+//Windows support
+if (process.platform === "win32") {
+    var args = ['build'];
+    var runProcess = 'jekyll.bat';
+} else {
+    var args = ['exec', 'jekyll', 'build'];
+    var runProcess = 'bundle';
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,8 +113,6 @@ gulp.task('fixin', function (){
 
 // Build the jekyll website.
 gulp.task('jekyll', function (done) {
-  var args = ['exec', 'jekyll', 'build'];
-
   switch (environment) {
     case 'development':
     args.push('--config=_config.yml,_config-dev.yml');
@@ -117,8 +124,8 @@ gulp.task('jekyll', function (done) {
     args.push('--config=_config.yml');
     break;
   }
-
-  return cp.spawn('bundle', args, {stdio: 'inherit'})
+  //return cp.spawn('bundle', args, { stdio: 'inherit' })
+  return cp.spawn(runProcess, args, { stdio: 'inherit' })
   .on('close', done);
 });
 
