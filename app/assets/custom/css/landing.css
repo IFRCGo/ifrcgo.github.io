@@ -1,0 +1,147 @@
+.card-icon {
+  max-height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 50px;
+  color: darkgrey;
+}
+
+.card-icon hover {
+  color: inherit;
+}
+
+.card-height-fixed {
+  height: 230px !important;
+}
+
+.thumbnail {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 1.1rem;
+}
+
+.thumbnail-icons {
+  height: auto;
+  width:auto;
+  max-width: 180px;
+  max-height: 180px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.thumbnail-icons:hover {
+  -webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(50%);
+}
+
+#map {
+  height:400px;
+  width:100%;
+}
+
+.control_info_country {
+  padding: 6px 8px;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+
+.icons {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.icons .rollover {
+  display: block;
+  position: absolute;
+
+  width: 185px;
+  height: 185px;
+  line-height: 185px;
+  border-radius: 50%;
+
+  left: 7.5px;
+  bottom: -74px;
+
+  color: #FFFFFF;
+  font-weight: bold;
+  background-color: #EE3224;
+  text-align: center;
+}
+
+.icons .rollover h3 {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1em;
+}
+
+.icons-regions {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.icons-regions .rollover-regions {
+  display: block;
+  position: absolute;
+
+  width: 185px;
+  height: 175px;
+  line-height: 185px;
+  border-radius: 50%;
+
+  left: 0px;
+  bottom: -74px;
+
+  color: #EE3224;
+  font-weight: normal;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.icons-regions .rollover-regions h2 {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1em;
+}
+
+.rcicon {
+  filter: grayscale(100%);
+}
+
+.marquee {
+  width: 100%;
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.marquee span {
+  display: inline-block;
+  color:#fff;
+  padding-left: 100%;  /* show the marquee just outside the paragraph */
+  animation: marquee 45s linear infinite;
+}
+
+.marquee span a {
+  color:#fff;
+}
+
+.marquee span:hover {
+  animation-play-state: paused
+}
+
+@keyframes marquee {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+/* RC red: #EE3224 OR rgb(238,50,36) */

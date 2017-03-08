@@ -132,13 +132,37 @@ gulp.task('build', function(done) {
   runSequence(['get-data', 'compress:main'], [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
 });
 
-// causes gulp to crash on windows
-// Default task.
-// gulp.task('default', function(done) {
-//   runSequence('build', done);
-// });
+gulp.task('dev', function(done) {
+  runSequence('compress:main', [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
+});
 
 gulp.task('serve', ['build'], function () {
+  browserSync({
+    port: 3000,
+    server: {
+      baseDir: ['.tmp', '_site']
+    }
+  });
+
+  gulp.watch(['./app/assets/fonts/**/*', './app/assets/images/**/*'], function() {
+    runSequence('jekyll', browserReload);
+  });
+
+  gulp.watch('app/assets/styles/**/*.scss', function() {
+    runSequence('compass');
+  });
+
+  gulp.watch(['./app/assets/scripts/**/*.js', '!./app/assets/scripts/vendor/**/*'], function() {
+    runSequence('compress:main', browserReload); //fix
+  });
+
+  gulp.watch(['app/**/*.html', 'app/**/*.md', 'app/**/*.json', 'app/**/*.geojson', '_config*'], function() {
+    runSequence('jekyll', browserReload);
+  });
+
+});
+
+gulp.task('local-dev', ['dev'], function () {
   browserSync({
     port: 3000,
     server: {
