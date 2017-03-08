@@ -133,7 +133,7 @@ gulp.task('build', function(done) {
 });
 
 gulp.task('dev', function(done) {
-  runSequence('compress:main', [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
+  runSequence('clean','compress:main', [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
 });
 
 gulp.task('serve', ['build'], function () {
@@ -179,7 +179,7 @@ gulp.task('local-dev', ['dev'], function () {
   });
 
   gulp.watch(['./app/assets/scripts/**/*.js', '!./app/assets/scripts/vendor/**/*'], function() {
-    runSequence('compress:main', browserReload); //fix
+    runSequence(['compress:main','jekyll'], browserReload); //fix
   });
 
   gulp.watch(['app/**/*.html', 'app/**/*.md', 'app/**/*.json', 'app/**/*.geojson', '_config*'], function() {

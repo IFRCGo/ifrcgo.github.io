@@ -21,7 +21,7 @@
 /*Variables*/
 /*----------------------------------------------*/
 
-$rcrcred: #ed1b2e;
+$rcrcred: #D33F49;
 $goYellow: #ecb731;
 $goGreen: #8ec06c;
 $goBlue: #c4dff6;
@@ -629,8 +629,9 @@ input[type="text"]{
 }
 
 .keyfiguretitle {
-  color:#D33F49;
+  color:$rcrcred;
   font-size:1.2em;
+  text-align: center;
 }
 
 .keyfigure {
