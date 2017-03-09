@@ -144,4 +144,8 @@
   100% { transform: translate(-100%, 0); }
 }
 
+.headlinefig {
+  color:#EE3224;
+}
+
 /* RC red: #EE3224 OR rgb(238,50,36) */
