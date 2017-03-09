@@ -1,4 +1,4 @@
-function initTree(data){
+function initTree(id,data){
 	// create a name: node map
 	var dataMap = data.reduce(function(map, node) {
 		map[node['#meta+name']] = node;
@@ -23,9 +23,9 @@ function initTree(data){
 
 	// ************** Generate the tree diagram	 *****************
 	var margin = {top: 20, right: 0, bottom: 20, left: 290},
-		width = 1200 - margin.right - margin.left,
+		width = 2200 - margin.right - margin.left,
 		height = 500 - margin.top - margin.bottom;
-
+		
 	var i = 0,
 		duration = 750,
 		root;
@@ -36,7 +36,7 @@ function initTree(data){
 	var diagonal = d3.svg.diagonal()
 		.projection(function(d) { return [d.y, d.x]; });
 
-	var svg = d3.select("#tree").append("svg")
+	var svg = d3.select(id).append("svg")
 		.attr("width", width + margin.right + margin.left)
 		.attr("height", height + margin.top + margin.bottom)
 	  .append("g")
@@ -45,7 +45,7 @@ function initTree(data){
 	root = treeData[0];
 	root.x0 = height / 2;
 	root.y0 = 0;
-
+	  
 	update(root);
 
 	d3.select(self.frameElement).style("height", "500px");
@@ -176,12 +176,22 @@ function hxlProxyToJSON(input,headers){
     return output;
 }
 
-var dataCall = $.ajax({
+$.ajax({
 	type: "GET",
-	url: "https://proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/1aehdzwHj04CLeSbMQV-A4Z5Hd4Le2r7QjigVGm64s-w/edit%3Fusp%3Dsharing&strip-headers=on",
+	url: "https://proxy.hxlstandard.org/data.json?strip-headers=on&url=https%3A//docs.google.com/spreadsheets/d/1Oq1oojmRjgDxt_OCQkrKk6BLG4hXFiDcKYCymmM-Iu0/edit%23gid%3D0=on",
 	dataType: 'json',
 	success: function(response){
 		var data = hxlProxyToJSON(response,false);
-		initTree(data);
+		initTree('#tree2017',data);
+	}
+});
+
+$.ajax({
+	type: "GET",
+	url: "https://proxy.hxlstandard.org/data.json?strip-headers=on&url=https%3A//docs.google.com/spreadsheets/d/1b15fG75FCFjo6QMAMoCn-0riDTef5GVW8U5GgrxIuUs/edit%23gid%3D0=on",
+	dataType: 'json',
+	success: function(response){
+		var data = hxlProxyToJSON(response,false);
+		initTree('#treeq1',data);
 	}
 });
