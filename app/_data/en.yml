@@ -37,6 +37,10 @@ appeals:
     description: "Below is a directory of the current appeal pages and appeal plus pages. Appeal plus pages have extra information provided by those working in the operation such as key figures, contacts and useful links. If you want an appeal page upgraded to an appeal plus page please contact <a href=\"mailto:ifrcgoproject@gmail.com\">ifrcgoproject@gmail.com</a> with the request."
     plus: "Current Appeal Plus pages"
     normal: "All Appeal Pages"
+    targetedben: "Targeted Beneficiaries"
+    funding: "Funding"
+    appealamount: "Appeal Amount"
+    coverage: "Coverage"
 
 ###################
 ## ABOUT CONTENT ##
@@ -44,6 +48,11 @@ appeals:
 about:
   title: "About"
   message: "GO is a project by the IFRC with support by:"
+  supportors:
+    - "American Red Cross"
+    - "British Red Cross"
+    - "Netherlands Red Cross"
+    - "Spanish Red Cross"
 
 #####################
 ## 404 ##

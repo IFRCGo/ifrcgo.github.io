@@ -1,9 +1,14 @@
 <div class="row">
-	<div class="large-12 columns">
-		<div class="about-container">
-			<div class="about-textbox">
-				<h3 style="text-align: center">{{site.data[locale].about.message}}</h3>
+	<div class="large-12 column">
+		<h3 style="text-align: center">{{site.data[locale].about.message}}</h3>
+			<div class="row small-up-2 medium-up-4">
+			{% for supportor in site.data[locale].about.supportors %}
+				<div class="column">
+					<div class="card no-border text-center">
+						{{ supportor }}
+					</div>
 				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
+</div>
