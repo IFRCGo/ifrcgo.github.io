@@ -183,3 +183,43 @@ p {
 .breadcrumbs a {
   color: $rcrcred;
 }
+
+.center-text{
+  text-align: center;
+}
+
+.keyfiguretitle {
+  color:$rcrcred;
+  font-size:1.2em;
+}
+
+.keyfigure {
+  color: #999;
+  font-size:1.6em;
+}
+
+.top-bar, .top-bar ul {
+  background-color: #ffffff;
+}
+
+@media only screen and (min-width: 40.063em) { /* medium, large */
+  .iconmap {
+    border: none;
+  }
+}
+
+.menu.expanded {
+  table-layout: initial;
+}
+
+.download_link {
+  font-size: 2em;
+}
+
+.no-border {
+  border: none;
+}
+
+.bigstats {
+  color: $rcrcred !important;
+}
