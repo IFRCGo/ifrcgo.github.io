@@ -100,12 +100,13 @@ function rss(data){
 }
 
 function createFieldReports(data){
-    var html ='';
+    var html ='<tbody>';
     data.forEach(function(d,i){
         if(i<5){
             html += '<tr><td><a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+title']+'</a></td><td>'+d['#country+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date']+'</td></tr>';
         }
     });
+    html += "</tbody>";
     $('#fieldreports').html(html);
 }
 
