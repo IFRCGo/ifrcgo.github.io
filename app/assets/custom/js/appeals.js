@@ -210,17 +210,16 @@ function getAppealDocs(id){
     		url: url,
     		dataType: 'json',
 			success: function(result){
-				var html = '<div class="row small-up-2 medium-up-4">';
+				var html = '<div class="medium-12"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Appeal Documents</h3></a></div><div class="row small-up-2 medium-up-4">';
 				result.forEach(function(row,i){
 					if(i>0 && i<9){
 						if(row[0].substring(0,1)=='/'){
 							row[0] = 'http://www.ifrc.org'+row[0];
 						}
-						html+='<div class="column"><div class="card doc"><a href="'+row[0]+'" target="_blank">'+row[1]+'</a> <br />('+row[2]+')</div></div>'
+						html+='<div class="column"><div class="card no-border doc"><a href="'+row[0]+'" target="_blank">'+row[1]+'</a> <br />('+row[2]+')</div></div>'
 					}
 				});
 				html+= '</div>'; //close cards
-				html+= '<div class="medium-6"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank">View all docs</a></div>'
         		$("#latestdocs").append(html);
     		}
     	});
