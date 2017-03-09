@@ -55,7 +55,7 @@ function generateMap(geom,ISO3){
 
 function processHash(){
 	var appealid = window.location.pathname.split('/')[2];
-	console.log('appealid is: ' + appealid);
+	//console.log('appealid is: ' + appealid);
 	var appealsurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&force=on&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23meta%2Bid%3D'+appealid+'&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0';
 	var dataCall = $.ajax({
 	    type: 'GET',
@@ -117,7 +117,7 @@ function loadKeyFigures(url){
 				var data = hxlProxyToJSON(result);
 				var html = '<div class="row small-up-2 medium-up-4"><h3>Key Figures</h3>';
 				data.forEach(function(d){
-					html+='<div class="column"><div class="card"><h4 class="keyfiguretitle minheight">'+d['#meta+title']+'</h4><p class="keyfigure">'+niceFormatNumber(d['#indicator'])+'</p><p class="small">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
+					html+='<div class="column"><div class="card"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure">'+niceFormatNumber(d['#indicator'])+'</p><p class="small">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
 				});
 				html+='</div>'; //closing div for KF
 				$('#keyfigures').html(html);
@@ -134,7 +134,7 @@ function loadFreeText(url){
 			success: function(result){
 				var data = hxlProxyToJSON(result);
 				console.log(data);
-				var html = '<div class="medium-12"><h3>Text Updates</h3></div><div class="col-md-12"><ul class="nav nav-tabs">';
+				var html = '<div class="medium-12"><h3>Text Updates</h3></div><div class="medium-12"><ul class="nav nav-tabs">';
 				data.forEach(function(d,i){
 					if(i==0){
 						html+='<li class="nav active"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
@@ -174,10 +174,11 @@ function loadContacts(url){
 			success: function(result){
 				console.log(result);
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="medium-12"><h3>Contacts</h3></div>';
+				var html = '<div class="row small-up-2 medium-up-4"><h3>Contacts</h3>';
 				data.forEach(function(d){
-					html+='<div class="medium-3"><h4 class="keyfiguretitle">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div>';
+					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
 				});
+					html+= '</div>';
 				$('#contacts').html(html);
     		}
     });
