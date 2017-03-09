@@ -181,7 +181,7 @@ function createConfig(data){
 
 function processHash(){
     var hashid = decodeURIComponent(window.location.hash).substring(1);
-    var hashurl = 'https://beta.proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/17Qm5o5YTiSA7seoLDa8OQWcX8NPQW62PXfNG3BCn7mQ/edit%3Fusp%3Dsharing&strip-headers=on&filter01=select&force=on&select-query01-01=%23meta%2Bid%3D'+hashid;
+    var hashurl = 'https://proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/17Qm5o5YTiSA7seoLDa8OQWcX8NPQW62PXfNG3BCn7mQ/edit%3Fusp%3Dsharing&strip-headers=on&filter01=select&force=on&select-query01-01=%23meta%2Bid%3D'+hashid;
 
     var hashCall = $.ajax({
         type: 'GET',
