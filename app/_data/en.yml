@@ -9,8 +9,10 @@ nav:
     url:  "/"
   - text: "Core Datasets"
     url:  "/#coredatasets"
-  - text: "IFRC Regions"
-    url:  "/#regions"
+  - text: "About"
+    url:  "/about"
+  # - text: "IFRC Regions"
+  #   url:  "/#regions"
   - text: "IFRC.org"
     url:  "http://ifrc.org"
   - text: "FedNet"
@@ -18,9 +20,6 @@ nav:
   - text: "DMIS"
     url:  "https://www-secure.ifrc.org/DMISII/Pages/00_Home/login.aspx"
 
-# TODO make an about page with the logos of supporting PNS
-  # - text: "About"
-  #   url:  ""
 
 #####################
 ## LANDING CONTENT ##
@@ -44,6 +43,7 @@ appeals:
 ###################
 about:
   title: "About"
+  message: "GO is a project by the IFRC with support by:"
 
 #####################
 ## 404 ##
