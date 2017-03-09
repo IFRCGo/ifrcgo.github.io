@@ -1,6 +1,8 @@
 {% capture url %}{% if page.language%}{{ page.url | remove: "/" | remove: page.language }}{% else %}{{ page.url | remove: "/" }}{% endif %}{% endcapture %}
 {% if url.size > 0 %}
-  <nav aria-label="You are here:" role="navigation">
+
+
+  <nav aria-label="You are here:" role="navigation" class="row">
 
     <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
       <li><a href={{ "/" | prepend: site.baseurl | prepend: site.url }}>Home</a></li>
