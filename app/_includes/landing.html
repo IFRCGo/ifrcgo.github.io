@@ -1,39 +1,61 @@
 <!-- TODO fix later -->
 <!-- <div class="row column alerts">
-  <p class="marquee"><span id="feed"></span></p>
+<p class="marquee"><span id="feed"></span></p>
 </div> -->
 
-<!--  TODO should auto update -->
-<div class="row column">
-  <ul class="vertical medium-horizontal menu expanded text-center">
-    <li class="headlinefig"><div id="totalea" class="stat"></div><span>Emergency Appeals</span></li>
-    <li class="headlinefig"><div id="totaldref" class="stat"></div><span>DREFs</span></li>
-    <li class="headlinefig"><div id="totalcoverage" class="stat"></div><span>Coverage</span></li>
-    <li class="headlinefig"><div id="totalappeals" class="stat"></div><span>Total Appeals</span></li>
-    <li class="headlinefig"><div id="totalbens" class="stat"></div><span>Beneficiaries</span></li>
-  </ul>
+<div class="row small-up-2 medium-up-5 bigstats">
+  <div class="column">
+    <div class="card no-border text-center">
+      <span id="totalea" class="stat clearfix"></span>
+      <span>Emergency Appeals</span>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card no-border text-center">
+      <span id="totaldref" class="stat clearfix"></span>
+      <span>DREFs</span>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card no-border text-center">
+      <span id="totalcoverage" class="stat clearfix"></span>
+      <span>Coverage</span>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card no-border text-center">
+      <span id="totalappeals" class="stat clearfix"></span>
+      <span>Total Appeals</span>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card no-border text-center">
+      <span id="totalbens" class="stat clearfix"></span>
+      <span>Beneficiaries</span>
+    </div>
+  </div>
 </div>
 
 <hr>
 
 <div class="row">
-    <div class="medium-6 columns">
-        <h1>Current Operations</h1>
-        <div id="map" class="leaflet-container"></div>
-    </div>
-    <div id="updates" class="medium-6 columns">
-        <h1>Latest Field Reports</h1>
-        <table id="fieldreports"></table>
-    </div>
+  <div class="medium-6 columns">
+    <h1>Current Operations</h1>
+    <div id="map" class="leaflet-container"></div>
+  </div>
+  <div id="updates" class="medium-6 columns">
+    <h1>Latest Field Reports</h1>
+    <table id="fieldreports"></table>
+  </div>
 </div>
 
 <hr>
 
 <div class="row">
-    <div class="medium-12 columns">
-        <h1>Latest Alerts</h1>
-        <table id="latestAlerts"></table>
-    </div>
+  <div class="medium-12 columns">
+    <h1>Latest Alerts</h1>
+    <table id="latestAlerts"></table>
+  </div>
 </div>
 
 <hr>
@@ -42,32 +64,32 @@
   <a name="coredatasets"><h1>Core Datasets</h1></a>
   <div class="column">
     <div class="card">
-		<div class="card-section text-center">
-			<img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/surge_icon.png">
-		</div>
-		<div class="card-section">
-			    <a href="{{ site.baseurl }}/currentappeals" class="button alert expanded">Ongoing Operations</a>
-		</div>
+      <div class="card-section text-center">
+        <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/surge_icon.png">
+      </div>
+      <div class="card-section">
+        <a href="{{ site.baseurl }}/currentappeals" class="button alert expanded">Ongoing Operations</a>
+      </div>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<div class="card-section text-center">
-			<img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/3w_icon.png">
-		</div>
-		<div class="card-section">
-			<a href="{{ site.baseurl }}/global3w" class="button alert expanded">Who does, what and where? (3W)</a>
-		</div>
+      <div class="card-section text-center">
+        <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/3w_icon.png">
+      </div>
+      <div class="card-section">
+        <a href="{{ site.baseurl }}/global3w" class="button alert expanded">Who does, what and where? (3W)</a>
+      </div>
     </div>
   </div>
   <div class="column">
     <div class="card">
-				<div class="card-section text-center">
-			<img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/appealsplus_icon.png">
-		</div>
-		<div class="card-section">
-			<a href="{{ site.baseurl }}/appeals" class="button alert expanded">Appeals</a>
-		</div>
+      <div class="card-section text-center">
+        <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/appealsplus_icon.png">
+      </div>
+      <div class="card-section">
+        <a href="{{ site.baseurl }}/appeals" class="button alert expanded">Appeals</a>
+      </div>
     </div>
   </div>
 </div>
@@ -78,86 +100,86 @@
   <a name="labs"><h1>GO Labs</h1></a>
   <div class="column">
     <div class="card">
-		<a href="https://52.91.94.199/fieldreports">
-			<div class="card-section text-center">
-				<span class="icon icon-file-image card-icon"></span>
-			</div>
-			<div class="card-section">
-				<span class="button secondary expanded">IFRC Field Reports</span>
-			</div>
-		</a>
+      <a href="https://52.91.94.199/fieldreports">
+        <div class="card-section text-center">
+          <span class="icon icon-file-image card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">IFRC Field Reports</span>
+        </div>
+      </a>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<a href="https://52.91.94.199/heops/">
-			<div class="card-section text-center">
-				<span class="icon icon-user-1 card-icon"></span>
-			</div>
-			<div class="card-section">
-				<span class="button secondary expanded">Head of Operations (HEOps) Deployments</span>
-			</div>
-		</a>
+      <a href="https://52.91.94.199/heops/">
+        <div class="card-section text-center">
+          <span class="icon icon-user-1 card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">Head of Operations (HEOps) Deployments</span>
+        </div>
+      </a>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<a href="{{site.baseurl}}/histappeals">
-			<div class="card-section text-center">
-				<span class="icon icon-chart-area card-icon"></span>
-			</div>
-			<div class="card-section">
-				<span class="button secondary expanded">Historic Appeals</span>
-			</div>
-		</a>
+      <a href="{{site.baseurl}}/histappeals">
+        <div class="card-section text-center">
+          <span class="icon icon-chart-area card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">Historic Appeals</span>
+        </div>
+      </a>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<a href="{{site.baseurl}}/okrs">
-			<div class="card-section text-center">
-				<span class="icon icon-calendar card-icon"></span>
-			</div>
-			<div class="card-section">
-				<span class="button secondary expanded">OKRS</span>
-			</div>
-		</a>
+      <a href="{{site.baseurl}}/okrs">
+        <div class="card-section text-center">
+          <span class="icon icon-calendar card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">OKRS</span>
+        </div>
+      </a>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<a href="{{site.baseurl}}/summary">
-			<div class="card-section text-center">
-				<span class="icon icon-chart-bar card-icon"></span>
-			</div>
-			<div class="card-section">
-				<span class="button secondary expanded">Summary</span>
-			</div>
-		</a>
+      <a href="{{site.baseurl}}/summary">
+        <div class="card-section text-center">
+          <span class="icon icon-chart-bar card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">Summary</span>
+        </div>
+      </a>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<a href="https://ifrc-europe.github.io/migration-portal/">
-			<div class="card-section text-center">
-				<span class="icon icon-users card-icon"></span>
-			</div>
-			<div class="card-section">
-				<span class="button secondary expanded">European Migration Portal</span>
-			</div>
-		</a>
+      <a href="https://ifrc-europe.github.io/migration-portal/">
+        <div class="card-section text-center">
+          <span class="icon icon-users card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">European Migration Portal</span>
+        </div>
+      </a>
     </div>
   </div>
   <div class="column">
     <div class="card">
-		<a href="https://52.91.94.199/eru_readiness/">
-			<div class="card-section text-center">
-				<img class="card-icon" src="{{ site.baseurl }}/assets/graphics/ERU.gif" style="height:20px;">
-			</div>
-			<div class="card-section">
-				 <span class="button secondary expanded">Emergency Response Units (ERU) Readiness</span>
-			</div>
-		</a>
+      <a href="https://52.91.94.199/eru_readiness/">
+        <div class="card-section text-center">
+          <img class="card-icon" src="{{ site.baseurl }}/assets/graphics/ERU.gif" style="height:20px;">
+        </div>
+        <div class="card-section">
+          <span class="button secondary expanded">Emergency Response Units (ERU) Readiness</span>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -165,83 +187,84 @@
 <hr>
 
 <!--<div class="row column">
-  <a name="regions"><h1>IFRC Regions</h1></a>
+<a name="regions"><h1>IFRC Regions</h1></a>
 </div>
 
 <div class="row small-12 medium-up-3 large-up-5">
-  <div class="column">
-    <div class="card iconmap">
-	    <div class="card-section text-center">
-			<a href="americas.html" target="_blank" class="icons-regions">
-			  <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map americas.png">
-			</a>
-		</div>
-		<div class="card-section">
-			<a href="americas.html" target="_blank" class="icons-regions">
-			  <h2 class="text-center">Americas</h2>
-			</a>
-		</div>
-	  </div>
-  </div>
-  <div class="column">
-    <div class="card iconmap">
-	  <div class="card-section text-center">
-			<a href="europe.html" target="_blank" class="icons-regions">
-			  <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map europe.png">
-			</a>
-		</div>
-		<div class="card-section">
-			<a href="europe.html" target="_blank" class="icons-regions">
-			  <h2 class="text-center">Europe</h2>
-			</a>
-		</div>
-	  </div>
-  </div>
-  <div class="column">
-    <div class="card iconmap">
-	  <div class="card-section text-center">
-			<a href="mena.html" target="_blank" class="icons-regions">
-			  <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map mena.png">
-			</a>
-		</div>
-		<div class="card-section">
-			<a href="mena.html" target="_blank" class="icons-regions">
-			  <h2 class="text-center">MENA</h2>
-			</a>
-		</div>
-	  </div>
-  </div>
-  <div class="column">
-    <div class="card iconmap">
-	  <div class="card-section text-center">
-			<a href="asiapacific.html" target="_blank" class="icons-regions">
-			  <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map asia_pac.png">
-			</a>
-		</div>
-		<div class="card-section">
-			<a href="asiapacific.html" target="_blank" class="icons-regions">
-			  <h2 class="text-center">Asia Pacific</h2>
-			</a>
-		</div>
-	  </div>
-  </div>
-  <div class="column">
-    <div class="card iconmap">
-	  <div class="card-section text-center">
-			<a href="africa.html" target="_blank" class="icons-regions">
-			  <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map africa.png">
-			</a>
-		</div>
-		<div class="card-section">
-			<a href="africa.html" target="_blank" class="icons-regions">
-			  <h2 class="text-center">Africa</h2>
-			</a>
-		</div>
-	  </div>
-  </div>
-</div>-->
+<div class="column">
+<div class="card iconmap">
+<div class="card-section text-center">
+<a href="americas.html" target="_blank" class="icons-regions">
+<img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map americas.png">
+</a>
+</div>
+<div class="card-section">
+<a href="americas.html" target="_blank" class="icons-regions">
+<h2 class="text-center">Americas</h2>
+</a>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="card iconmap">
+<div class="card-section text-center">
+<a href="europe.html" target="_blank" class="icons-regions">
+<img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map europe.png">
+</a>
+</div>
+<div class="card-section">
+<a href="europe.html" target="_blank" class="icons-regions">
+<h2 class="text-center">Europe</h2>
+</a>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="card iconmap">
+<div class="card-section text-center">
+<a href="mena.html" target="_blank" class="icons-regions">
+<img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map mena.png">
+</a>
+</div>
+<div class="card-section">
+<a href="mena.html" target="_blank" class="icons-regions">
+<h2 class="text-center">MENA</h2>
+</a>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="card iconmap">
+<div class="card-section text-center">
+<a href="asiapacific.html" target="_blank" class="icons-regions">
+<img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map asia_pac.png">
+</a>
+</div>
+<div class="card-section">
+<a href="asiapacific.html" target="_blank" class="icons-regions">
+<h2 class="text-center">Asia Pacific</h2>
+</a>
+</div>
+</div>
+</div>
+<div class="column">
+<div class="card iconmap">
+<div class="card-section text-center">
+<a href="africa.html" target="_blank" class="icons-regions">
+<img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map africa.png">
+</a>
+</div>
+<div class="card-section">
+<a href="africa.html" target="_blank" class="icons-regions">
+<h2 class="text-center">Africa</h2>
+</a>
+</div>
+</div>
+</div>
+</div>
 
 <hr>
+-->
 
 <div class="row">
   <h3>The IFRC GO Platform aims to make all disaster information universally accessible and useful to IFRC responders for better decision making</h3>
@@ -252,45 +275,44 @@
 <div class="row small-12 medium-up-3">
   <div class="column">
     <div class="card">
-	    <div class="card-section text-center">
-			<a href="http://rcrcsims.org/" target="_blank" class="icons-regions">
-			  <h1>SIMS</h1>
-			</a>
-		</div>
-		<div class="card-section">
-			<div class="columns">
-			  <p>Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement.</p>
-			</div>
-		</div>
-	  </div>
+      <div class="card-section text-center">
+        <a href="http://rcrcsims.org/" target="_blank" class="icons-regions">
+          <h1>SIMS</h1>
+        </a>
+      </div>
+      <div class="card-section">
+        <div class="columns">
+          <p>Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement.</p>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="column">
     <div class="card">
-	    <div class="card-section text-center">
-			<a href="http://rcrcsims.org/" target="_blank" class="icons-regions">
-			  <h1>IFRC Data Initiatives</h1>
-			</a>
-		</div>
-		<div class="card-section">
-			<div class="columns">
-			  <p>IFRC is a data-driven organization dedicated to making evidence-based decision-making. Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies.</p>
-			</div>
-		</div>
-	  </div>
+      <div class="card-section text-center">
+        <a href="http://rcrcsims.org/" target="_blank" class="icons-regions">
+          <h1>IFRC Data Initiatives</h1>
+        </a>
+      </div>
+      <div class="card-section">
+        <div class="columns">
+          <p>IFRC is a data-driven organization dedicated to making evidence-based decision-making. Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies.</p>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="column">
     <div class="card">
-	    <div class="card-section text-center">
-			<a href="hhttps://github.com/IFRCGo" target="_blank" class="icons-regions">
-			  <h1>Go Lab</h1>
-			  <span class="icon icon-github-circled card-icon"></span>
-			</a>
-		</div>
-		<div class="card-section">
-			<div class="columns">
-			  <p>All our products and tools are available on the IFRC GO github page.</p>
-			</div>
-		</div>
-	  </div>
+      <div class="card-section text-center">
+        <a href="hhttps://github.com/IFRCGo" target="_blank" class="icons-regions">
+          <h1>Go Lab</h1>
+        </a>
+      </div>
+      <div class="card-section">
+        <div class="columns">
+          <p>All our products and tools are available on the IFRC GO github page.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

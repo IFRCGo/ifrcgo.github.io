@@ -145,7 +145,5 @@
 }
 
 .headlinefig {
-  color:#EE3224;
+  color:$rcrcred;
 }
-
-/* RC red: #EE3224 OR rgb(238,50,36) */
