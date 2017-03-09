@@ -17,19 +17,23 @@
 <hr>
 
 <div class="row">
-  <div class="medium-6 columns">
-    <h1>Current Operations</h1>
-    <div id="map" class="leaflet-container"></div>
-  </div>
-  <div id="updates" class="medium-6 columns">
-    <h1>Latest Field Reports</h1>
-    <table id="fieldreports">
-    </table>
-    <h1>Latest Alerts</h1>
-    <table>
-      <tr><td>No alerts have been issued in the last 30 days</td></tr>
-    </table>
-  </div>
+    <div class="medium-6 columns">
+        <h1>Current Operations</h1>
+        <div id="map" class="leaflet-container"></div>
+    </div>
+    <div id="updates" class="medium-6 columns">
+        <h1>Latest Field Reports</h1>
+        <table id="fieldreports"></table>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="medium-12 columns">
+        <h1>Latest Alerts</h1>
+        <table id="latestAlerts"></table>
+    </div>
 </div>
 
 <hr>
@@ -62,7 +66,7 @@
 			<img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/appealsplus_icon.png">
 		</div>
 		<div class="card-section">
-			<a href="{{ site.baseurl }}/histappeals" class="button alert expanded">Historic Appeals and DREFs</a>
+			<a href="{{ site.baseurl }}/appeals" class="button alert expanded">Appeals</a>
 		</div>
     </div>
   </div>
@@ -160,7 +164,7 @@
 
 <hr>
 
-<div class="row column">
+<!--<div class="row column">
   <a name="regions"><h1>IFRC Regions</h1></a>
 </div>
 
@@ -235,7 +239,7 @@
 		</div>
 	  </div>
   </div>
-</div>
+</div>-->
 
 <hr>
 

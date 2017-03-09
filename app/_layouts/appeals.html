@@ -57,11 +57,7 @@
   <link rel="stylesheet" href="/.tmp/assets/styles/vendor/c3.css">
   <!-- endinject -->
 
-  {% if page.custom_css %}
-    {% for stylesheet in page.custom_css %}
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/custom/css/{{ stylesheet }}.css" media="screen" type="text/css">
-    {% endfor %}
-  {% endif %}
+  <link rel="stylesheet" href="{{site.baseurl}}/assets/custom/css/appeal.css" media="screen" type="text/css">
 
   {% feed_meta %}
 </head>
@@ -73,6 +69,9 @@
   <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 </div>
 <![endif]-->
+{% include header.html %}
+
+{% include nav-breadcrumbs.html %}
 
 {% include appeal.html %}
 
@@ -89,10 +88,6 @@ ga('create', 'UA-84297335-1', 'auto');
 ga('send', 'pageview');
 </script>
 
-<!-- build:js assets/scripts/main.js -->
-<script src="{{ site.baseurl }}/assets/scripts/main.min.js"></script>
-<!-- endbuild -->
-
 <!-- inject:js -->
 <script src="/.tmp/assets/scripts/vendor/d3.js"></script>
 <script src="/.tmp/assets/scripts/vendor/index.js"></script>
@@ -108,11 +103,11 @@ ga('send', 'pageview');
 <script src="/.tmp/assets/scripts/vendor/c3.js"></script>
 <!-- endinject -->
 
-{% if page.custom_js %}
-  {% for js_file in page.custom_js %}
-  <script src='{{site.baseurl}}/assets/custom/js/{{ js_file }}.js' type="text/javascript"></script>
-  {% endfor %}
-{% endif %}
+<script>
+var worldmap = '{{site.baseurl}}/assets/map/worldmap.json';
+</script>
+
+<script src='{{site.baseurl}}/assets/custom/js/appeals.js' type="text/javascript"></script>
 
 </body>
 

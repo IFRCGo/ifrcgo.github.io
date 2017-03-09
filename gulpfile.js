@@ -15,6 +15,15 @@ var replace = require('stream-replace');
 var wiredep = require('wiredep');
 var inject = require('gulp-inject');
 var greplace = require('gulp-replace');
+//Windows support
+if (process.platform === "win32") {
+    var args = ['build'];
+    var runProcess = 'jekyll.bat';
+} else {
+    var args = ['exec', 'jekyll', 'build'];
+    var runProcess = 'bundle';
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,8 +113,6 @@ gulp.task('fixin', function (){
 
 // Build the jekyll website.
 gulp.task('jekyll', function (done) {
-  var args = ['exec', 'jekyll', 'build'];
-
   switch (environment) {
     case 'development':
     args.push('--config=_config.yml,_config-dev.yml');
@@ -117,8 +124,8 @@ gulp.task('jekyll', function (done) {
     args.push('--config=_config.yml');
     break;
   }
-
-  return cp.spawn('bundle', args, {stdio: 'inherit'})
+  //return cp.spawn('bundle', args, { stdio: 'inherit' })
+  return cp.spawn(runProcess, args, { stdio: 'inherit' })
   .on('close', done);
 });
 
@@ -133,7 +140,7 @@ gulp.task('build', function(done) {
 });
 
 gulp.task('dev', function(done) {
-  runSequence('compress:main', [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
+  runSequence('clean','compress:main', [ 'inject-vendor', 'inject-own'], 'fixin', ['jekyll', 'compass'], 'copy:assets', done);
 });
 
 gulp.task('serve', ['build'], function () {
@@ -179,7 +186,7 @@ gulp.task('local-dev', ['dev'], function () {
   });
 
   gulp.watch(['./app/assets/scripts/**/*.js', '!./app/assets/scripts/vendor/**/*'], function() {
-    runSequence('compress:main', browserReload); //fix
+    runSequence(['compress:main','jekyll'], browserReload); //fix
   });
 
   gulp.watch(['app/**/*.html', 'app/**/*.md', 'app/**/*.json', 'app/**/*.geojson', '_config*'], function() {
@@ -263,7 +270,7 @@ gulp.task('get-humans', function(){
 
   var getHumans = function(callback){
     var options = {
-      url: 'https://api.github.com/repos/IFRCgo/ifrcgo.github.io/contributors',
+      url: 'https://api.github.com/repos/IFRCgo/ifrcgo_v2/contributors',
       headers: {
         'User-Agent': 'request'
       }
