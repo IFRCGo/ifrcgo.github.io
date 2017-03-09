@@ -237,7 +237,7 @@ gulp.task('get-data', function(datacb) {
   //keep this url in beta as recipe not in production HXL proxy
   var dlstream = download({
     file: "appealsplus.csv",
-    url: "https://beta.proxy.hxlstandard.org/data/r_Jouy/download/appealplus.csv"
+    url: "https://proxy.hxlstandard.org/data/r_Jouy/download/appealplus.csv"
   })
   .pipe(gulp.dest("app/_data/temp"));
 

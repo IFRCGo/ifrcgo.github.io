@@ -82,7 +82,7 @@ function processHash(){
 }
 
 function appealsplus(id){
-	var url = 'https://beta.proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+id+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on';
+	var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+id+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on';
 	$.ajax({
 		    type: 'GET',
     		url: url,
@@ -108,7 +108,7 @@ function appealsplus(id){
 }
 
 function loadKeyFigures(url){
-	var hxlurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
 	$.ajax({
 		    type: 'GET',
     		url: hxlurl,
@@ -126,7 +126,7 @@ function loadKeyFigures(url){
 }
 
 function loadFreeText(url){
-	var hxlurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
 	$.ajax({
 		    type: 'GET',
     		url: hxlurl,
@@ -166,7 +166,7 @@ function loadFreeText(url){
 }
 
 function loadContacts(url){
-	var hxlurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
 	$.ajax({
 		    type: 'GET',
     		url: hxlurl,
@@ -185,7 +185,7 @@ function loadContacts(url){
 }
 
 function loadLinks(url){
-	var hxlurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
 	$.ajax({
 		    type: 'GET',
     		url: hxlurl,
@@ -203,7 +203,7 @@ function loadLinks(url){
 }
 
 function getAppealDocs(id){
-	var url = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&select-query01-01=%23meta%2Bid%3D' + id + '&filter02=cut&filter01=select&cut-include-tags02=%23meta%2Bdocumentname%2C%23date%2C%23meta%2Burl&force=on&url=https%3A//docs.google.com/spreadsheets/d/1gJ4N_PYBqtwVuJ10d8zXWxQle_i84vDx5dHNBomYWdU/edit%3Fusp%3Dsharing';
+	var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&select-query01-01=%23meta%2Bid%3D' + id + '&filter02=cut&filter01=select&cut-include-tags02=%23meta%2Bdocumentname%2C%23date%2C%23meta%2Burl&force=on&url=https%3A//docs.google.com/spreadsheets/d/1gJ4N_PYBqtwVuJ10d8zXWxQle_i84vDx5dHNBomYWdU/edit%3Fusp%3Dsharing';
 
 	$.ajax({
 		    type: 'GET',
