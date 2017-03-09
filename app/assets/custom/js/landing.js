@@ -109,6 +109,18 @@ function createFieldReports(data){
     $('#fieldreports').html(html);
 }
 
+function createAlerts(data) {
+    var html = '<tbody><tr><th>Date of Alert</th><th>Operation</th><th>Alert Category</th><th>Alert Message</th><th>Type of Alert</th></tr>';
+    data.forEach(function (d, i) {
+        if (i < 5) {
+            html += '<tr><td>' + d['#date'] + '</td><td>' + d['#operation'] + '</td><td>' + d['#x_alert+cat'] + '</td><td>' + d['#x_alert+message'] + '</td><td>' + d['#x_alert+type'] + '</td></tr>';
+        }
+
+    });
+    html += "</tbody>";
+    $('#latestAlerts').html(html);
+}
+
 function hxlProxyToJSON(input,headers){
     var output = [];
     var keys=[]
@@ -137,6 +149,19 @@ function hxlProxyToJSON(input,headers){
     return output;
 }
 
+function insertionSort(array) {
+    var len = array.length;
+    for (i = 0; i < (len - 1) ; i++) {
+        for (j = i + 1; j < len; j++) {
+            if (array[i]['#date'] < array[j]['#date']) {
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+}
+
 var appealsurl = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E999999&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0';
 var today = new Date();
 var dd = today.getDate();
@@ -152,6 +177,7 @@ var date = yyyy + '-' + mm + '-' + dd;
 appealsurl = appealsurl.replace('999999',date);
 var rssfeed = 'https://beta.proxy.hxlstandard.org/data.json?force=on&strip-headers=on&url=http%3A//52.91.94.199/open/gdacs&verify=off'
 var fieldReportsURL = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//52.91.94.199/open/fieldreports/7&verify=off'
+var alertsURL = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//docs.google.com/spreadsheets/d/1Yw11F4pghDr7JWhhqTe6dM42w7gqx7W86CFSn0kzKnc';
 
 var dataCall = $.ajax({
     type: 'GET',
@@ -162,6 +188,12 @@ var dataCall = $.ajax({
 var fieldReportsCall = $.ajax({
     type: 'GET',
     url: fieldReportsURL,
+    dataType: 'json',
+});
+
+var alertsCall = $.ajax({
+    type: 'GET',
+    url: alertsURL,
     dataType: 'json',
 });
 
@@ -189,4 +221,10 @@ $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
 $.when(fieldReportsCall).then(function(frdata){
     var data = hxlProxyToJSON(frdata);
     createFieldReports(data);
+});
+
+$.when(alertsCall).then(function (frdata) {
+    var data = hxlProxyToJSON(frdata);
+    insertionSort(data);
+    createAlerts(data);
 });
