@@ -270,7 +270,7 @@ gulp.task('get-humans', function(){
 
   var getHumans = function(callback){
     var options = {
-      url: 'https://api.github.com/repos/IFRCgo/ifrcgo.github.io/contributors',
+      url: 'https://api.github.com/repos/IFRCgo/ifrcgo_v2/contributors',
       headers: {
         'User-Agent': 'request'
       }
