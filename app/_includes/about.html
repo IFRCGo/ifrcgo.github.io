@@ -1,13 +1,27 @@
 <div class="row">
 	<div class="large-12 column">
-		<h3 style="text-align: center">{{site.data[locale].about.message}}</h3>
-			<div class="row small-up-2 medium-up-4">
-			{% for supportor in site.data[locale].about.supportors %}
-				<div class="column">
-					<div class="card no-border text-center">
-						{{ supportor }}
+		<h2>{{ site.data[locale].about.title }}</h2>
+		{% for paragraph in site.data[locale].about.paragraphs %}
+		<h3>{{ paragraph.header }}</h3>
+		<p>
+			{{ paragraph.text }}
+		</p>
+		{% endfor %}
+	</div>
+</div>
+<div class="row">
+	<div class="large-12 column">
+		<h3 style="text-align: center">{{site.data[locale].about.supporter_message}}</h3>
+		<div class="row small-up-2 medium-up-4">
+			{% for supporter in site.data[locale].about.supporters %}
+			<div class="column">
+				<div class="card no-border text-center">
+					<a href="{{ supporter.url }}"><img src="{{ site.baseurl }}/assets/logos/{{supporter.logo}}"></a>
+					<div class="card-section">
+						<h4><a href="{{ supporter.url }}">{{ supporter.name }}</a></h4>
 					</div>
 				</div>
+			</div>
 			{% endfor %}
 		</div>
 	</div>

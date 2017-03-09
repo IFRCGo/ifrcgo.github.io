@@ -45,14 +45,33 @@ appeals:
 ###################
 ## ABOUT CONTENT ##
 ###################
+
 about:
-  title: "About"
-  message: "GO is a project by the IFRC with support by:"
-  supportors:
-    - "American Red Cross"
-    - "British Red Cross"
-    - "Netherlands Red Cross"
-    - "Spanish Red Cross"
+  title: "About IFRC Go"
+  paragraphs:
+    - header: "What is Go?"
+      text: "With Go we aim to create a team of multifunctional information and data professionals within the IFRC who operate with a set of common design principles. This team will support internal change around data services and catalyze collaboration with technology partners, humanitarian organizations , governments, and civil society organizations, individuals and communities on this journey. The team will work with all parts of the IFRC and ICRC where possible to create analyze and share relevant data."
+    - header: "Go Work Streams"
+      text: "The GO Team will deliver three major streams of work focusing on i) Data literacy ? to build the basic organizational foundations of better data services, ii) Single?context situational awareness (small/medium size disaster information) ? to improve information management within a specific small to medium crisis response including ongoing global overview and iii) Multi?context complex awareness (major disaster information) ? to establish an emergency center that provides Federation leaders with processes, systems and products to increase informational coherence and decision?making during multiple large global crisis response operations."
+    - header: "Go Products and Services"
+      text: "Within these work streams, the GO Platform will deliver a suite of solutions that make disaster information universally available and useful for IFRC responders. Examples of these solutions include programs to create good data habits; analytics; data visualizations; trend analysis; hazard mapping; response mapping; gap analysis; and an innovation lab to liaise with and build on existing partnerships with key private sector, United Nations, Non Governmental Organizations."
+  supporter_message: "Go has received dedicated personnel and funding support from"
+  supporters:
+    - name: "American Red Cross"
+      logo: "arc_logo.png"
+      url: "http://www.redcross.org/"
+    - name: "British Red Cross"
+      logo: "brc_logo.png"
+      url: "http://www.redcross.org.uk/"
+    - name: "Netherlands Red Cross"
+      logo: "nlrc_logo.jpg"
+      url: "http://www.rodekruis.nl/"
+    - name: "Japanese Red Cross"
+      logo: "jrc_logo.png"
+      url: "http://www.jrc.or.jp/english/"
+
+
+
 
 #####################
 ## 404 ##
