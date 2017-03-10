@@ -29,7 +29,7 @@ function generateMap(geom,ISO3){
 		var weight =0
 		var cls = 'country'
 		if(feature.properties['ISO_A3']==ISO3){
-			color = '#B71C1C';
+			color = '#EE3224';
 			fillOpacity = 0.7;
 			weight = 1
 		};
@@ -117,7 +117,7 @@ function loadKeyFigures(url){
 				var data = hxlProxyToJSON(result);
 				var html = '<div class="row small-up-2 medium-up-4"><h3>Key Figures</h3>';
 				data.forEach(function(d){
-					html+='<div class="column"><div class="card"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure">'+niceFormatNumber(d['#indicator'])+'</p><p class="small">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
+					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
 				});
 				html+='</div>'; //closing div for KF
 				$('#keyfigures').html(html);
@@ -176,7 +176,7 @@ function loadContacts(url){
 				var data = hxlProxyToJSON(result);
 				var html = '<div class="row small-up-2 medium-up-4"><h3>Contacts</h3>';
 				data.forEach(function(d){
-					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
+					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
 				});
 					html+= '</div>';
 				$('#contacts').html(html);
@@ -252,7 +252,7 @@ function createPie(id,width,inner,percent){
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
 	svg.append("path")
-		.style("fill", "#b71c1c")
+		.style("fill", "#EE3224")
 		.attr("d", fundingArc)
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 

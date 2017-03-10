@@ -46,6 +46,27 @@
 // 1. Global
 // ---------
 
+/* Main Colours */
+$ifrcBrown: #7A1600;
+$ifrcGray: #786A65;
+
+/* FedNet Colours */
+$ifrcCorporateRed: #EE3224;
+$ifrcFedNetBlue: #00447C;
+$ifrcFedNetGreen: #006666;
+$ifrcFedNetChocolate: #7A1600;
+$ifrcFedNetYellow: #E5B53B;
+
+/* Socondary Colours */
+$ifrcYellow: #FFD200;
+$ifrcOrange: #FF5113;
+$ifrcDarkBlue: #003045;
+$ifrcCyan: #009DDB;
+$ifrcDarkGreen: #545F1D;
+$ifrcGreen: #8FD400;
+$ifrcPurple: #5C3160;
+$ifrcPink: #D40072;
+
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
@@ -246,7 +267,7 @@ $button-fill: solid;
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
-$button-color-alt: $black;
+$button-color-alt: $light-gray;
 $button-radius: $global-radius;
 $button-sizes: (
   tiny: 0.6rem,
@@ -254,7 +275,13 @@ $button-sizes: (
   default: 0.9rem,
   large: 1.25rem,
 );
-$button-palette: $foundation-palette;
+$button-palette: map-merge($foundation-palette, (
+  ifrcFedNetBlue: $ifrcFedNetBlue,
+  ifrcGray: $ifrcGray,
+  ifrcFedNetGreen: $ifrcFedNetGreen,
+  ifrcFedNetYellow: $ifrcFedNetYellow,
+  ifrcCorporateRed: $ifrcCorporateRed,
+)) !default;
 $button-opacity-disabled: 0.25;
 $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness: -50%;
