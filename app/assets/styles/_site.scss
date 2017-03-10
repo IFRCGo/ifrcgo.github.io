@@ -14,9 +14,7 @@
   padding: 0;
   margin: 0 auto;
   margin-top: 10px;
-  font-weight: bold;
   font-size: 14px;
-  background-color: #FFFFFF;
 }
 
 .menu {
@@ -27,52 +25,46 @@ footer {
   background-size: cover;
   background-position: bottom;
   border: none;
-  background-color: #606161;
+  background-color: $darkest-gray;
   min-height: 50px;
 }
 
-h1, h2, h3, h4, h5, h6, body, p {
-  font-family: 'Hindi', sans-serif;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
 h1 {
-  font-size:20px;
-  font-weight:bold;
-  color:#606161;
+  font-weight: 200;
+  font-size: 1.5em;
+  color: $TextColor;
   position: relative;
-  text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 h2 {
-  padding-top: 8px;
-  font-size:20px;
-  color:#EE3224;
+  font-weight: 200;
+  font-size: 1.3em;
+  color:  $TextColor;
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 h3 {
-  font-size:18px;
-  font-style: italic;
-  color:#606161;
+  font-weight: 200;
+  font-size: 1.2em;
+  color: $TextColor;
   position: relative;
-  text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 h4 {
-  font-size: 1em;
+  font-weight: 200;
   position: relative;
   margin: auto 0;
   padding: 0.5%;
 }
 
 h5 {
-  color: #ffffff;
+  color: $white;
   font-weight: normal;
   text-align: center;
   position: relative;
@@ -81,7 +73,7 @@ h5 {
 
 h6  {
   font-size:10px;
-  color:#ffffff;
+  color: $white;
   position: relative;
   text-align: center;
   margin-top: 20px;
@@ -93,12 +85,8 @@ h6  {
 p {
   font-size:14px;
   position: relative;
-  margin-left:10px;
-  margin-right:10px;
   margin-bottom: 10px;
-  margin-top: 10px;
-  text-align: center;
-  color:#606161;
+  color: $TextColor;
 }
 
 .thumbnail {
@@ -109,9 +97,9 @@ p {
 }
 
 .alerts {
-  background-color: #EE3224;
+  background-color: $ifrcCorporateRed;
   margin: 15px auto 15px auto;
-  color: #FFFFFF;
+  color: $white;
 }
 
 .callout {
@@ -120,25 +108,25 @@ p {
 
 .details:link, .details:hover, .details:visited, .details:active {
   text-decoration: none;
-  color: #000000;
+  color: $black;
 }
 
 .details-row {
-  background-color: #FAFAFA;
+  background-color: lighten($light-gray, 40);
   border-radius: 5px;
 }
 
 .network-detail {
   border-style: solid;
   border-width: 20px;
-  border-color: #FFFFFF;
+  border-color: $white;
 }
 
 .network-data {
   border-style: solid;
   border-width: 0.1px;
-  border-color: #F6F4F2;
-  box-shadow: 0 0 5px #606161;
+  border-color: lighten($light-gray, 15);
+  box-shadow: 0 0 5px $dark-gray;
   margin-left: 10px;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -163,7 +151,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #EE3224;
+  background: $ifrcCorporateRed;
   height: 2px;
   -webkit-transform: translateY(4px);
   transform: translateY(4px);
@@ -181,7 +169,7 @@ p {
 }
 
 .breadcrumbs a {
-  color: $rcrcred;
+  color: $ifrcCorporateRed;
 }
 
 .center-text{
@@ -189,17 +177,16 @@ p {
 }
 
 .keyfiguretitle {
-  color:$rcrcred;
   font-size:1.2em;
 }
 
 .keyfigure {
-  color: #999;
   font-size:1.6em;
+  font-weight: 200;
 }
 
 .top-bar, .top-bar ul {
-  background-color: #ffffff;
+  background-color: $white;
 }
 
 @media only screen and (min-width: 40.063em) { /* medium, large */
@@ -218,10 +205,6 @@ p {
 
 .no-border {
   border: none;
-}
-
-.bigstats {
-  color: $rcrcred !important;
 }
 
 .breadcrumbs {
