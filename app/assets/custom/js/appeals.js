@@ -29,7 +29,7 @@ function generateMap(geom,ISO3){
 		var weight =0
 		var cls = 'country'
 		if(feature.properties['ISO_A3']==ISO3){
-			color = '#B71C1C';
+			color = '#EE3224';
 			fillOpacity = 0.7;
 			weight = 1
 		};
