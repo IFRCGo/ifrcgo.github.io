@@ -138,12 +138,12 @@ function loadFreeText(url){
 			success: function(result){
 				var data = hxlProxyToJSON(result);
 				console.log(data);
-				var html = '<div class="medium-12"><h3>Text Updates</h3></div><div class="medium-12"><ul class="nav nav-tabs">';
+				var html = '<div class="medium-12"><h3>Text Updates</h3></div><div class="medium-12"><ul>';
 				data.forEach(function(d,i){
 					if(i==0){
-						html+='<li class="nav active"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
+						html+='<li id="tabtitle'+i+'" class="tab-title texttab active"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
 					} else {
-						html+='<li class="nav"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
+						html+='<li id="tabtitle'+i+'" class="tab-title texttab"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
 					}
 
 				});
@@ -160,9 +160,12 @@ function loadFreeText(url){
 					if(i>0){
 						$('#info'+i).hide();
 					}
-					$('#tab'+i).on('click',function(){
+					$('#tabtitle'+i).on('click',function(){
+						$('.tab-title').removeClass('active');
+						$('#tabtitle'+i).addClass('active');
 						$('.info').hide();
 						$('#info'+i).show();
+						return false;
 					});
 				});
     		}

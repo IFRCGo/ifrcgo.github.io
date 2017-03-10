@@ -29,6 +29,12 @@ h3 {
 .texttab{
     display:inline-block;
     padding:10px;
+    background-color:#eeeeee;
+    cursor:pointer;
+}
+
+.active{
+    background-color:#fff;
 }
 
 .info {
