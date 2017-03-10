@@ -102,7 +102,7 @@ function rss(data){
 function createFieldReports(data){
     var html ='<tbody>';
     data.forEach(function(d,i){
-        if(i<10){
+        if(i<7){
             if(d['#meta+title'].length>20){
                 var title = d['#meta+title'].substr(0,20)+'...';
             } else {
