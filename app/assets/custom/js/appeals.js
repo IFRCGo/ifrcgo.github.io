@@ -252,7 +252,7 @@ function createPie(id,width,inner,percent){
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
 	svg.append("path")
-		.style("fill", "#b71c1c")
+		.style("fill", "#EE3224")
 		.attr("d", fundingArc)
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
