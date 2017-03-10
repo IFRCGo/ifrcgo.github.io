@@ -48,10 +48,10 @@ function generateMap(geom,ISO3){
     function onEachFeature(feature, layer){
 		if(feature.properties['ISO_A3']==ISO3){
 			var bounds = layer.getBounds();
-			bounds._northEast.lat=bounds._northEast.lat*1.5
-			bounds._northEast.lon=bounds._northEast.lon*1.5
-			bounds._southWest.lat=bounds._southWest.lat*1.5
-			bounds._southWest.lon=bounds._southWest.lon*1.5
+			bounds._northEast.lat=bounds._northEast.lat+3
+			bounds._northEast.lon=bounds._northEast.lon+3
+			bounds._southWest.lat=bounds._southWest.lat-3
+			bounds._southWest.lon=bounds._southWest.lon-3
 			map.fitBounds(bounds);
 		}
 	}
