@@ -119,7 +119,7 @@ function loadKeyFigures(url){
     		dataType: 'json',
 			success: function(result){
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="row small-up-2 medium-up-4"><h3>Key Figures</h3>';
+				var html = '<div class="column small-up-2 medium-up-4"><h3>Key Figures</h3>';
 				data.forEach(function(d){
 					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
 				});
@@ -138,7 +138,7 @@ function loadFreeText(url){
 			success: function(result){
 				var data = hxlProxyToJSON(result);
 				console.log(data);
-				var html = '<div class="medium-12"><h3>Text Updates</h3></div><div class="medium-12"><ul>';
+				var html = '<div class="medium-12 column"><h3>Text Updates</h3></div><div class="medium-12"><ul>';
 				data.forEach(function(d,i){
 					if(i==0){
 						html+='<li id="tabtitle'+i+'" class="tab-title texttab active"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
@@ -181,7 +181,7 @@ function loadContacts(url){
 			success: function(result){
 				console.log(result);
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="row small-up-2 medium-up-4"><h3>Contacts</h3>';
+				var html = '<div class="column small-up-2 medium-up-4"><h3>Contacts</h3>';
 				data.forEach(function(d){
 					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
 				});
@@ -200,9 +200,9 @@ function loadLinks(url){
 			success: function(result){
 				console.log(result);
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="medium-12"><h3>Links</h3></div>';
+				var html = '<div class="medium-12 column"><h3>Links</h3></div>';
 				data.forEach(function(d){
-					html+='<div class="medium-6"><a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+title']+'</a><p>'+d['#meta+description']+'</p></div>';
+					html+='<div class="medium-6 column"><a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+title']+'</a><p>'+d['#meta+description']+'</p></div>';
 				});
 				$('#links').html(html);
     		}
@@ -217,7 +217,7 @@ function getAppealDocs(id){
     		url: url,
     		dataType: 'json',
 			success: function(result){
-				var html = '<div class="medium-12"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Appeal Documents</h3></a></div><div class="row small-up-2 medium-up-4">';
+				var html = '<div class="medium-12 column"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Appeal Documents</h3></a></div><div class="column small-up-2 medium-up-4">';
 				result.forEach(function(row,i){
 					if(i>0 && i<9){
 						if(row[0].substring(0,1)=='/'){
