@@ -176,7 +176,7 @@ function loadContacts(url){
 				var data = hxlProxyToJSON(result);
 				var html = '<div class="row small-up-2 medium-up-4"><h3>Contacts</h3>';
 				data.forEach(function(d){
-					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
+					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
 				});
 					html+= '</div>';
 				$('#contacts').html(html);
