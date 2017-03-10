@@ -102,7 +102,7 @@ function rss(data){
 function createFieldReports(data){
     var html ='<tbody>';
     data.forEach(function(d,i){
-        if(i<10){
+        if(i<7){
             if(d['#meta+title'].length>20){
                 var title = d['#meta+title'].substr(0,20)+'...';
             } else {
@@ -230,7 +230,7 @@ if(mm<10) {
 }
 var date = yyyy + '-' + mm + '-' + dd;
 appealsurl = appealsurl.replace('999999',date);
-var rssfeed = 'https://proxy.hxlstandard.org/data.json?force=on&strip-headers=on&url=http%3A//52.91.94.199/open/gdacs&verify=off'
+var rssfeed = 'https://beta.proxy.hxlstandard.org/data.json?force=on&strip-headers=on&url=http%3A//52.91.94.199/open/gdacs&verify=off'
 var fieldReportsURL = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//52.91.94.199/open/fieldreports/20&verify=off'
 var alertsURL = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//docs.google.com/spreadsheets/d/1Yw11F4pghDr7JWhhqTe6dM42w7gqx7W86CFSn0kzKnc';
 
