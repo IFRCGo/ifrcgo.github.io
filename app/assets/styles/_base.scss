@@ -21,26 +21,13 @@
 /*Variables*/
 /*----------------------------------------------*/
 
-$rcrcred: #ed1b2e;
-$goYellow: #ecb731;
-$goGreen: #8ec06c;
-$goBlue: #c4dff6;
-
 $debug: rgba(0,0,0,0.05);
 
-$darkgrey: #606161;
-$lightgrey: #dbdbda;
-$border-grey: lighten($darkgrey, 40);
-$darkestgrey: #303030;
-
-$LB1: #f26c59;
-$LB2: #22bdc1;
-$LB3: #A069E0;
+$border-gray: lighten($dark-gray, 40);
+$darkest-gray: darken($dark-gray, 30);
 
 $MaxWidth: 1100px;
-$TextColor: $darkgrey;
-$DataColor: #22bdc1;
-$ButtonColor: $DataColor;
+$TextColor: $darkest-gray;
 
 /*----------------------------------------------*/
 /*mixins*/
@@ -65,8 +52,8 @@ $ButtonColor: $DataColor;
 
 /* In Context */
 /*----------------------------------------------*/
-$text-color: $darkgrey;
-$border-color: $darkgrey;
+$text-color: $dark-gray;
+$border-color: $dark-gray;
 $border-color-darken: darken($border-color, 5%);
 $border-color-lighten: lighten($border-color, 5%);
 
@@ -80,24 +67,8 @@ html {
 body, ul, li, ol, p{
   margin: 0px;
   padding: 0px;
-  font-family: 'Roboto', serif;
-  color: $darkgrey;
   font-weight: 400;
   line-height: 1.4em;
-}
-
-h1 {
-  font-size: 6em;
-  line-height: 120%;
-  font-family: 'Open Sans', sans-serif;
-}
-
-h2 {
-  font-family: 'Open Sans', sans-serif;
-}
-
-h3 {
-  font-family: 'Open Sans', sans-serif;
 }
 
 ul{
@@ -123,15 +94,15 @@ ul{
 }
 
 body{
-  background-color: #ffffff;
+  background-color: $white;
 }
 
 ::-moz-selection { /* Code for Firefox */
-  background: desaturate(lighten($goYellow, 24), 20);
+  background: desaturate(lighten($ifrcFedNetYellow, 24), 20);
 }
 
 ::selection {
-  background: desaturate(lighten($goYellow, 24), 20);
+  background: desaturate(lighten($ifrcFedNetYellow, 24), 20);
 }
 
 .centerme{
@@ -159,11 +130,11 @@ body{
 /*----------------------------------------------*/
 
 header{
-  background-color:#ffffff;
+  background-color: $white;
   top: 0px;
   width: 100%;
   height: 52px;
-  color: $darkgrey;
+  color: $dark-gray;
   display: inline-block;
   position:absolute;
   z-index:1;
@@ -241,10 +212,10 @@ header{
     height: 52px;
     // line-height: 52px;
     transition: color 0.2s;
-    color: $lightgrey;
+    color: $light-gray;
     cursor: pointer;
     &:hover{
-      color: darken($lightgrey, 45);
+      color: darken($light-gray, 45);
     }
   }
 }
@@ -258,10 +229,10 @@ header{
   height: 52px;
   line-height: 52px;
   transition: color 0.2s;
-  color: $lightgrey;
+  color: $light-gray;
   cursor: pointer;
   &:hover{
-    color: darken($lightgrey, 45);
+    color: darken($light-gray, 45);
   }
 }
 
@@ -281,12 +252,12 @@ header{
 
 a{
   text-decoration: none;
-  color:#D33F49;
+  color:$ifrcCorporateRed;
   transition: color 0.2s;
 }
 
 a:hover{
-  color:#D33F49;
+  color:$dark-gray;
   text-decoration: none;
 }
 
@@ -294,7 +265,7 @@ a:hover{
   // font-family: 'Hind';
   font-weight: 100;
   font-size: 2em;
-  color: $lightgrey;
+  color: $light-gray;
   margin: 0px;
   display: inline-block;
   line-height: 1.5em;
@@ -323,7 +294,7 @@ a:hover{
 }
 
 .section-baseline{
-  border-bottom: 1px solid lighten($darkgrey, 40);
+  border-bottom: 1px solid lighten($dark-gray, 40);
 }
 
 .section-header{
@@ -335,7 +306,7 @@ a:hover{
 .feature-header {
   padding-top: 60px;
   text-shadow: 1px 1px $dark-gray;
-  color: #fff;
+  color: $white;
   display: block;
   font-size: 2.5em;
   word-wrap: break-word;
@@ -357,7 +328,7 @@ a:hover{
   .sub-head{
     font-size: 1.2em;
     p{
-      color: lighten($darkgrey, 10);
+      color: lighten($dark-gray, 10);
       font-size: 0.9em;
       max-width: 800px;
       margin: .5em auto 0.2em auto;
@@ -440,24 +411,24 @@ a:hover{
 /*Interactive Buttons*/
 /*----------------------------------------------*/
 input[type="text"]{
-  border:0px solid $lightgrey;
+  border:0px solid $light-gray;
   box-sizing: none;
   width: auto;
   height: auto;
   margin: none;
-  color: $darkgrey;
+  color: $dark-gray;
   -webkit-border-radius: 5px;
-  background-color: lighten($lightgrey, 10);
-  box-shadow: -1px -2px $lightgrey;
+  background-color: lighten($light-gray, 10);
+  box-shadow: -1px -2px $light-gray;
   padding: 2px 6px 4px 6px;
   &:focus{
-    background-color: lighten($lightgrey, 8);
+    background-color: lighten($light-gray, 8);
   }
   outline: none;
 }
 
 .btn{
-  background-color: $ButtonColor;
+  background-color: $ifrcCyan;
   -moz-border-radius:4px;
   -webkit-border-radius:4px;
   border-radius:4px;
@@ -492,44 +463,44 @@ input[type="text"]{
 }
 
 .btn-blue{
-  background-color: $goBlue;
+  background-color: $ifrcCyan;
   color: white;
 
   &:hover{
-    background-color: darken($ButtonColor, 12%);
+    background-color: darken($ifrcCyan, 12%);
     color: white;
   }
   &:active{
-    background-color: darken($ButtonColor, 15%);
+    background-color: darken($ifrcCyan, 15%);
     color: white;
   }
   &:focus{
-    background-color: darken($ButtonColor, 12%);
+    background-color: darken($ifrcCyan, 12%);
     color: white;
   }
 }
 
 .btn-grn{
-  background-color: $goGreen;
+  background-color: $ifrcFedNetGreen;
   color: white;
   &:hover{
-    background-color: darken($goGreen, 12%);
+    background-color: darken($ifrcFedNetGreen, 12%);
     color:white;
   }
   &:active{
-    background-color: darken($goGreen, 15%);
+    background-color: darken($ifrcFedNetGreen, 15%);
     color:white;
   }
   &:focus{
-    background-color: darken($goGreen, 12%);
+    background-color: darken($ifrcFedNetGreen, 12%);
     color:white;
   }
 }
 
 .invert-btn-blue{
   background-color: rgba(0,0,0,0);
-  border: 1px solid $goBlue;
-  color: $goBlue;
+  border: 1px solid $ifrcCyan;
+  color: $ifrcCyan;
   &:hover{
     background-color: rgba(35, 188, 193, 0.2);
   }
@@ -540,36 +511,36 @@ input[type="text"]{
     background-color: rgba(35, 188, 193, 0.2);
   }
   a{
-    color: $goBlue;
+    color: $ifrcCyan;
     &:hover{
       color: white;
     }
     &:visited{
-      color: $goBlue;
+      color: $ifrcCyan;
     }
   }
 }
 
 .invert-btn-grn{
   background-color: rgba(0,0,0,0);
-  border: 1px solid darken($goGreen, 10);
-  color: darken($goGreen, 10);
+  border: 1px solid darken($ifrcFedNetGreen, 10);
+  color: darken($ifrcFedNetGreen, 10);
   &:hover{
-    background-color: lighten($goGreen, 24);
+    background-color: lighten($ifrcFedNetGreen, 24);
   }
   &:active{
-    background-color: lighten($goGreen, 24);
+    background-color: lighten($ifrcFedNetGreen, 24);
   }
   &:focus{
-    background-color: lighten($goGreen, 24);
+    background-color: lighten($ifrcFedNetGreen, 24);
   }
   a{
-    color: darken($goGreen, 10);
+    color: darken($ifrcFedNetGreen, 10);
     &:hover{
       color: white;
     }
     &:visited{
-      color: darken($goGreen, 10);
+      color: darken($ifrcFedNetGreen, 10);
     }
   }
 }
@@ -579,21 +550,21 @@ input[type="text"]{
   border: 1px solid white;
   color: white;
   &:hover{
-    background-color: lighten($goBlue, 20);
+    background-color: lighten($ifrcCyan, 20);
   }
   &:active{
-    background-color: lighten($goBlue, 20);
+    background-color: lighten($ifrcCyan, 20);
   }
   &:focus{
-    background-color: lighten($goBlue, 20);
+    background-color: lighten($ifrcCyan, 20);
   }
   a{
-    color: darken($goBlue, 60);
+    color: darken($ifrcCyan, 60);
     &:hover{
-      color: darken($goBlue, 60);
+      color: darken($ifrcCyan, 60);
     }
     &:visited{
-      color: darken($goBlue, 60);
+      color: darken($ifrcCyan, 60);
     }
   }
 }
@@ -610,7 +581,7 @@ input[type="text"]{
 }
 
 .sub-container{
-  border: $lightgrey solid 1px;
+  border: $light-gray solid 1px;
 }
 
 .sectionheader{
@@ -622,36 +593,4 @@ input[type="text"]{
   .section-header {
     color: #fff;
   }
-}
-
-.center-text{
-  text-align: center;
-}
-
-.keyfiguretitle {
-  color:#D33F49;
-  font-size:1.2em;
-}
-
-.keyfigure {
-  color: #999;
-  font-size:1.6em;
-}
-
-.top-bar, .top-bar ul {
-  background-color: #ffffff;
-}
-
-@media only screen and (min-width: 40.063em) { /* medium, large */
-  .iconmap {
-    border: none;
-  }
-}
-
-.menu.expanded {
-  table-layout: initial;
-}
-
-.download_link {
-  font-size: 2em;
 }

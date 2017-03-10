@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="medium-8 column">
+    <p class="titledesc text-left">Current IFRC DREFs and Appeals. Use the buttons below to filter for particular regions. The data table can be sorted by clicking the column headers.</p>
+  </div>
+  <div class="medium-4 column">
+    <p class="download_link"><a href="https://proxy.hxlstandard.org/data.csv?strip-headers=off&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&force=on&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23date%2Bend%3E2016-09-01&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0">Download Data</a></p>
+    <p id="regiondownload"></p>
+  </div>
+</div>
+<div class="row">
+  <div id="filterbuttons" class="small-12 column">
+  </div>
+</div>
+<div class="row">
+  <div class="medium-8 column">
+    <div id="map"></div>
+  </div>
+  <div class="medium-4 column">
+    <div class="row">
+      <div class="medium-4">
+        <p class="keyfiguretitle">Coverage</p><span id="totalcoverage" class="keyfigure"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 column">
+        <p class="keyfiguretitle text-left">Emergency Appeals</p><span id="totalea" class="keyfigure"></span>
+      </div>
+      <div class="medium-6 column">
+        <p class="keyfiguretitle text-left">DREFs</p><span id="totaldref" class="keyfigure"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 column">
+        <p class="keyfiguretitle text-left">Total Appeals (CHF)</p><span id="totalappeals" class="keyfigure"></span>
+      </div>
+      <div class="medium-6 column">
+        <p class="keyfiguretitle text-left">Beneficiaries</p><span id="totalbens" class="keyfigure"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-12">
+    <table id="datatable" class="hover">
+      <thead>
+        <tr>
+          <th class="details-control sorting_disabled">More details</th>
+          <th>Appeal Type</th>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Beneficiaries</th>
+          <th>Appeal Amount (CHF)</th>
+          <th>Funding (CHF)</th>
+          <th>Coverage</th>
+          <th>Appeal Code</th>
+        </tr>
+      </thead>
+      <tbody id="tcontents">
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

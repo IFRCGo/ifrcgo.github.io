@@ -34,7 +34,7 @@ function hxlProxyToJSON(input,headers){
 
 var dataCall = $.ajax({
     type: 'GET',
-    url: 'https://beta.proxy.hxlstandard.org/data.json?explode-header-att01=header&filter02=clean&filter01=explode&cut-exclude-tags04=%23sector%2Bvalue&explode-value-att01=value&url=https%3A//docs.google.com/spreadsheets/d/1n1SDhAOYxeMXqjlFZccV0G8bZJIy_tkE3KOP8dKhBNg/edit%3Fusp%3Dsharing&filter04=cut&clean-whitespace-tags02=%23sector%2Bvalue&select-query03-01=%23sector%2Bvalue%3DX&strip-headers=on&filter03=select',
+    url: 'https://proxy.hxlstandard.org/data.json?explode-header-att01=header&filter02=clean&filter01=explode&cut-exclude-tags04=%23sector%2Bvalue&explode-value-att01=value&url=https%3A//docs.google.com/spreadsheets/d/1n1SDhAOYxeMXqjlFZccV0G8bZJIy_tkE3KOP8dKhBNg/edit%3Fusp%3Dsharing&filter04=cut&clean-whitespace-tags02=%23sector%2Bvalue&select-query03-01=%23sector%2Bvalue%3DX&strip-headers=on&filter03=select',
     dataType: 'json',
 });
 
