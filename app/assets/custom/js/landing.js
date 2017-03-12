@@ -31,7 +31,7 @@ function createMap(data,geom){
         var fillOpacity = 0.2;
         var cls = 'country'
         if(data.map(function(e) { return e['#country+code']; }).indexOf(feature.properties['ISO_A3'])>-1){
-            color = '#EE3224';
+            color = '#D33F49';
             fillOpacity = 1;
             cls = 'appealcountry country appeal'+feature.properties['ISO_A3']
         };
