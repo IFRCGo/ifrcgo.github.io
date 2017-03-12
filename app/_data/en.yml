@@ -13,6 +13,7 @@ nav:
     url:  "/about"
   # - text: "IFRC Regions"
   #   url:  "/#regions"
+navext:    
   - text: "IFRC.org"
     url:  "http://ifrc.org"
   - text: "FedNet"
