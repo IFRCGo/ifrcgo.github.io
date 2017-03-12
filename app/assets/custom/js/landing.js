@@ -71,7 +71,7 @@ function createMap(data,geom){
     function onClick(e) {
         var layer = e.target;
         if(data.map(function(f) { return f['#country+code']; }).indexOf(layer.feature.properties['ISO_A3'])>-1){
-            window.open('https://ifrcgo.github.io/pages/current_appeals/#All', '_blank');
+            window.open('/currentappeals/#All', '_blank');
         }
     }
 
