@@ -17,7 +17,7 @@
 <div class="row small-up-1 medium-up-2 large-up-3">
   {% for appeal in site.data.appealsplus %}
     {% if appeal.meta_appealplus == "" %}
-      <div class="column"><a href="{{ appeal.meta_id }}">{{appeal.crisis_name}}</a></div>
+      <div class="column"><a href="{{ appeal.meta_id | downcase }}">{{appeal.crisis_name}}</a></div>
     {% endif %}
   {% endfor %}
 </div>
