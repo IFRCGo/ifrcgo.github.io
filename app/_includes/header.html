@@ -12,6 +12,12 @@
       {% else if nav.links %}
       {% endif %}
       {% endfor %}
+      {% for nav in site.data.en.navext %}
+      {% if nav.url %}
+      <li class="external"><a href="{{nav.url}}" class="hvr-underline-reveal">{{nav.text}}</a></li>
+      {% else if nav.links %}
+      {% endif %}
+      {% endfor %}
     </ul>
 </div>
 </div>

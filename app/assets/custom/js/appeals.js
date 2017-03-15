@@ -29,7 +29,7 @@ function generateMap(geom,ISO3){
 		var weight =0
 		var cls = 'country'
 		if(feature.properties['ISO_A3']==ISO3){
-			color = '#EE3224';
+			color = '#D33F49';
 			fillOpacity = 0.7;
 			weight = 1
 		};
@@ -259,7 +259,7 @@ function createPie(id,width,inner,percent){
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
 	svg.append("path")
-		.style("fill", "#EE3224")
+		.style("fill", "#D33F49")
 		.attr("d", fundingArc)
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
