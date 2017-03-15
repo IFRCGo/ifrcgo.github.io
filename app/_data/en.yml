@@ -13,7 +13,7 @@ nav:
     url:  "/about"
   # - text: "IFRC Regions"
   #   url:  "/#regions"
-navext:    
+navext:
   - text: "IFRC.org"
     url:  "http://ifrc.org"
   - text: "FedNet"
@@ -70,9 +70,6 @@ about:
     - name: "Japanese Red Cross"
       logo: "jrc_logo.png"
       url: "http://www.jrc.or.jp/english/"
-
-
-
 
 #####################
 ## 404 ##
