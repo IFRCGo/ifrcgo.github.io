@@ -59,10 +59,10 @@ function generateMap(geom,ISO3){
 
 function processHash(){
 	var appealid; //adding search for hostname for temp deployed location
-	if (window.location.pathname.split('/')[1] = 'appeals') {
-		appealid = window.location.pathname.split('/')[2];
+	if (window.location.pathname.split('/')[2] = 'appeals') {
+		appealid = window.location.pathname.split('/')[3];
 	} else {
-		appealid = window.location.pathname.split('/')[1];
+		appealid = window.location.pathname.split('/')[2];
 	}
 
 	console.log('appealid is: ' + appealid);
