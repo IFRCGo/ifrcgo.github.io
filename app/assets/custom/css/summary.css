@@ -3,6 +3,9 @@
     height:400px;
 }
 
+#mapappeals {
+    height:400px;
+}
 
 .headline {
     color:#777;
@@ -17,11 +20,11 @@
     border-top-width:1px;
     border-bottom-style:solid;
     border-bottom-color:#ccc;
-    border-bottom-width:1px;
+    border-bottom-width:1px;    
 }
 
 #type {
-    height:600px;
+    height:640px;
 }
 
 #region {
@@ -33,11 +36,27 @@
 }
 
 .country {
-    fill:#aaaaaa;
+    fill:#DCDDDE;
     stroke:#fff;
-    stroke-width:0.25;
+    stroke-width:0.5;
 }
 
 .selected {
-    fill:#D33F49;
+    fill:#EE3224;
+}
+
+#typeappeals {
+    height:640px;
+}
+
+#regionappeals {
+    height:400px;
+}
+
+#monthsappeals {
+    height:200px;
+}
+
+.keyfigure {
+    color:#D33F49
 }
