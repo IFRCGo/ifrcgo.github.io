@@ -58,12 +58,10 @@ function generateMap(geom,ISO3){
 }
 
 function processHash(){
-	var appealid; //adding search for hostname for temp deployed location
-	if (window.location.pathname.split('/')[2] = 'appeals') {
-		appealid = window.location.pathname.split('/')[3];
-	} else {
-		appealid = window.location.pathname.split('/')[2];
-	}
+	//figure out what appeal to query based on url path
+	var appealid_path = window.location.pathname.split('/');
+	var app_index = appealid_path.indexOf('appeals') + 1;
+	var appealid = appealid_path[app_index];
 
 	console.log('appealid is: ' + appealid);
 	var appealsurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&force=on&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23meta%2Bid%3D'+appealid+'&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0';
