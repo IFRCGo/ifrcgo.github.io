@@ -6,7 +6,7 @@ random: "random"
 
 nav:
   - text: "Home"
-    url:  "/"
+    url:  "http://ifrcgo.org"
   - text: "Core Datasets"
     url:  "/#coredatasets"
   - text: "About"
