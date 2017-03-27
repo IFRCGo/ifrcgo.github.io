@@ -121,7 +121,7 @@ function updateTable(data){
 		if(d['#meta+type']=='DREF'){
 			var url = 'http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['#meta+id']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo='
 				} else {
-					var url = 'https://ifrcgo.github.io/pages/appeals/code/#'+d['#meta+id']
+					var url = 'http://ifrcgo.org/appeals/'+d['#meta+id'].toLowerCase()
 					}
 		html += '<tr><td class="details-controls" data-id="'+d['#meta+id']+'"></td><td>'+d['#meta+type']+'</td><td>'+d['#crisis+name']+'</td><td>'+d['#region+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+niceFormatNumber(d['#meta+funding'])+'</td><td id="coverage'+i+'"></td><td><a href="'+url+'" target="_blank">'+d['#meta+id']+'</a></td></tr>';
 	});
