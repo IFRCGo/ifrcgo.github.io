@@ -7,32 +7,32 @@
   <div class="column">
     <div class="card no-border text-center">
       <span id="totaldref" class="stat clearfix"></span>
-      <span>Active DREF Operations</span>
+      <span>{{site.data[locale].landing.stats.dref}}</span>
     </div>
   </div>
   <div class="column">
     <div class="card no-border text-center">
       <span id="totalea" class="stat clearfix"></span>
-      <span>Active Emergency Appeals</span>
+      <span>{{site.data[locale].landing.stats.emgappeal}}</span>
     </div>
   </div>
 
   <div class="column">
     <div class="card no-border text-center">
       <span id="totalcoverage" class="stat clearfix"></span>
-      <span>Emergency Appeal Funding</span>
+      <span>{{site.data[locale].landing.stats.emgfunding}}</span>
     </div>
   </div>
   <div class="column">
     <div class="card no-border text-center">
       <span id="totalappeals" class="stat clearfix"></span>
-      <span>Budget for DREFs & Appeals</span>
+      <span>{{site.data[locale].landing.stats.budget}}</span>
     </div>
   </div>
   <div class="column">
     <div class="card no-border text-center">
       <span id="totalbens" class="stat clearfix"></span>
-      <span>Targeted Population</span>
+      <span>{{site.data[locale].landing.stats.population}}</span>
     </div>
   </div>
 </div>
@@ -41,11 +41,11 @@
 
 <div class="row">
   <div class="medium-6 columns">
-    <h1>Current Operations</h1>
+    <h1>{{site.data[locale].landing.currentops}}</h1>
     <div id="map" class="leaflet-container"></div>
   </div>
   <div id="updates" class="medium-6 columns">
-    <h1>Latest Field Reports</h1>
+    <h1>{{site.data[locale].landing.fieldreports}}</h1>
     <table id="fieldreports"></table>
   </div>
 </div>
@@ -54,7 +54,7 @@
 
 <div class="row">
   <div class="medium-12 columns">
-    <h1>Latest Alerts</h1>
+    <h1>{{site.data[locale].landing.alerts}}</h1>
     <table id="latestAlerts"></table>
   </div>
 </div>
@@ -62,7 +62,7 @@
 <hr>
 
 <div class="row small-12 medium-up-3">
-  <a name="coredatasets"><h1 class="text-center">Core Datasets</h1></a>
+  <a name="coredatasets"><h1 class="text-center">{{site.data[locale].landing.coredatasets.name}}</h1></a>
   <div class="column">
     <div class="card">
       <a href="{{ site.baseurl }}/currentappeals">
@@ -71,7 +71,7 @@
       </div>
       </a>
       <div class="card-section">
-        <a href="{{ site.baseurl }}/currentappeals" class="button ifrcCorporateRed expanded">Ongoing Operations</a>
+        <a href="{{ site.baseurl }}/currentappeals" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.coredatasets.ongoingops}}</a>
       </div>
     </div>
   </div>
@@ -83,7 +83,7 @@
       </div>
       </a>
       <div class="card-section">
-        <a href="{{ site.baseurl }}/global3w" class="button ifrcCorporateRed expanded">Who does, what and where? (3W)</a>
+        <a href="{{ site.baseurl }}/global3w" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.coredatasets.3w}}</a>
       </div>
     </div>
   </div>
@@ -95,7 +95,7 @@
       </div>
       </a>
       <div class="card-section">
-        <a href="{{ site.baseurl }}/appeals" class="button ifrcCorporateRed expanded">Appeals</a>
+        <a href="{{ site.baseurl }}/appeals" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.coredatasets.appeals}}</a>
       </div>
     </div>
   </div>
@@ -104,7 +104,7 @@
 <hr>
 
 <div class="row small-12 medium-up-4">
-  <a name="labs"><h1 class="text-center">Go Labs</h1></a>
+  <a name="labs"><h1 class="text-center">{{site.data[locale].landing.golabs.name}}</h1></a>
   <div class="column">
     <div class="card">
       <a href="https://52.91.94.199/fieldreports">
@@ -112,7 +112,7 @@
           <span class="icon icon-file-image card-icon"></span>
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">IFRC Field Reports</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.fieldreports}}</span>
         </div>
       </a>
     </div>
@@ -124,7 +124,7 @@
           <span class="icon icon-user-1 card-icon"></span>
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">Head of Operations (HEOps) Deployments</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.heops}}</span>
         </div>
       </a>
     </div>
@@ -136,7 +136,7 @@
           <span class="icon icon-chart-area card-icon"></span>
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">Historic Appeals</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.histappeals}}</span>
         </div>
       </a>
     </div>
@@ -148,7 +148,7 @@
           <span class="icon icon-calendar card-icon"></span>
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">OKRS</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.okrs}}</span>
         </div>
       </a>
     </div>
@@ -160,7 +160,7 @@
           <span class="icon icon-chart-bar card-icon"></span>
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">Summary of 2017 Emergency Operations</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.summary}}</span>
         </div>
       </a>
     </div>
@@ -172,7 +172,7 @@
           <span class="icon icon-users card-icon"></span>
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">European Migration Portal</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.europemigration}}</span>
         </div>
       </a>
     </div>
@@ -184,7 +184,19 @@
           <img class="card-icon" src="{{ site.baseurl }}/assets/graphics/ERU.gif" style="height:20px;">
         </div>
         <div class="card-section">
-          <span class="button ifrcGray expanded">Emergency Response Units (ERU) Readiness</span>
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.erureadiness}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card">
+      <a href="{{site.baseurl}}/datalibrary">
+        <div class="card-section text-center">
+          <span class="icon icon-chart-bar card-icon"></span>
+        </div>
+        <div class="card-section">
+          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.datalibrary}}</span>
         </div>
       </a>
     </div>
@@ -275,7 +287,7 @@
 
 <div class="row">
   <div class="quote text-center">
-    IFRC Go aims to make all disaster information universally accessible and useful to IFRC responders for better decision making.
+    {{site.data[locale].landing.quote}}
   </div>
 </div>
 
@@ -286,12 +298,12 @@
     <div class="card">
       <div class="card-section text-center">
         <a href="http://rcrcsims.org/" target="_blank" class="icons-regions">
-          <h1>SIMS</h1>
+          <h1>{{site.data[locale].landing.sims}}</h1>
         </a>
       </div>
       <div class="card-section">
         <div class="columns">
-          <p>Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement.</p>
+          <p>{{site.data[locale].landing.simsdesc}}</p>
         </div>
       </div>
     </div>
@@ -300,12 +312,12 @@
     <div class="card">
       <div class="card-section text-center">
         <a href="http://data.ifrc.org/" target="_blank" class="icons-regions">
-          <h1>IFRC Data Initiatives</h1>
+          <h1>{{site.data[locale].landing.datainit}}</h1>
         </a>
       </div>
       <div class="card-section">
         <div class="columns">
-          <p>IFRC is a data-driven organization dedicated to making evidence-based decision-making. Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies.</p>
+          <p>{{site.data[locale].landing.datainitdesc}}</p>
         </div>
       </div>
     </div>
@@ -314,12 +326,12 @@
     <div class="card">
       <div class="card-section text-center">
         <a href="https://github.com/IFRCGo" target="_blank" class="icons-regions">
-          <h1>Go Lab</h1>
+          <h1>{{site.data[locale].landing.golabs.name}}</h1>
         </a>
       </div>
       <div class="card-section">
         <div class="columns">
-          <p>All our products and tools are available on the IFRC GO github page.</p>
+          <p>{{site.data[locale].landing.githubdesc}}</p>
         </div>
       </div>
     </div>
