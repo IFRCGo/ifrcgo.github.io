@@ -53,6 +53,8 @@ function generateDash(data,geom,config){
                     return c;
                 })
             .featureKeyAccessor(function(feature){
+                console.log(config['joinAttribute']);
+                console.log(feature.properties[config['joinAttribute']]);
                 return feature.properties[config['joinAttribute']];
             })
             .popup(function(feature){
@@ -216,7 +218,6 @@ function processHash(){
                 } else  {
                     geom = geomArgs[0];
                 }
-                // $('#loadingmodal').modal('hide');
                 generateDash(data,geom,config);
             });
 
