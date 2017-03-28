@@ -7,10 +7,6 @@
     font-size:0.8em;
 }
 
-#map {
-    height:400px;
-}
-
 .hdx-3w-info{
     padding:5px;
     background-color:white;
@@ -81,4 +77,8 @@
     height: 18px;
     float: left;
     margin-right: 8px;
+}
+
+#wherechart {
+    height:650px;
 }
