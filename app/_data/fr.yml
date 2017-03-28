@@ -1,0 +1,110 @@
+random: "random"
+
+#####################
+## NAV CONTENT ##
+#####################
+
+nav:
+  - text: "Home in French"
+    url:  "http://ifrcgo.org"
+  - text: "Core Datasets"
+    url:  "/#coredatasets"
+  - text: "About"
+    url:  "/about"
+  # - text: "IFRC Regions"
+  #   url:  "/#regions"
+navext:
+  - text: "IFRC.org"
+    url:  "http://ifrc.org"
+  - text: "FedNet"
+    url:  "https://fednet.ifrc.org/CookieAuth.dll?GetLogon?curl=Z2F&reason=0&formdir=2"
+  - text: "DMIS"
+    url:  "https://www-secure.ifrc.org/DMISII/Pages/00_Home/login.aspx"
+
+
+#####################
+## LANDING CONTENT ##
+#####################
+landing:
+    title: "Go Project Lab"
+    tagline: "Go to the data"
+    welcome: "Welcome to the IFRC Go Project Website"
+    sims: "SIMS"
+    simsdesc: "Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement"
+    stats:
+      dref: "Active DREF Operations"
+      emgappeal: "Active Emergency Appeals"
+      emgfunding: "Emergency Appeal Funding"
+      budget: "Budget for DREFs & Appeals"
+      population: "Targeted Population"
+    currentops: "Current Operations"
+    fieldreports: "Latest Field Reports"
+    alerts: "Latest Alerts"
+    coredatasets:
+      name: "Core Datasets"
+      ongoingops: "Ongoing Operations"
+      3w: "Who does, what and where? (3W)"
+      appeals: "Appeals"
+    golabs:
+      name: "Go Labs"
+      fieldreports: "IFRC Field Reports"
+      heops: "Head of Operations (HEOps) Deployments"
+      histappeals: "Historic Appeals"
+      okrs: "OKRS"
+      summary: "Summary of 2017 Emergency Operations"
+      europemigration: "European Migration Portal"
+      erureadiness: "Emergency Response Units (ERU) Readiness"
+      datalibrary: "Data Library"
+    quote: "IFRC Go aims to make all disaster information universally accessible and useful to IFRC responders for better decision making."
+    datainit: "IFRC Data Initiatives"
+    datainitdesc: "IFRC is a data-driven organization dedicated to making evidence-based decision-making. Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies."
+    githubdesc: "All our products and tools are available on the IFRC GO github page."
+
+
+####################
+## Appeals CONTENT ##
+####################
+appeals:
+    title: "Appeals"
+    description: "Below is a directory of the current appeal pages and appeal plus pages. Appeal plus pages have extra information provided by those working in the operation such as key figures, contacts and useful links. If you want an appeal page upgraded to an appeal plus page please contact <a href=\"mailto:ifrcgoproject@gmail.com\">ifrcgoproject@gmail.com</a> with the request."
+    plus: "Current Appeal Plus pages"
+    normal: "All Appeal Pages"
+    targetedben: "Targeted Beneficiaries"
+    funding: "Funding"
+    appealamount: "Appeal Amount"
+    coverage: "Coverage"
+
+###################
+## ABOUT CONTENT ##
+###################
+
+about:
+  title: "About IFRC Go"
+  paragraphs:
+    - header: "What is Go?"
+      text: "With Go we aim to create a team of multifunctional information and data professionals within the IFRC who operate with a set of common design principles. This team will support internal change around data services and catalyze collaboration with technology partners, humanitarian organizations, governments, and civil society organizations, individuals and communities on this journey. The team will work with all parts of the IFRC and ICRC where possible to create analyze and share relevant data."
+    - header: "Go Work Streams"
+      text: "The Go Team will deliver three major streams of work focusing on i) Data literacy - building the basic organizational foundations of better data services, ii) Single-context situational awareness (small/medium size disaster information) - improving information management within a specific small to medium crisis response including ongoing global overview, and iii) Multi-context complex awareness (major disaster information) - to establish an emergency center that provides Federation leaders with processes, systems and products to increase informational coherence and decision-making during multiple large global crisis response operations."
+    - header: "Go Products and Services"
+      text: "Within these work streams, the Go Platform will deliver a suite of solutions that make disaster information universally available and useful for IFRC responders. Examples of these solutions include programs to create good data habits; analytics; data visualizations; trend analysis; hazard mapping; response mapping; gap analysis; and an innovation lab to liaise with and build on existing partnerships with key private sector, United Nations, Non Governmental Organizations."
+  supporter_message: "Go has received dedicated personnel and funding support from"
+  supporters:
+    - name: "American Red Cross"
+      logo: "arc_logo.png"
+      url: "http://www.redcross.org/"
+    - name: "British Red Cross"
+      logo: "brc_logo.png"
+      url: "http://www.redcross.org.uk/"
+    - name: "Netherlands Red Cross"
+      logo: "nlrc_logo.jpg"
+      url: "http://www.rodekruis.nl/"
+    - name: "Japanese Red Cross"
+      logo: "jrc_logo.png"
+      url: "http://www.jrc.or.jp/english/"
+
+#####################
+## 404 ##
+#####################
+lost:
+    title: "This page is missing."
+    message: "This is kind of embarrasing. You seem to be somewhere that we haven't visualized the for data yet."
