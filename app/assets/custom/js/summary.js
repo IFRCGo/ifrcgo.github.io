@@ -49,10 +49,10 @@ function generateHeadlineFigs(data,year){
 function generateLists(id,data){
     var html ='';
     data.forEach(function(d){
-        var date = d['#date+start'].getDate();
+        var date = ('0' + d['#date+start'].getDate()).slice(-2);
         var month = '0'+parseInt(d['#date+start'].getMonth()+1);
         var year = d['#date+start'].getFullYear();
-        html += '<tr><td>'+d['#crisis+name']+'</td><td>'+d['#country+name']+'</td><td>'+date+'-'+month+'-'+year+'</td><td>'+d['#crisis+type']+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td></tr>';
+        html += '<tr><td>'+d['#crisis+name']+'</td><td>'+d['#country+name']+'</td><td>'+date+'-'+month+'-'+year+'</td><td>'+d['#crisis+type']+'</td><td style="text-align:right">'+niceFormatNumber(d['#meta+value'])+'</td></tr>';
     });
     $(id).append(html);
 }
