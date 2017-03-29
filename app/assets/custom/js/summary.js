@@ -49,10 +49,10 @@ function generateHeadlineFigs(data,year){
 function generateLists(id,data){
     var html ='';
     data.forEach(function(d){
-        var date = d['#date+start'].getDate();
+        var date = ('0' + d['#date+start'].getDate()).slice(-2);
         var month = '0'+parseInt(d['#date+start'].getMonth()+1);
         var year = d['#date+start'].getFullYear();
-        html += '<tr><td>'+d['#crisis+name']+'</td><td>'+d['#country+name']+'</td><td>'+date+'-'+month+'-'+year+'</td><td>'+d['#crisis+type']+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td></tr>';
+        html += '<tr><td>'+d['#crisis+name']+'</td><td>'+d['#country+name']+'</td><td>'+date+'-'+month+'-'+year+'</td><td>'+d['#crisis+type']+'</td><td style="text-align:right">'+niceFormatNumber(d['#meta+value'])+'</td></tr>';
     });
     $(id).append(html);
 }
@@ -112,7 +112,7 @@ function generateTypes(id,datalist){
                 type: 'category'
             }
         },
-        color: {pattern:['#BFBFBF','#848484','#EE3224']},
+        color: {pattern:['#BFBFBF','#848484','#D33F49']},
         tooltip: {
             format: {
                 value: function (value, ratio, id) {
@@ -187,7 +187,7 @@ function generateRegions(id,datalist){
                 type: 'category'
             }
         },
-        color: {pattern:['#BFBFBF','#848484','#EE3224']},
+        color: {pattern:['#BFBFBF','#848484','#D33F49']},
         tooltip: {
             format: {
                 value: function (value, ratio, id) {
@@ -261,7 +261,7 @@ function generateTimeGraph(id,datalist){
                 type: 'category'
             }
         },
-        color: {pattern:['#BFBFBF','#848484','#EE3224']}
+        color: {pattern:['#BFBFBF','#848484','#D33F49']}
     });
 }
 
@@ -299,6 +299,7 @@ function updateMap(id,countries){
 function dataPrep(data){
     var dateFormat = d3.time.format("%Y-%m-%d");
     var appealCodes = [];
+    var output=[]
     data.forEach(function(d,i){
         d['#meta+value']=d['#meta+value']*1
         if(appealCodes.indexOf(d['#meta+id'])>-1){
@@ -307,9 +308,14 @@ function dataPrep(data){
             appealCodes.push(d['#meta+id']);
         }
         d['#date+start'] = dateFormat.parse(d['#date+start']);
+        if (d['#date+start'] instanceof Date){
+            output.push(d);
+        } else {
+            console.log('Rejected '+d['#meta+id']+' due to bad date');
+        }
     });
 
-    return data;
+    return output;
 }
 
 function niceFormatNumber(num,round){
