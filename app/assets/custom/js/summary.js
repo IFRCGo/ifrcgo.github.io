@@ -299,6 +299,7 @@ function updateMap(id,countries){
 function dataPrep(data){
     var dateFormat = d3.time.format("%Y-%m-%d");
     var appealCodes = [];
+    var output=[]
     data.forEach(function(d,i){
         d['#meta+value']=d['#meta+value']*1
         if(appealCodes.indexOf(d['#meta+id'])>-1){
@@ -307,9 +308,14 @@ function dataPrep(data){
             appealCodes.push(d['#meta+id']);
         }
         d['#date+start'] = dateFormat.parse(d['#date+start']);
+        if (d['#date+start'] instanceof Date){
+            output.push(d);
+        } else {
+            console.log('Rejected '+d['#meta+id']+' due to bad date');
+        }
     });
 
-    return data;
+    return output;
 }
 
 function niceFormatNumber(num,round){
