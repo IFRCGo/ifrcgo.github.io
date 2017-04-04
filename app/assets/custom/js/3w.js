@@ -4,6 +4,7 @@ function generateDash(data,geom,config){
     $('#datadownload').attr('href',config['download']);
     $('.title3w').html(config['title']);
     $('#description').html(config['description']);
+    
     var cf = crossfilter(data);
         cf.whereDim = cf.dimension(function(d){return d[config['whereFieldName']]});
         cf.whoDim = cf.dimension(function(d){return d[config['whoFieldName']]});
@@ -53,8 +54,6 @@ function generateDash(data,geom,config){
                     return c;
                 })
             .featureKeyAccessor(function(feature){
-                console.log(config['joinAttribute']);
-                console.log(feature.properties[config['joinAttribute']]);
                 return feature.properties[config['joinAttribute']];
             })
             .popup(function(feature){
@@ -77,36 +76,13 @@ function generateDash(data,geom,config){
                 $('#mapfilter').html(html);
             }));
 
-        //config()
-        /*
         dc.dataTable("#data-table")
             .dimension(cf.whereDim)
             .group(function (d) {
                     return 0;
             })
-            .ordering(function(d){ return -d.value })
-            .size(650)
-            .columns([
-                function(d){
-                   return d['#country+name'];
-                },
-                function(d){
-                   return d['#org'];
-                },
-                function(d){
-                   return d['#sector'];
-                },
-                function(d){
-                    if(d['#meta+url'].length>0){
-                        return '<a href="'+d['#meta+url']+'" target="_blank">Link</a>';
-                    } else {
-                        return 'No link available';
-                    }
-                }
-            ]).sortBy(function(d) {
-                return d['#country+name'];
-            });
-            */
+            .columns(config['table'].split(','));
+
     dc.renderAll();
 
     var map = cf.whereChart.map();
