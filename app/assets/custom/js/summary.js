@@ -2,7 +2,7 @@
 
 var colors = ['#cccccc','#FFCDD2','#E57373','#E53935','#B71C1C']
 
-function generateDREFs(data2017,data2016,data2015,geom){    
+function generateDREFs(data2017,data2016,data2015,geom){
     initMap('#map',geom);
     var countries = data2017.map(function(d){return d['#country+code']});
     updateMap('#map',countries);
@@ -13,7 +13,7 @@ function generateDREFs(data2017,data2016,data2015,geom){
     generateLists('#dreftable',data2017);
 }
 
-function generateAppeals(data2017,data2016,data2015,geom){    
+function generateAppeals(data2017,data2016,data2015,geom){
     initMap('#mapappeals',geom);
     var countries = data2017.map(function(d){return d['#country+code']});
     updateMap('#mapappeals',countries);
@@ -67,10 +67,10 @@ function generateTypes(id,datalist){
             .key(function(d) {
                 if(keys.indexOf(d['#crisis+type'])==-1){
                     keys.push(d['#crisis+type']);
-                } 
+                }
                 return d['#crisis+type'];
             })
-            .rollup(function(d) { 
+            .rollup(function(d) {
                 return d3.sum(d, function(g) {
                     return 1;
                 });
@@ -81,7 +81,7 @@ function generateTypes(id,datalist){
             }));
     });
     keys.sort();
-    var data = [['x'].concat(keys)];    
+    var data = [['x'].concat(keys)];
     newdata.forEach(function(year,i){
         var row = [String(2017-i)];
         keys.forEach(function(k){
@@ -142,10 +142,10 @@ function generateRegions(id,datalist){
             .key(function(d) {
                 if(keys.indexOf(d['#region+name'])==-1){
                     keys.push(d['#region+name']);
-                } 
+                }
                 return d['#region+name'];
             })
-            .rollup(function(d) { 
+            .rollup(function(d) {
                 return d3.sum(d, function(g) {
                     return 1;
                 });
@@ -156,7 +156,7 @@ function generateRegions(id,datalist){
             }));
     });
     keys.sort();
-    var data = [['x'].concat(keys)];    
+    var data = [['x'].concat(keys)];
     newdata.forEach(function(year,i){
         var row = [String(2017-i)];
         keys.forEach(function(k){
@@ -220,7 +220,7 @@ function generateTimeGraph(id,datalist){
             .key(function(d) {
                 return keys[d['#date+start'].getMonth()];
             })
-            .rollup(function(d) { 
+            .rollup(function(d) {
                 return d3.sum(d, function(g) {
                     return 1;
                 });
@@ -231,7 +231,7 @@ function generateTimeGraph(id,datalist){
             }));
     });
 
-    var data = [['x'].concat(keys)];    
+    var data = [['x'].concat(keys)];
     newdata.forEach(function(year,i){
         var row = [String(2017-i)];
         keys.forEach(function(k){
@@ -276,7 +276,7 @@ function initMap(id,geom){
     var projection = d3.geo.mercator()
         .center([0, 0])
         .scale(width/6.2)
-        .translate([width / 2, height / 2]);    
+        .translate([width / 2, height / 2]);
 
     svg.selectAll("path")
       .data(geom.features)
@@ -333,7 +333,7 @@ function niceFormatNumber(num,round){
             output = output.slice(0, -1) + ' billion';
         } else {
             output = ''+d3.format(".3s")(num);
-        }            
+        }
         return output;
     }
 }
@@ -348,7 +348,7 @@ function hxlProxyToJSON(input,headers){
                 var key = parts[0]
                 if(parts.length>1){
                     var atts = parts.splice(1,parts.length);
-                    atts.sort();                    
+                    atts.sort();
                     atts.forEach(function(att){
                         key +='+'+att
                     });
@@ -375,32 +375,32 @@ function load(){
     var dataURL2015 = 'https://proxy.hxlstandard.org/data.json?merge-keys02=country%2Bname&filter04=select&merge-tags02=country%2Bcode&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&filter03=select&filter02=merge&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&filter01=replace-map&replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&select-query04-01=%23date%2Bstart%3C2016-01-01&select-query03-01=%23date%2Bstart%3E2014-12-31';
 
 
-    var dataCall2017 = $.ajax({ 
-        type: 'GET', 
+    var dataCall2017 = $.ajax({
+        type: 'GET',
         url: dataURL2017,
         dataType: 'json',
     });
 
-    var dataCall2016 = $.ajax({ 
-        type: 'GET', 
+    var dataCall2016 = $.ajax({
+        type: 'GET',
         url: dataURL2016,
         dataType: 'json',
     });
 
-    var dataCall2015 = $.ajax({ 
-        type: 'GET', 
+    var dataCall2015 = $.ajax({
+        type: 'GET',
         url: dataURL2015,
         dataType: 'json',
-    });        
+    });
 
-    var geomCall = $.ajax({ 
-        type: 'GET', 
-        url: worldmap, 
+    var geomCall = $.ajax({
+        type: 'GET',
+        url: worldmap,
         dataType: 'json'
     });
 
     $.when(dataCall2017, dataCall2016, dataCall2015, geomCall).then(function(dataArgs2017, dataArgs2016, dataArgs2015, geomArgs){
-        
+
         var data2017 = dataArgs2017[0];
         data2017 = dataPrep(hxlProxyToJSON(data2017));
         var drefs2017 = [];
@@ -408,6 +408,7 @@ function load(){
         data2017.forEach(function(d){
             if(d['#severity']=='Minor Emergency'){
                 drefs2017.push(d);
+                console.log(d);
             } else {
                 appeals2017.push(d);
             }
@@ -418,8 +419,9 @@ function load(){
         var drefs2016 = [];
         var appeals2016 = [];
         data2016.forEach(function(d){
-            if(d['#meta+type']=='DREF'){
+            if(d['#severity']=='Minor Emergency'){
                 drefs2016.push(d);
+                console.log(d);
             } else {
                 appeals2016.push(d);
             }
@@ -430,7 +432,7 @@ function load(){
         var drefs2015 = [];
         var appeals2015 = [];
         data2015.forEach(function(d){
-            if(d['#meta+type']=='DREF'){
+            if(d['#severity']=='Minor Emergency'){
                 drefs2015.push(d);
             } else {
                 appeals2015.push(d);
