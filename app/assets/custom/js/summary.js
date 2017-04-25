@@ -408,7 +408,6 @@ function load(){
         data2017.forEach(function(d){
             if(d['#severity']=='Minor Emergency'){
                 drefs2017.push(d);
-                console.log(d);
             } else {
                 appeals2017.push(d);
             }
@@ -421,7 +420,6 @@ function load(){
         data2016.forEach(function(d){
             if(d['#severity']=='Minor Emergency'){
                 drefs2016.push(d);
-                console.log(d);
             } else {
                 appeals2016.push(d);
             }
