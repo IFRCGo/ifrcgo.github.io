@@ -223,15 +223,15 @@ var dd = today.getDate();
 var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 if(dd<10) {
-    dd='0'+dd
+    dd='0'+dd;
 }
 if(mm<10) {
-    mm='0'+mm
+    mm='0'+mm;
 }
 var date = yyyy + '-' + mm + '-' + dd;
 appealsurl = appealsurl.replace('999999',date);
-var rssfeed = 'https://beta.proxy.hxlstandard.org/data.json?force=on&strip-headers=on&url=http%3A//52.91.94.199/open/gdacs&verify=off'
-var fieldReportsURL = 'https://beta.proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//52.91.94.199/open/fieldreports/20&verify=off'
+var rssfeed = 'https://beta.proxy.hxlstandard.org/data.json?force=on&strip-headers=on&url=http%3A//52.91.94.199/open/gdacs&verify=off';
+var fieldReportsURL = 'https://proxy.hxlstandard.org/data.json?force=on&url=https%3A//s.ifrcgo.org/open/fieldreports/10&strip-headers=on';
 var alertsURL = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//docs.google.com/spreadsheets/d/1Yw11F4pghDr7JWhhqTe6dM42w7gqx7W86CFSn0kzKnc';
 
 var dataCall = $.ajax({

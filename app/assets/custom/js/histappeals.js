@@ -227,8 +227,8 @@ function generateDash(data,geom){
             .featureKeyAccessor(function(feature){
                 return feature.properties['ISO_A3'];
             })
-            .popup(function(feature){
-                return feature.properties['NAME'];
+            .popup(function (feature) {
+                return geom.features[feature.value].properties['NAME'];
             })
             .renderPopup(true)
             .featureOptions({
@@ -395,14 +395,11 @@ function generateDash(data,geom){
 
 function dataPrep(data){
 
-    var dateFormat = d3.time.format("%Y-%m-%d");
-
     var today = new Date();
     var oneDay = 24*60*60*1000;
 
     data.forEach(function(d,i){
-        d['#date+start'] = dateFormat.parse(d['#date+start']);
-        d['#date+end'] = dateFormat.parse(d['#date+end']);
+
         if(d['#date+end']==null){
             var diffDays = Math.round(Math.abs((d['#date+start'].getTime() - today.getTime())/(oneDay)));
             if(diffDays>365){
@@ -478,6 +475,32 @@ function roundMonths(data){
     });
     return data
 }
+
+function removeIncomplete(data) {
+    output = [];
+    data.forEach(function (d) {
+        var dateFormat = d3.time.format("%Y-%m-%d");
+
+        d['#date+start'] = dateFormat.parse(d['#date+start']);
+        d['#date+end'] = dateFormat.parse(d['#date+end']);
+
+        if ((d['#date+start'] !== undefined)
+            && d['#date+start'] !== null
+            && (d['#date+end'] !== undefined)) // note date end can be null, this is handled elsewhere
+            //uncomment the following if we need to check that these fields are numbers
+            //&& !isNaN(parseFloat(d['#targeted'])) 
+            //&& isFinite(d['#targeted'])
+            //&& !isNaN(parseFloat(d['#meta+value']))
+            //&& isFinite(d['#meta+value']))
+        {
+            output.push(d);
+        } else {
+            console.log("Warning: the following line has invalid entries: ", d);
+        }
+    });
+    return output;
+}
+
 
 $('#intro').click(function(){
     var intro = introJs();
@@ -569,9 +592,9 @@ var geomCall = $.ajax({
 
 $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
     var data = dataArgs[0];
-    data = dataPrep(hxlProxyToJSON(data));
+    data = dataPrep(removeIncomplete(hxlProxyToJSON(data)));
     data = roundMonths(data);
-    var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
+    var geom = topojson.feature(geomArgs[0], geomArgs[0].objects.geom);
     // $('#loadingmodal').modal('hide');
     generateDash(data,geom);
 });

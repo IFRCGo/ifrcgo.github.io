@@ -2,7 +2,7 @@
 
 var colors = ['#cccccc','#FFCDD2','#E57373','#E53935','#B71C1C']
 
-function generateDREFs(data2017,data2016,data2015,geom){    
+function generateDREFs(data2017,data2016,data2015,geom){
     initMap('#map',geom);
     var countries = data2017.map(function(d){return d['#country+code']});
     updateMap('#map',countries);
@@ -13,7 +13,7 @@ function generateDREFs(data2017,data2016,data2015,geom){
     generateLists('#dreftable',data2017);
 }
 
-function generateAppeals(data2017,data2016,data2015,geom){    
+function generateAppeals(data2017,data2016,data2015,geom){
     initMap('#mapappeals',geom);
     var countries = data2017.map(function(d){return d['#country+code']});
     updateMap('#mapappeals',countries);
@@ -30,12 +30,12 @@ function generateHeadlineFigs(data,year){
     var operations = 0;
     var fundingRequested = 0;
     data.forEach(function(d){
-        if(d['#meta+type']=='DREF'){
-            drefs++;
-        } else {
-            appeals ++;
-        }
         if(d['#meta+value']>0){
+            if(d['#severity']=='Minor Emergency'){
+                drefs++;
+            } else {
+                appeals ++;
+            }
             fundingRequested+=d['#meta+value'];
             operations++;
         }
@@ -67,10 +67,10 @@ function generateTypes(id,datalist){
             .key(function(d) {
                 if(keys.indexOf(d['#crisis+type'])==-1){
                     keys.push(d['#crisis+type']);
-                } 
+                }
                 return d['#crisis+type'];
             })
-            .rollup(function(d) { 
+            .rollup(function(d) {
                 return d3.sum(d, function(g) {
                     return 1;
                 });
@@ -81,7 +81,7 @@ function generateTypes(id,datalist){
             }));
     });
     keys.sort();
-    var data = [['x'].concat(keys)];    
+    var data = [['x'].concat(keys)];
     newdata.forEach(function(year,i){
         var row = [String(2017-i)];
         keys.forEach(function(k){
@@ -142,10 +142,10 @@ function generateRegions(id,datalist){
             .key(function(d) {
                 if(keys.indexOf(d['#region+name'])==-1){
                     keys.push(d['#region+name']);
-                } 
+                }
                 return d['#region+name'];
             })
-            .rollup(function(d) { 
+            .rollup(function(d) {
                 return d3.sum(d, function(g) {
                     return 1;
                 });
@@ -156,7 +156,7 @@ function generateRegions(id,datalist){
             }));
     });
     keys.sort();
-    var data = [['x'].concat(keys)];    
+    var data = [['x'].concat(keys)];
     newdata.forEach(function(year,i){
         var row = [String(2017-i)];
         keys.forEach(function(k){
@@ -220,7 +220,7 @@ function generateTimeGraph(id,datalist){
             .key(function(d) {
                 return keys[d['#date+start'].getMonth()];
             })
-            .rollup(function(d) { 
+            .rollup(function(d) {
                 return d3.sum(d, function(g) {
                     return 1;
                 });
@@ -231,7 +231,7 @@ function generateTimeGraph(id,datalist){
             }));
     });
 
-    var data = [['x'].concat(keys)];    
+    var data = [['x'].concat(keys)];
     newdata.forEach(function(year,i){
         var row = [String(2017-i)];
         keys.forEach(function(k){
@@ -276,7 +276,7 @@ function initMap(id,geom){
     var projection = d3.geo.mercator()
         .center([0, 0])
         .scale(width/6.2)
-        .translate([width / 2, height / 2]);    
+        .translate([width / 2, height / 2]);
 
     svg.selectAll("path")
       .data(geom.features)
@@ -333,7 +333,7 @@ function niceFormatNumber(num,round){
             output = output.slice(0, -1) + ' billion';
         } else {
             output = ''+d3.format(".3s")(num);
-        }            
+        }
         return output;
     }
 }
@@ -348,7 +348,7 @@ function hxlProxyToJSON(input,headers){
                 var key = parts[0]
                 if(parts.length>1){
                     var atts = parts.splice(1,parts.length);
-                    atts.sort();                    
+                    atts.sort();
                     atts.forEach(function(att){
                         key +='+'+att
                     });
@@ -368,46 +368,47 @@ function hxlProxyToJSON(input,headers){
 
 function load(){
 
-    var dataURL2017 = 'https://beta.proxy.hxlstandard.org/data.json?filter10=cut&filter07=merge&merge-url07=https%3A//docs.google.com/spreadsheets/d/1Q8w79fodebq5BokKjnp1MCx7wvXzQmqJ4IG4gP7a8JA/edit%3Fusp%3Dsharing&merge-url09=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&select-query01-01=%23date%2Bstart%3E2016-12-31&filter06=select&cut-include-tags10=%23meta%2Bid%2C%23date%2Bstart%2C%23country%2Bname%2C%23country%2Bcode%2C%23crisis%2Bname%2C%23crisis%2Btype%2C%23targeted-cost%2C%23meta%2Bvalue%2C%23region%2Bname%2C%23meta%2Btype&merge-replace07=on&filter09=merge&filter08=replace-map&select-reverse06=on&select-query04-01=%23severity%3DEmergency&merge-keys09=%23country%2Bname&select-query02-01=%23date%2Bstart%3C2018-01-01&select-query06-01=%23severity%2Bcode%3DEA&filter01=select&merge-keys07=%23region%2Bcode&replace-map-url12=https%3A//docs.google.com/spreadsheets/d/11NaZOlM8YRn3bdbkoXj1vLlXWr7t9dLhdnURzzQD8Qg/edit%23gid%3D0&merge-tags07=%23region%2Bname&filter05=append&replace-regex11=on&replace-tags11=%23meta%2Btype&add-tag03=%23meta%2Btype&strip-headers=on&replace-value11=DREF&append-dataset05-01=https%3A//docs.google.com/spreadsheets/d/1bnAThPpBk2NkeVA2_XvVspTbvowDOe1ee2-SbF_qe0A/edit%23gid%3D0&filter04=select&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&add-value03=Emergency+Appeal&replace-pattern11=%5E%5Cs%2A%24&filter12=replace-map&filter03=add&filter02=select&replace-map-url08=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit&merge-tags09=%23country%2Bcode&filter11=replace';
+    var dataURL2017 = 'https://proxy.hxlstandard.org/data.json?merge-keys02=country%2Bname&filter04=select&merge-tags02=country%2Bcode&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&filter03=select&filter02=merge&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&filter01=replace-map&replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&select-query04-01=%23date%2Bstart%3C2018-01-01&select-query03-01=%23date%2Bstart%3E2016-12-31';
 
-    var dataURL2016 = 'https://beta.proxy.hxlstandard.org/data.json?filter10=cut&filter07=merge&merge-url07=https%3A//docs.google.com/spreadsheets/d/1Q8w79fodebq5BokKjnp1MCx7wvXzQmqJ4IG4gP7a8JA/edit%3Fusp%3Dsharing&merge-url09=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&select-query01-01=%23date%2Bstart%3E2015-12-31&filter06=select&cut-include-tags10=%23meta%2Bid%2C%23date%2Bstart%2C%23country%2Bname%2C%23country%2Bcode%2C%23crisis%2Bname%2C%23crisis%2Btype%2C%23targeted-cost%2C%23meta%2Bvalue%2C%23region%2Bname%2C%23meta%2Btype&merge-replace07=on&filter09=merge&filter08=replace-map&select-reverse06=on&select-query04-01=%23severity%3DEmergency&merge-keys09=%23country%2Bname&select-query02-01=%23date%2Bstart%3C2017-01-01&select-query06-01=%23severity%2Bcode%3DEA&filter01=select&merge-keys07=%23region%2Bcode&replace-map-url12=https%3A//docs.google.com/spreadsheets/d/11NaZOlM8YRn3bdbkoXj1vLlXWr7t9dLhdnURzzQD8Qg/edit%3Fusp%3Dsharing&merge-tags07=%23region%2Bname&force=on&filter05=append&replace-regex11=on&replace-tags11=%23meta%2Btype&add-tag03=%23meta%2Btype&strip-headers=on&replace-value11=DREF&append-dataset05-01=https%3A//docs.google.com/spreadsheets/d/1bnAThPpBk2NkeVA2_XvVspTbvowDOe1ee2-SbF_qe0A/edit%23gid%3D1515849183&filter04=select&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&add-value03=Emergency+Appeal&replace-pattern11=%5E%5Cs%2A%24&filter12=replace-map&filter03=add&filter02=select&replace-map-url08=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit&merge-tags09=%23country%2Bcode&filter11=replace';
+    var dataURL2016 = 'https://proxy.hxlstandard.org/data.json?merge-keys02=country%2Bname&filter04=select&merge-tags02=country%2Bcode&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&filter03=select&filter02=merge&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&filter01=replace-map&replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&select-query04-01=%23date%2Bstart%3C2017-01-01&select-query03-01=%23date%2Bstart%3E2015-12-31';
 
-    var dataURL2015 = 'https://beta.proxy.hxlstandard.org/data.json?filter10=cut&filter07=merge&merge-url07=https%3A//docs.google.com/spreadsheets/d/1Q8w79fodebq5BokKjnp1MCx7wvXzQmqJ4IG4gP7a8JA/edit%3Fusp%3Dsharing&merge-url09=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&select-query01-01=%23date%2Bstart%3E2014-12-31&filter06=select&cut-include-tags10=%23meta%2Bid%2C%23date%2Bstart%2C%23country%2Bname%2C%23country%2Bcode%2C%23crisis%2Bname%2C%23crisis%2Btype%2C%23targeted-cost%2C%23meta%2Bvalue%2C%23region%2Bname%2C%23meta%2Btype&merge-replace07=on&filter09=merge&filter08=replace-map&select-reverse06=on&select-query04-01=%23severity%3DEmergency&merge-keys09=%23country%2Bname&select-query02-01=%23date%2Bstart%3C2016-01-01&select-query06-01=%23severity%2Bcode%3DEA&filter01=select&merge-keys07=%23region%2Bcode&replace-map-url12=https%3A//docs.google.com/spreadsheets/d/11NaZOlM8YRn3bdbkoXj1vLlXWr7t9dLhdnURzzQD8Qg/edit%23gid%3D0&merge-tags07=%23region%2Bname&force=on&filter05=append&replace-regex11=on&replace-tags11=%23meta%2Btype&add-tag03=%23meta%2Btype&strip-headers=on&replace-value11=DREF&append-dataset05-01=https%3A//docs.google.com/spreadsheets/d/1bnAThPpBk2NkeVA2_XvVspTbvowDOe1ee2-SbF_qe0A/edit%23gid%3D1104224777&filter04=select&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&add-value03=Emergency+Appeal&replace-pattern11=%5E%5Cs%2A%24&filter12=replace-map&filter03=add&filter02=select&replace-map-url08=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit&merge-tags09=%23country%2Bcode&filter11=replace';
+    var dataURL2015 = 'https://proxy.hxlstandard.org/data.json?merge-keys02=country%2Bname&filter04=select&merge-tags02=country%2Bcode&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&filter03=select&filter02=merge&merge-url02=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit&filter01=replace-map&replace-map-url01=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%23gid%3D0&strip-headers=on&select-query04-01=%23date%2Bstart%3C2016-01-01&select-query03-01=%23date%2Bstart%3E2014-12-31';
 
 
-    var dataCall2017 = $.ajax({ 
-        type: 'GET', 
+    var dataCall2017 = $.ajax({
+        type: 'GET',
         url: dataURL2017,
         dataType: 'json',
     });
 
-    var dataCall2016 = $.ajax({ 
-        type: 'GET', 
+    var dataCall2016 = $.ajax({
+        type: 'GET',
         url: dataURL2016,
         dataType: 'json',
     });
 
-    var dataCall2015 = $.ajax({ 
-        type: 'GET', 
+    var dataCall2015 = $.ajax({
+        type: 'GET',
         url: dataURL2015,
         dataType: 'json',
-    });        
+    });
 
-    var geomCall = $.ajax({ 
-        type: 'GET', 
-        url: worldmap, 
+    var geomCall = $.ajax({
+        type: 'GET',
+        url: worldmap,
         dataType: 'json'
     });
 
     $.when(dataCall2017, dataCall2016, dataCall2015, geomCall).then(function(dataArgs2017, dataArgs2016, dataArgs2015, geomArgs){
-        
+
         var data2017 = dataArgs2017[0];
         data2017 = dataPrep(hxlProxyToJSON(data2017));
         var drefs2017 = [];
         var appeals2017 = [];
         data2017.forEach(function(d){
-            if(d['#meta+type']=='DREF'){
+            if(d['#severity']=='Minor Emergency'){
                 drefs2017.push(d);
+                console.log(d);
             } else {
                 appeals2017.push(d);
             }
@@ -418,8 +419,9 @@ function load(){
         var drefs2016 = [];
         var appeals2016 = [];
         data2016.forEach(function(d){
-            if(d['#meta+type']=='DREF'){
+            if(d['#severity']=='Minor Emergency'){
                 drefs2016.push(d);
+                console.log(d);
             } else {
                 appeals2016.push(d);
             }
@@ -430,7 +432,7 @@ function load(){
         var drefs2015 = [];
         var appeals2015 = [];
         data2015.forEach(function(d){
-            if(d['#meta+type']=='DREF'){
+            if(d['#severity']=='Minor Emergency'){
                 drefs2015.push(d);
             } else {
                 appeals2015.push(d);
@@ -446,9 +448,4 @@ function load(){
     });
 }
 
-//before cuts
-//https://proxy.hxlstandard.org/data/edit?filter01=select&select-query01-01=%23date%2Bstart%3E2016-12-31&filter02=select&select-query02-01=%23date%2Bstart%3C2018-01-01&filter03=append&append-dataset03-01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1bnAThPpBk2NkeVA2_XvVspTbvowDOe1ee2-SbF_qe0A%2Fedit%23gid%3D0&filter04=merge&merge-url04=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1Q8w79fodebq5BokKjnp1MCx7wvXzQmqJ4IG4gP7a8JA%2Fedit%3Fusp%3Dsharing&merge-keys04=%23region%2Bcode&merge-tags04=%23region%2Bname&filter05=replace-map&replace-map-url05=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo%2Fedit&filter06=merge&merge-url06=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8%2Fedit%3Fusp%3Dsharing&merge-keys06=%23country%2Bname&merge-tags06=%23country%2Bcode&force=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU%2Fedit%23gid%3D0
-//final url edit
-
-//https://beta.proxy.hxlstandard.org/data/edit?filter01=select&select-query01-01=%23date%2Bstart%3E2016-12-31&filter02=select&select-query02-01=%23date%2Bstart%3C2018-01-01&filter03=add&add-tag03=%23meta%2Btype&add-value03=Emergency+Appeal&filter04=select&select-query04-01=%23severity%3DEmergency&filter05=append&append-dataset05-01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1bnAThPpBk2NkeVA2_XvVspTbvowDOe1ee2-SbF_qe0A%2Fedit%23gid%3D0&filter06=merge&merge-url06=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1Q8w79fodebq5BokKjnp1MCx7wvXzQmqJ4IG4gP7a8JA%2Fedit%3Fusp%3Dsharing&merge-keys06=%23region%2Bcode&merge-tags06=%23region%2Bname&merge-replace06=on&filter07=replace-map&replace-map-url07=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo%2Fedit&filter08=merge&merge-url08=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8%2Fedit%3Fusp%3Dsharing&merge-keys08=%23country%2Bname&merge-tags08=%23country%2Bcode&filter09=cut&cut-include-tags09=%23meta%2Bid%2C%23date%2Bstart%2C%23country%2Bname%2C%23country%2Bcode%2C%23crisis%2Bname%2C%23crisis%2Btype%2C%23targeted-cost%2C%23meta%2Bvalue%2C%23region%2Bname%2C%23meta%2Btype&filter10=replace&replace-pattern10=%5E%5Cs*%24&replace-regex10=on&replace-value10=DREF&replace-tags10=%23meta%2Btype&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU%2Fedit%23gid%3D0
 load();
