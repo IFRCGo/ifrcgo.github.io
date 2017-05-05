@@ -232,7 +232,7 @@ var date = yyyy + '-' + mm + '-' + dd;
 appealsurl = appealsurl.replace('999999',date);
 var rssfeed = 'https://beta.proxy.hxlstandard.org/data.json?force=on&strip-headers=on&url=http%3A//52.91.94.199/open/gdacs&verify=off';
 var fieldReportsURL = 'https://proxy.hxlstandard.org/data.json?force=on&url=https%3A//s.ifrcgo.org/open/fieldreports/10&strip-headers=on';
-var alertsURL = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&force=on&url=https%3A//docs.google.com/spreadsheets/d/1Yw11F4pghDr7JWhhqTe6dM42w7gqx7W86CFSn0kzKnc';
+var alertsURL = 'https://proxy.hxlstandard.org/data.json?force=on&url=https%3A//docs.google.com/spreadsheets/d/1eVpS1Bob4G2KzSwco6ELTzIsYHKvqKsNQI7ZdAzmPuQ&strip-headers=on';
 
 var dataCall = $.ajax({
     type: 'GET',
