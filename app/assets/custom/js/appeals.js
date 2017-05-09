@@ -25,14 +25,14 @@ function generateKeyFigs(data,override){
 		var softcoverage = parseInt(soft)/parseInt(data['#meta+value']);
 		createPie('#coverage',220,40,hardcoverage,softcoverage);
 		$('#funding').append('<p class="keyfigure">'+niceFormatNumber(hard)+' (CHF)</p>');
-		$('#appeal_amount').append('<p class="keyfigure">'+niceFormatNumber(data['#meta+value'])+' (CHF)</p>');	
+		$('#appeal_amount').append('<p class="keyfigure">'+niceFormatNumber(data['#meta+value'])+' (CHF)</p>');
 	}
 }
 
 function generateMap(geom,ISO3){
 
-    var baselayer = L.tileLayer('https://data.hdx.rwlabs.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
-    var baselayer2 = L.tileLayer('https://data.hdx.rwlabs.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
+    var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
+    var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
 
 	map = L.map('map',{
 				center: [0,0],
@@ -104,7 +104,7 @@ function processHash(){
 	var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+appealid+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on';
 
 	var plusCall = $.ajax({
-		type: 'GET', 
+		type: 'GET',
     	url: url,
     	dataType: 'json',
 	});
@@ -128,7 +128,7 @@ function processHash(){
 		});
 		if(override){
 			$.ajax({
-			    type: 'GET', 
+			    type: 'GET',
 	    		url: hxlurl,
 	    		dataType: 'json',
 				success: function(result){
@@ -139,12 +139,42 @@ function processHash(){
 		} else {
 			generateKeyFigs(data[0]);
 		}
-		
+
 	});
 
 	$.when(plusCall).then(function(plusArgs){
 		appealsplus(hxlProxyToJSON(plusArgs));
 	});
+
+	$.when(dataCall).then(function(dataArgs){
+		fieldreports(hxlProxyToJSON(dataArgs));
+	});
+}
+
+function fieldreports(data){
+	countrycode = data[0]['#country+code'];
+
+	var url = 'https://proxy.hxlstandard.org/data.json?select-query01-01=%23country%2Bcode%3D'+countrycode+'&filter01=select&strip-headers=on&url=https%3A//s.ifrcgo.org/open/fieldreports/500';
+
+	var fieldReportsCall = $.ajax({
+		type: 'GET',
+    	url: url,
+    	dataType: 'json',
+	});
+
+	$.when(fieldReportsCall).then(function(dataArgs){
+		if(dataArgs.length>1){
+			$('#fieldreports').append('<div id="fieldreportsinternal" class="medium-12 column"><h3>Country Field Reports</h3><table><tbody id="fieldreportstable"></tbody></table></div>');
+			var data = hxlProxyToJSON(dataArgs);
+			data.forEach(function(d,i){
+				if(i<6){
+					$('#fieldreportstable').append('<tr><td><a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+title']+'</a></td><td>'+d['#crisis+type']+'</td><td>'+d['#date']+'</td></tr>');
+				}
+			});
+			$('#fieldreportsinternal').append('<p class="margin-top"><a href="https://s.ifrcgo.org/fieldreport/country/'+countrycode+'" target="_blank">Read more</a></p>');
+		}
+	});
+
 }
 
 function appealsplus(data){
@@ -284,7 +314,7 @@ function getAppealDocs(id){
 
 
 function createPie(id,width,inner,percent,percentsoft){
-	
+
 	var svg = d3.select(id).append("svg")
 		.attr("width", width)
 		.attr("height", width);
@@ -295,7 +325,7 @@ function createPie(id,width,inner,percent,percentsoft){
 		.innerRadius(radius-inner)
 		.outerRadius(radius)
 		.startAngle(0)
-		.endAngle(Math.PI*2*percentsoft);	
+		.endAngle(Math.PI*2*percentsoft);
 
 	var fundingArc = d3.svg.arc()
 		.innerRadius(radius-inner)
@@ -317,7 +347,7 @@ function createPie(id,width,inner,percent,percentsoft){
 	svg.append("path")
 		.style("fill", "#E57373")
 		.attr("d", softArc)
-		.attr("transform", "translate("+(width/2)+","+(width/2)+")");		
+		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
 	svg.append("path")
 		.style("fill", "#b71c1c")
@@ -343,14 +373,14 @@ function createPie(id,width,inner,percent,percentsoft){
 			.attr("y",width/2+35)
 			.text('Total: '+d3.format(".0%")(percentsoft))
 			.style("text-anchor", "middle")
-			.attr("class","keyfiguresmall");				
+			.attr("class","keyfiguresmall");
 	} else {
 		svg.append("text")
 			.attr("x",width/2)
 			.attr("y",width/2+10)
 			.text(d3.format(".0%")(percent))
 			.style("text-anchor", "middle")
-			.attr("class","keyfigure");		
+			.attr("class","keyfigure");
 	}
 
 }
