@@ -128,7 +128,7 @@ function updateTable(data){
 	});
 	$('#tcontents').html(html);
 	data.forEach(function(d,i){
-		createPie('#coverage'+i,75,10,d['#meta+coverage']/100);
+		createPie('#coverage'+i,65,10,d['#meta+coverage']/100);
 	});
     table = $('#datatable').DataTable({
     	"pageLength": 100,

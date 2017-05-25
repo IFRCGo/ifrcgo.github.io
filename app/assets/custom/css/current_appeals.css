@@ -104,3 +104,8 @@ tr.shown td.details-controls {
 .download_link {
   font-size: 2em;
 }
+
+td {
+    vertical-align:top;
+    font-size:0.85em;
+}
