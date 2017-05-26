@@ -109,3 +109,7 @@ td {
     vertical-align:top;
     font-size:0.85em;
 }
+
+.minheight {
+    min-height:50px;
+}

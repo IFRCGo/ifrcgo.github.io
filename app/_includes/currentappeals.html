@@ -1,6 +1,6 @@
 <div class="row">
   <div class="medium-8 column">
-    <p class="titledesc text-left">{{site.data[locale].currentappeals.desc}}</p>
+    <p class="titledesc text-left">Current IFRC DREFs and Appeals.  Use the buttons below to filter for particular regions.  The data table can be sorted by clicking the column headers.</p>
   </div>
   <div class="medium-4 column">
     <p id="download_link" class="download_link"><a href="">Download Data</a></p>
@@ -17,24 +17,28 @@
   </div>
   <div class="medium-4 column">
     <div class="row">
-      <div class="medium-4">
+      <div class="medium-5 column">
         <p class="keyfiguretitle">{{site.data[locale].appeals.coverage}}</p><span id="totalcoverage" class="keyfigure"></span>
       </div>
+      <div class="medium-7 column">
+        <div class="row">
+          <div class="medium-12 column">
+            <p class="keyfiguretitle text-left">Emergency Appeals</p><span id="totalea" class="keyfigure"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 column">
+            <p class="keyfiguretitle text-left">DREFs</p><span id="totaldref" class="keyfigure"></span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="medium-6 column">
-        <p class="keyfiguretitle text-left">Emergency Appeals</p><span id="totalea" class="keyfigure"></span>
+        <p class="keyfiguretitle text-left minheight">Total Appeals</p><span id="totalappeals" class="keyfigure">{{site.data[locale].appeals.appealamount}}</span>
       </div>
       <div class="medium-6 column">
-        <p class="keyfiguretitle text-left">DREFs</p><span id="totaldref" class="keyfigure"></span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="medium-6 column">
-        <p class="keyfiguretitle text-left">{{site.data[locale].appeals.appealamount}}</p><span id="totalappeals" class="keyfigure"></span>
-      </div>
-      <div class="medium-6 column">
-        <p class="keyfiguretitle text-left">{{site.data[locale].appeals.targetedben}}</p><span id="totalbens" class="keyfigure"></span>
+        <p class="keyfiguretitle text-left minheight">Targeted beneficiaries</p><span id="totalbens" class="keyfigure">{{site.data[locale].appeals.targetedben}}</span>
       </div>
     </div>
   </div>
