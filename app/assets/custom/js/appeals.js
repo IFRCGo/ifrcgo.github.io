@@ -29,42 +29,55 @@ function generateKeyFigs(data,override){
 	}
 }
 
-function generateMap(geom,ISO3){
+function generateMap(geom,ISO3,plusData){
 
-    var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
-    var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
+	var renderMap = true;
 
-	map = L.map('map',{
-				center: [0,0],
-		        zoom: 2,
-		        layers: [baselayer,baselayer2]
-			});
+	plusData.forEach(function(d){
+		console.log(d)
+		if(d['#meta+feature']=='map'){
+			console.log('found');
+			loadMap(d['#meta+url']);
+			renderMap = false;
+		}
+	})
 
-	map.overlay = L.geoJson(geom,{
-		onEachFeature:onEachFeature,
-		style:style
-    }).addTo(map);
+	if(renderMap){
+	    var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
+	    var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
 
-	function style(feature) {
-		var color = '#aaaaaa';
-		var fillOpacity = 0;
-		var weight =0
-		var cls = 'country'
-		if(feature.properties['ISO_A3']==ISO3){
-			color = '#D33F49';
-			fillOpacity = 0.7;
-			weight = 1
-		};
+		map = L.map('map',{
+					center: [0,0],
+			        zoom: 2,
+			        layers: [baselayer,baselayer2]
+				});
 
-        return {
-                'color': color,
-                'fillcolor': color,
-                'weight': weight,
-                'opacity': 0.7,
-                'fillOpacity':fillOpacity,
-                'className':cls
-            };
-    }
+		map.overlay = L.geoJson(geom,{
+			onEachFeature:onEachFeature,
+			style:style
+	    }).addTo(map);
+
+		function style(feature) {
+			var color = '#aaaaaa';
+			var fillOpacity = 0;
+			var weight =0
+			var cls = 'country'
+			if(feature.properties['ISO_A3']==ISO3){
+				color = '#D33F49';
+				fillOpacity = 0.7;
+				weight = 1
+			};
+
+	        return {
+	                'color': color,
+	                'fillcolor': color,
+	                'weight': weight,
+	                'opacity': 0.7,
+	                'fillOpacity':fillOpacity,
+	                'className':cls
+	            };
+	    }
+	}
 
 
     function onEachFeature(feature, layer){
@@ -109,11 +122,11 @@ function processHash(){
     	dataType: 'json',
 	});
 
-	$.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
+	/*$.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
 	    var data = hxlProxyToJSON(dataArgs[0]);
 	    var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
 	    generateMap(geom,data[0]['#country+code']);
-	});
+	});*/
 
 	$.when(dataCall, plusCall).then(function(dataArgs, plusArgs){
 		var data = hxlProxyToJSON(dataArgs[0]);
@@ -142,8 +155,11 @@ function processHash(){
 
 	});
 
-	$.when(plusCall).then(function(plusArgs){
-		appealsplus(hxlProxyToJSON(plusArgs));
+	$.when(dataCall, geomCall,plusCall).then(function(dataArgs, geomArgs, plusArgs){
+		var data = hxlProxyToJSON(dataArgs[0]);
+	    var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
+	    generateMap(geom,data[0]['#country+code'],hxlProxyToJSON(plusArgs[0]));
+		appealsplus(hxlProxyToJSON(plusArgs[0]));
 	});
 
 	$.when(dataCall).then(function(dataArgs){
@@ -192,6 +208,12 @@ function appealsplus(data){
 			loadFreeText(encodeURIComponent(d['#meta+url']));
 		}
 	});
+}
+
+function loadMap(map){
+	//https://nlrc.carto.com/u/redcross-sims/builder/8c44e0f6-f9e8-11e6-b58e-0e05a8b3e3d7/embed
+	var html = '<iframe id="map" width="100%" height="400" frameborder="0" align="left" src="'+map+'" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>'
+	$('#map').html(html);
 }
 
 function loadKeyFigures(url){
