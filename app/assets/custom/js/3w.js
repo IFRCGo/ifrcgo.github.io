@@ -1,10 +1,10 @@
-function generateDash(data,geom,config){
+function generateDash(data,geom,config,height){
     console.log(data);
     console.log(config);
     $('#datadownload').attr('href',config['download']);
     $('.title3w').html(config['title']);
     $('#description').html(config['description']);
-    
+
     var cf = crossfilter(data);
         cf.whereDim = cf.dimension(function(d){return d[config['whereFieldName']]});
         cf.whoDim = cf.dimension(function(d){return d[config['whoFieldName']]});
@@ -18,7 +18,7 @@ function generateDash(data,geom,config){
         cf.whatChart = dc.rowChart('#whatchart');
         cf.whereChart = dc.leafletChoroplethChart('#wherechart');
 
-        cf.whoChart.width($('#whochart').width()).height(650)
+        cf.whoChart.width($('#whochart').width()).height(height)
             .dimension(cf.whoDim)
             .group(cf.whoGroup)
             .elasticX(true)
@@ -28,7 +28,7 @@ function generateDash(data,geom,config){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-        cf.whatChart.width($('#whatchart').width()).height(650)
+        cf.whatChart.width($('#whatchart').width()).height(height)
             .dimension(cf.whatDim)
             .group(cf.whatGroup)
             .elasticX(true)
@@ -38,7 +38,7 @@ function generateDash(data,geom,config){
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
 
-        cf.whereChart.width($('#wherechart').width()).height(650)
+        cf.whereChart.width($('#wherechart').width()).height(height)
             .dimension(cf.whereDim)
             .group(cf.whereGroup)
             .center([0,0])
@@ -159,6 +159,14 @@ function createConfig(data){
 
 function processHash(){
     var hashid = decodeURIComponent(window.location.hash).substring(1);
+    var embed = false;
+    if(decodeURIComponent(window.location).indexOf('embed')>-1){
+        embed = true;
+        var url = decodeURIComponent(window.location);
+        var fullDashURL = url.substring(0,url.indexOf('embed')) + url.substring(url.indexOf('embed')+6,url.length);
+        $('#url').html('<a href="'+fullDashURL+'" target="_blank">Click here for full screen version</a>');
+    }
+    console.log(embed);
     var hashurl = 'https://proxy.hxlstandard.org/data.json?url=https%3A//docs.google.com/spreadsheets/d/17Qm5o5YTiSA7seoLDa8OQWcX8NPQW62PXfNG3BCn7mQ/edit%3Fusp%3Dsharing&strip-headers=on&filter01=select&force=on&select-query01-01=%23meta%2Bid%3D'+hashid;
 
     var hashCall = $.ajax({
@@ -179,6 +187,14 @@ function processHash(){
                 dataType: 'json',
             });
 
+            var height = 650;
+
+            if(embed){
+                data['#meta+geo'] = '../'+data['#meta+geo']
+                $('#wherechart').height(400);
+                height=400;
+            }
+
             var geomCall = $.ajax({
                 type: 'GET',
                 url: data['#meta+geo'],
@@ -194,7 +210,7 @@ function processHash(){
                 } else  {
                     geom = geomArgs[0];
                 }
-                generateDash(data,geom,config);
+                generateDash(data,geom,config,height);
             });
 
         }
