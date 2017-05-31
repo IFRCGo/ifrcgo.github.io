@@ -29,12 +29,12 @@ h3 {
 .texttab{
     display:inline-block;
     padding:10px;
-    background-color:#eeeeee;
+    background-color:#fff;
     cursor:pointer;
 }
 
 .active{
-    background-color:#fff;
+    background-color:#eeeeee;
 }
 
 .info {
