@@ -207,7 +207,33 @@ function appealsplus(data){
 		if(d['#meta+feature']=='freetext'){
 			loadFreeText(encodeURIComponent(d['#meta+url']));
 		}
+		if(d['#meta+feature']=='infographics'){
+			loadInfographics(encodeURIComponent(d['#meta+url']));
+		}
 	});
+}
+
+function loadInfographics(url){
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	$.ajax({
+		    type: 'GET',
+    		url: hxlurl,
+    		dataType: 'json',
+			success: function(result){
+				var data = hxlProxyToJSON(result);
+				var html = '<div class="medium-12 column"><h3>Infographics</h3>';
+				data.forEach(function(d){
+					html+='<div class="row"><div class="medium-12 column">';
+					html += '<h4>'+d['#meta+title']+'</h4>';
+					if(d['#meta+type']=='iframe'){
+						html+='<iframe height="550" width="100%" src="'+d['#meta+url']+'"></iframe>';
+					}
+					html+='</div></div>';
+				});
+				html+='</div>'; //closing div for KF
+				$('#infographics').html(html);
+    		}
+    });
 }
 
 function loadMap(map){
