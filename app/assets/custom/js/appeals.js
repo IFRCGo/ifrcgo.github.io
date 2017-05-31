@@ -268,7 +268,7 @@ function loadFreeText(url){
     		dataType: 'json',
 			success: function(result){
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="medium-12 column"><h3>Text Updates</h3></div><div class="medium-12"><ul>';
+				var html = '<div class="medium-12 column"><h3>Narratives</h3></div><div class="medium-12"><ul>';
 				data.forEach(function(d,i){
 					if(i==0){
 						html+='<li id="tabtitle'+i+'" class="tab-title texttab active"><a id="tab'+i+'" href="" data-toggle="tab">'+d['#meta+title']+'</a></li>';
