@@ -34,9 +34,7 @@ function generateMap(geom,ISO3,plusData){
 	var renderMap = true;
 
 	plusData.forEach(function(d){
-		console.log(d)
 		if(d['#meta+feature']=='map'){
-			console.log('found');
 			loadMap(d['#meta+url']);
 			renderMap = false;
 		}
@@ -99,7 +97,8 @@ function processHash(){
 	var appealid = appealid_path[app_index];
 
 	console.log('appealid is: ' + appealid);
-	var appealsurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&force=on&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23meta%2Bid%3D'+appealid+'&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0';
+	//var appealsurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter03=merge&clean-date-tags01=%23date&filter02=select&merge-keys03=%23meta%2Bid&filter04=replace-map&force=on&filter05=merge&merge-tags03=%23meta%2Bcoverage%2C%23meta%2Bfunding&select-query02-01=%23meta%2Bid%3D'+appealid+'&merge-keys05=%23country%2Bname&merge-tags05=%23country%2Bcode&filter01=clean&replace-map-url04=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&merge-url03=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-url05=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0';
+	var appealsurl = 'https://proxy.hxlstandard.org/data.json?force=on&filter05=select&filter02=append&replace-map-url07=https%3A//docs.google.com/spreadsheets/d/1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo/edit%3Fusp%3Dsharing&select-query05-01=%23meta%2Bid%3D'+appealid+'&add-tag01=%23meta%2Btype&clean-date-tags04=%23date&add-header01=Page+type&replace-tags03=%23meta%2Btype&add-value01=appeal&filter06=merge&append-dataset02-01=https%3A//docs.google.com/spreadsheets/d/1IYtE5nT-FpXja9ek4xbOohse0DUU_AvTT91nlJ-wXpI/edit%23gid%3D0&merge-tags08=%23country%2Bcode&replace-regex03=on&filter01=add&merge-tags06=%23meta%2Bcoverage%2C%23meta%2Bfunding&strip-headers=on&merge-url08=https%3A//docs.google.com/spreadsheets/d/1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8/edit%3Fusp%3Dsharing&replace-pattern03=%5E%5Cs%2A%24&filter07=replace-map&filter03=replace&filter04=clean&merge-url06=https%3A//docs.google.com/spreadsheets/d/1rVAE8b3uC_XIqU-eapUGLU7orIzYSUmvlPm9tI0bCbU/edit%23gid%3D0&merge-keys08=%23country%2Bname&merge-keys06=%23meta%2Bid&replace-value03=operation&url=https%3A//docs.google.com/spreadsheets/d/19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU/edit%23gid%3D0&filter08=merge';
 	var dataCall = $.ajax({
 	    type: 'GET',
 	    url: appealsurl,
@@ -129,7 +128,20 @@ function processHash(){
 	});*/
 
 	$.when(dataCall, plusCall).then(function(dataArgs, plusArgs){
+
+
+
 		var data = hxlProxyToJSON(dataArgs[0]);
+
+		//delete appeals content if an operation
+
+		console.log(data[0]['#meta+type']);
+
+		if(data[0]['#meta+type'] == 'operation'){
+			$('.operationremove').html('');
+			$('#operationdescription').html('<div class="medium-12 column">'+data[0]['#description']+'</div>');
+		}
+
 		var plusdata = hxlProxyToJSON(plusArgs[0]);
 		var override = false;
 		var hxlurl = '';
