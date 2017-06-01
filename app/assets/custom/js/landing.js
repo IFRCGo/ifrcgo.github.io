@@ -207,13 +207,16 @@ function updateKeyFigures(data){
         } else {
             totalappeal +=1;
             totalappeals+=parseFloat(d['#meta+value']);
-            totalfunding+=parseFloat(d['#meta+funding']);
+            if(!isNaN(parseFloat(d['#meta+funding']))){
+                totalfunding+=parseFloat(d['#meta+funding']);
+            }
         }
     });
     $('#totalappeals').html(niceFormatNumber(totalBudget,true));
     $('#totalbens').html(niceFormatNumber(totalBen,true));
     $('#totalea').html(totalappeal);
     $('#totaldref').html(totalDREF);
+    console.log(totalfunding);
     $('#totalcoverage').html((totalfunding/totalappeals).toFixed(2)*100+"%");
 }
 
