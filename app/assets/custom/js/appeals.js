@@ -113,7 +113,7 @@ function processHash(){
 	    dataType: 'json'
 	});
 
-	var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+appealid+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on';
+	var url = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bid%3D'+appealid+'&url=https%3A//docs.google.com/spreadsheets/d/1rJ5gt-JaburVcfzTeNmLglEWfhTlEuoaOedTH5T7Qek/edit%3Fusp%3Dsharing&strip-headers=on&force=on';
 
 	var plusCall = $.ajax({
 		type: 'GET',
@@ -192,7 +192,7 @@ function fieldreports(data){
 
 	$.when(fieldReportsCall).then(function(dataArgs){
 		if(dataArgs.length>1){
-			$('#fieldreports').append('<div id="fieldreportsinternal" class="medium-12 column"><h3>Country Field Reports</h3><table><tbody id="fieldreportstable"></tbody></table></div>');
+			$('#fieldreports').append('<div id="fieldreportsinternal" class="medium-12 column"><h3>Country Field Reports (DMIS)</h3><table><tbody id="fieldreportstable"></tbody></table></div>');
 			var data = hxlProxyToJSON(dataArgs);
 			data.forEach(function(d,i){
 				if(i<6){
@@ -239,6 +239,9 @@ function loadInfographics(url){
 					html += '<h4>'+d['#meta+title']+'</h4>';
 					if(d['#meta+type']=='iframe'){
 						html+='<iframe height="550" width="100%" src="'+d['#meta+url']+'"></iframe>';
+					}
+					if(d['#meta+type']=='picture'){
+						html+='<img src="'+d['#meta+url']+'" alt="infographic" />';
 					}
 					html+='</div></div>';
 				});
@@ -315,19 +318,21 @@ function loadFreeText(url){
 }
 
 function loadContacts(url){
-	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	//var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&filter02=select&select-reverse01=on&select-query01-01=%23date%2Bstart%3E'+date+'&filter01=select&select-reverse02=on&select-query02-01=%23date%2Bend%3C'+date+'&url='+url;
 	$.ajax({
 		    type: 'GET',
     		url: hxlurl,
     		dataType: 'json',
 			success: function(result){
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="column small-up-2 medium-up-4"><h3>Contacts</h3>';
+				console.log(data);
+				$('#contacts').html('<div class="column small-up-2 medium-up-4"><h3>Contacts</h3><table><thead><tr><th>Title</th><th>Name</th><th>Email</th><th>Start Date</th><th>End Date</th></tr></thead><tbody id="contacttable"></tbody></table></div>');
 				data.forEach(function(d){
-					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle">' + d['#contact+title'] + '</h4></p>' + d['#contact+name'] + ' - <a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</a></p></div></div>';
+					var start = (d['#date+start'] === undefined) ? '' :d['#date+start'];
+					var end = (d['#date+end'] === undefined) ? '' :d['#date+end'];
+					$('#contacttable').append('<tr><td>' + d['#contact+title'] + '</td><td>' + d['#contact+name'] + '</td><td><a href="mailto:'+d['#contact+email']+'">'+d['#contact+email']+'</td><td>'+start+'</td><td>'+end+'</td></tr>');
 				});
-					html+= '</div>';
-				$('#contacts').html(html);
     		}
     });
 }
@@ -357,7 +362,7 @@ function getAppealDocs(id){
     		url: url,
     		dataType: 'json',
 			success: function(result){
-				var html = '<div class="medium-12 column"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Appeal Documents</h3></a></div><div class="column small-up-2 medium-up-4">';
+				var html = '<div class="medium-12 column"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Public Appeal Documents</h3></a></div><div class="column small-up-2 medium-up-4">';
 				result.forEach(function(row,i){
 					if(i>0 && i<9){
 						if(row[0].substring(0,1)=='/'){
@@ -499,6 +504,18 @@ function hxlProxyToJSON(input,headers){
 
 
 //global vars
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+if(dd<10) {
+    dd='0'+dd
+}
+if(mm<10) {
+    mm='0'+mm
+}
+var date = yyyy + '-' + mm + '-' + dd;
 
 var map = '';
 processHash();
