@@ -192,7 +192,7 @@ function fieldreports(data){
 
 	$.when(fieldReportsCall).then(function(dataArgs){
 		if(dataArgs.length>1){
-			$('#fieldreports').append('<div id="fieldreportsinternal" class="medium-12 column"><h3>Country Field Reports</h3><table><tbody id="fieldreportstable"></tbody></table></div>');
+			$('#fieldreports').append('<div id="fieldreportsinternal" class="medium-12 column"><h3>Country Field Reports (DMIS)</h3><table><tbody id="fieldreportstable"></tbody></table></div>');
 			var data = hxlProxyToJSON(dataArgs);
 			data.forEach(function(d,i){
 				if(i<6){
@@ -362,7 +362,7 @@ function getAppealDocs(id){
     		url: url,
     		dataType: 'json',
 			success: function(result){
-				var html = '<div class="medium-12 column"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Appeal Documents</h3></a></div><div class="column small-up-2 medium-up-4">';
+				var html = '<div class="medium-12 column"><a href="http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+id+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo=" target="_blank"><h3>Latest Public Appeal Documents</h3></a></div><div class="column small-up-2 medium-up-4">';
 				result.forEach(function(row,i){
 					if(i>0 && i<9){
 						if(row[0].substring(0,1)=='/'){
