@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '6'
+  - '6'
 env:
   global:
   - GH_REF=github.com/IFRCGo/ifrcgo.github.io
@@ -11,12 +11,12 @@ cache:
   directories:
   - node_modules
 before_install:
-- chmod +x ./.build_scripts/deploy.sh
-- rvm install 2.3.1
+  - chmod +x ./.build_scripts/deploy.sh
+  - rvm install 2.3.1
 before_script:
-- npm install -g bower
-- npm install
-- bower install
+  - npm install -g bower
+  - npm install
+  - bower install
 script: gulp prod
 after_success:
-- "./.build_scripts/deploy.sh"
+  - "./.build_scripts/deploy.sh"
