@@ -135,8 +135,6 @@ function processHash(){
 
 		//delete appeals content if an operation
 
-		console.log(data[0]['#meta+type']);
-
 		if(data[0]['#meta+type'] == 'operation'){
 			$('.operationremove').html('');
 			$('#operationdescription').html('<div class="medium-12 column">'+data[0]['#description']+'</div>');
@@ -208,7 +206,10 @@ function fieldreports(data){
 function appealsplus(data){
 	data.forEach(function(d){
 		if(d['#meta+feature']=='keyfigures'){
-			loadKeyFigures(encodeURIComponent(d['#meta+url']));
+			loadKeyFigures('#keyfigures',encodeURIComponent(d['#meta+url']));
+		}
+		if(d['#meta+feature']=='indicators'){
+			loadKeyFigures('#indicators',encodeURIComponent(d['#meta+url']));
 		}
 		if(d['#meta+feature']=='contacts'){
 			loadContacts(encodeURIComponent(d['#meta+url']));
@@ -221,6 +222,9 @@ function appealsplus(data){
 		}
 		if(d['#meta+feature']=='infographics'){
 			loadInfographics(encodeURIComponent(d['#meta+url']));
+		}
+		if(d['#meta+feature']=='reports'){
+			loadReports(encodeURIComponent(d['#meta+url']));
 		}
 	});
 }
@@ -238,7 +242,7 @@ function loadInfographics(url){
 					html+='<div class="row"><div class="medium-12 column">';
 					html += '<h4>'+d['#meta+title']+'</h4>';
 					if(d['#meta+type']=='iframe'){
-						html+='<iframe height="550" width="100%" src="'+d['#meta+url']+'"></iframe>';
+						html+='<iframe height="600" width="100%" src="'+d['#meta+url']+'"></iframe>';
 					}
 					if(d['#meta+type']=='picture'){
 						html+='<img src="'+d['#meta+url']+'" alt="infographic" />';
@@ -252,12 +256,11 @@ function loadInfographics(url){
 }
 
 function loadMap(map){
-	//https://nlrc.carto.com/u/redcross-sims/builder/8c44e0f6-f9e8-11e6-b58e-0e05a8b3e3d7/embed
 	var html = '<iframe id="map" width="100%" height="400" frameborder="0" align="left" src="'+map+'" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>'
 	$('#map').html(html);
 }
 
-function loadKeyFigures(url){
+function loadKeyFigures(id,url){
 	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
 	$.ajax({
 		    type: 'GET',
@@ -265,12 +268,61 @@ function loadKeyFigures(url){
     		dataType: 'json',
 			success: function(result){
 				var data = hxlProxyToJSON(result);
-				var html = '<div class="column small-up-2 medium-up-4"><h3>Key Figures</h3>';
+				if(id=='#keyfigures'){
+					var title = 'Key Figures';
+				} else {
+					var title = 'Indicators';
+				}
+				var html = '<div class="column small-up-2 medium-up-4"><h3>'+title+'</h3>';
 				data.forEach(function(d){
 					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
 				});
 				html+='</div>'; //closing div for KF
-				$('#keyfigures').html(html);
+				$(id).html(html);
+    		}
+    });
+}
+
+function loadReports(url){
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	$.ajax({
+		    type: 'GET',
+    		url: hxlurl,
+    		dataType: 'json',
+			success: function(result){
+				tabs = [];
+				var data = hxlProxyToJSON(result);
+				$('#reports').append('<div class="medium-12 column"><h3>Reports</h3></div><div id="reportlists" class="medium-12 column"><ul id="reporttabs"></ul></div></div>');
+				data.forEach(function(d,i){
+					if(tabs.indexOf(d['#meta+section'])==-1){
+						tabs.push(d['#meta+section']);
+						var index = tabs.length-1;
+						if(i==0){
+							$('#reporttabs').append('<li id="tabtitle'+index+'" class="tab-title texttab active"><a id="tab'+index+'" href="" data-toggle="tab">'+d['#meta+section']+'</a></li>');
+						} else {
+							$('#reporttabs').append('<li id="tabtitle'+index+'" class="tab-title texttab"><a id="tab'+index+'" href="" data-toggle="tab">'+d['#meta+section']+'</a></li>');
+						}
+						$('#reportlists').append('<table id="info'+index+'" class="info"><tbody id="reporttable'+index+'"></tbody></table>');
+					}
+
+				});
+				data.forEach(function(d,i){
+					var index = tabs.indexOf(d['#meta+section']);
+					$('#reporttable'+index).append('<tr><td><a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+title']+'</a></td><td>'+d['#date']+'</td></tr>');
+				});
+
+				tabs.forEach(function(d,i){
+					if(i>0){
+						$('#info'+i).hide();
+					}
+					$('#tabtitle'+i).on('click',function(){
+						$('.tab-title').removeClass('active');
+						$('#tabtitle'+i).addClass('active');
+						$('.info').hide();
+						$('#info'+i).show();
+						return false;
+					});
+				});
     		}
     });
 }
@@ -326,7 +378,6 @@ function loadContacts(url){
     		dataType: 'json',
 			success: function(result){
 				var data = hxlProxyToJSON(result);
-				console.log(data);
 				$('#contacts').html('<div class="column small-up-2 medium-up-4"><h3>Contacts</h3><table><thead><tr><th>Title</th><th>Name</th><th>Email</th><th>Start Date</th><th>End Date</th></tr></thead><tbody id="contacttable"></tbody></table></div>');
 				data.forEach(function(d){
 					var start = (d['#date+start'] === undefined) ? '' :d['#date+start'];
