@@ -6,7 +6,10 @@ function generateDash(data,geom,config,height){
     $('#description').html(config['description']);
 
     var cf = crossfilter(data);
-        cf.whereDim = cf.dimension(function(d){return d[config['whereFieldName']]});
+
+        console.log('PCODES in spreadsheet');
+
+        cf.whereDim = cf.dimension(function(d){console.log(d[config['whereFieldName']]); return d[config['whereFieldName']]});
         cf.whoDim = cf.dimension(function(d){return d[config['whoFieldName']]});
         cf.whatDim = cf.dimension(function(d){return d[config['whatFieldName']]});
 
@@ -37,6 +40,8 @@ function generateDash(data,geom,config,height){
             .colorAccessor(function(d, i){return 1;})
             .ordering(function(d){ return -d.value })
             .xAxis().ticks(5);
+
+        console.log('PCODE in geom');
 
         cf.whereChart.width($('#wherechart').width()).height(height)
             .dimension(cf.whereDim)
@@ -206,6 +211,7 @@ function processHash(){
                 var config = createConfig(hxlProxyToJSON(configArgs[0]));
                 data = hxlProxyToJSON(data);
                 if(config['topojson']=='TRUE'){
+                    console.log('If it breaks here, the topojson name object might be wrong');
                     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects[config['toponame']]);
                 } else  {
                     geom = geomArgs[0];
