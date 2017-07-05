@@ -13,6 +13,15 @@
     margin-bottom:20px;
 }
 
+.catkeyfiguretitle {
+    font-size: 1.4em;
+}
+
+.categorycard {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
 .doc {
     margin-bottom:20px;
 }
@@ -20,6 +29,11 @@
 h3 {
     padding-bottom:10px;
     border-bottom: 1px solid #aaa;
+}
+
+h5 {
+    color:black;
+    font-weight: 200;
 }
 
 .minheight {
