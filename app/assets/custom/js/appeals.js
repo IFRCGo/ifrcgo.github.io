@@ -273,14 +273,47 @@ function loadKeyFigures(id,url){
 				} else {
 					var title = 'Indicators';
 				}
-				var html = '<div class="column small-up-2 medium-up-4"><h3>'+title+'</h3>';
-				data.forEach(function(d){
-					html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>'
-				});
-				html+='</div>'; //closing div for KF
-				$(id).html(html);
+				if('#meta+category' in data[0]){
+					generateCategorisedKeyFigures(id,title,data);
+				} else {
+					generateSimpleKeyFigures(id,title,data);
+				}
     		}
     });
+}
+
+function generateSimpleKeyFigures(id,title,data){
+	var html = '<div class="column small-up-2 medium-up-4"><h3>'+title+'</h3>';
+	data.forEach(function(d){
+		html+='<div class="column"><div class="card no-border"><h4 class="keyfiguretitle text-center minheight">'+d['#meta+title']+'</h4><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p></div></div>';
+	});
+	html+='</div>'; //closing div for KF
+	$(id).html(html);
+}
+
+function generateCategorisedKeyFigures(id,title,data){
+	if(title=='Key Figures'){
+		var subid = 'keyfig';
+	} else {
+		var subid = 'indicate';
+	}
+	var html = '<div id="' + subid + '" class="column small-up-2 medium-up-4"><h3>'+title+'</h3></div>';
+	$(id).html(html);
+	cats = [];
+	data.forEach(function(d){
+		console.log(d['#meta+category']);
+		if(cats.indexOf(d['#meta+category'])==-1){
+			cats.push(d['#meta+category']);
+			var catnum = cats.length-1
+			var html = '<div class="column"><div id="'+subid+catnum+'" class="card categorycard"><h4 class="catkeyfiguretitle text-center minheight">'+d['#meta+category']+'</h4></div></div>';
+			$('#'+subid).append(html);
+		}
+	});
+	data.forEach(function(d){
+		var html = '<h5 text-center minheight">'+d['#meta+title']+'</h5><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+source']+'</a></p>';
+		var catnum = cats.indexOf(d['#meta+category']);
+		$('#'+subid+catnum).append(html);
+	});
 }
 
 function loadReports(url){
