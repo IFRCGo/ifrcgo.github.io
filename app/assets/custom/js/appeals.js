@@ -226,7 +226,34 @@ function appealsplus(data){
 		if(d['#meta+feature']=='reports'){
 			loadReports(encodeURIComponent(d['#meta+url']));
 		}
+		if(d['#meta+feature']=='socialmedia'){
+			loadSocialMedia(encodeURIComponent(d['#meta+url']));
+		}
 	});
+}
+
+function loadSocialMedia(url){
+	var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
+	$.ajax({
+		    type: 'GET',
+    		url: hxlurl,
+    		dataType: 'json',
+			success: function(result){
+				var data = hxlProxyToJSON(result);
+				var html = '<div class="medium-12 column"><h3>Social Media</h3><div class="row">';
+				data.forEach(function(d){
+					var imgurl = '';
+					if(d['#meta+service']=='twitter'){
+						imgurl = '/assets/icons/social_media/twitter.png';
+					} else {
+						imgurl = '/assets/icons/social_media/facebook.png';
+					}
+					html+='<div class="medium-4 column"><img src="'+imgurl+'" alt="icon" class="socialmediaicon" height="64px" width="64px" /><span class="icontext"><a href="'+d['#meta+url']+'" target="_blank">'+d['#meta+description']+'</a></span></div>';
+				});
+				html+='</div></div>';
+				$('#socialmedia').html(html);
+    		}
+    });
 }
 
 function loadInfographics(url){
