@@ -58,3 +58,11 @@ h5 {
 .margin-top {
     margin-top:20px;
 }
+
+.socialmediaicon {
+    vertical-align: middle;
+}
+
+.icontext {
+    padding-left:10px;
+}
