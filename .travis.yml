@@ -1,8 +1,9 @@
-language: node_js
-node_js:
-  - '6'
+language: ruby
+rvm:
+  - 2.3.1
 env:
   global:
+  - TRAVIS_NODE_VERSION="v7.1.0"
   - GH_REF=github.com/IFRCGo/ifrcgo.github.io
   - DEPLOY_BRANCH=publish
   - TARGET_BRANCH=master
@@ -14,6 +15,9 @@ before_install:
   - chmod +x ./.build_scripts/deploy.sh
   - rvm install 2.3.1
 before_script:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
+  - nvm use $TRAVIS_NODE_VERSION
   - npm install -g bower
   - npm install
   - bower install
