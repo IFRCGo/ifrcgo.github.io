@@ -125,7 +125,11 @@ function generateDash(data,geom){
         }
     });
 
+    var nameLookup = {}
 
+    geom.features.forEach(function(d){
+        nameLookup[d.properties['ISO_A3']] = d.properties['NAME'];
+    });
 
     var maxDate = d3.max(data, function(d) {
         return d3.max(d.months);
@@ -228,7 +232,7 @@ function generateDash(data,geom){
                 return feature.properties['ISO_A3'];
             })
             .popup(function (feature) {
-                return geom.features[feature.value].properties['NAME'];
+                return nameLookup[feature.key];
             })
             .renderPopup(true)
             .featureOptions({
@@ -488,7 +492,7 @@ function removeIncomplete(data) {
             && d['#date+start'] !== null
             && (d['#date+end'] !== undefined)) // note date end can be null, this is handled elsewhere
             //uncomment the following if we need to check that these fields are numbers
-            //&& !isNaN(parseFloat(d['#targeted'])) 
+            //&& !isNaN(parseFloat(d['#targeted']))
             //&& isFinite(d['#targeted'])
             //&& !isNaN(parseFloat(d['#meta+value']))
             //&& isFinite(d['#meta+value']))
@@ -595,6 +599,7 @@ $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
     data = dataPrep(removeIncomplete(hxlProxyToJSON(data)));
     data = roundMonths(data);
     var geom = topojson.feature(geomArgs[0], geomArgs[0].objects.geom);
+    console.log(geom);
     // $('#loadingmodal').modal('hide');
     generateDash(data,geom);
 });
