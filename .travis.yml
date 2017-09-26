@@ -22,5 +22,7 @@ before_script:
   - npm install
   - bower install
 script: gulp prod
+notifications:
+  webhooks: https://outlook.office.com/webhook/243fe7dd-fde8-4c3a-977e-8a510070406e@a2b53be5-734e-4e6c-ab0d-d184f60fd917/TravisCI/dc4d2ec51d4646d6a28e9faa1bfdc947/42d4c527-5419-44e7-9efb-d89a58fdf77f
 after_success:
   - "./.build_scripts/deploy.sh"
