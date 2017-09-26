@@ -19,6 +19,7 @@ before_script:
   - nvm install $TRAVIS_NODE_VERSION
   - nvm use $TRAVIS_NODE_VERSION
   - npm install -g bower
+  - npm install -g gulp
   - npm install
   - bower install
 script: gulp prod
