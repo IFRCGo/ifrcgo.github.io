@@ -31,7 +31,7 @@ function createMap(data,geom){
         var fillOpacity = 0.2;
         var cls = 'country'
         if(data.map(function(e) { return e['#country+code']; }).indexOf(feature.properties['ISO_A3'])>-1){
-            color = '#D33F49';
+            color = '#C02C2D';
             fillOpacity = 1;
             cls = 'appealcountry country appeal'+feature.properties['ISO_A3']
         };
@@ -102,13 +102,13 @@ function rss(data){
 function createFieldReports(data){
     var html ='<tbody>';
     data.forEach(function(d,i){
-        if(i<7){
-            if(d['#meta+title'].length>20){
-                var title = d['#meta+title'].substr(0,20)+'...';
+        if(i<10){
+            if(d['#meta+title'].length>100){
+                var title = d['#meta+title'].substr(0,100)+'...';
             } else {
                 var title = d['#meta+title'];
             }
-            html += '<tr><td><a href="'+d['#meta+url']+'" target="_blank">'+title+'</a></td><td>'+d['#country+name']+'</td><td>'+d['#crisis+type']+'</td><td>'+d['#date']+'</td></tr>';
+            html += '<tr><td width="55%"><a href="'+d['#meta+url']+'" target="_blank">'+title+'</a></td><td width="15%">'+d['#country+name']+'</td><td width="15%">'+d['#crisis+type']+'</td><td width="15%">'+d['#date']+'</td></tr>';
         }
     });
     html += "</tbody>";

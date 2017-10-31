@@ -26,25 +26,25 @@ navext:
 ## LANDING CONTENT ##
 #####################
 landing:
-    title: "Go Project Lab"
+    title: "Go Lab"
     tagline: "Go to the data"
-    welcome: "Welcome to the IFRC Go Project Website"
+    welcome: "Welcome to IFRC Go"
     sims: "SIMS"
     simsdesc: "Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement"
     stats:
-      dref: "Active DREF Operations"
-      emgappeal: "Active Emergency Appeals"
+      dref: "Ongoing DREF Operations"
+      emgappeal: "Ongoing Emergency Appeals"
       emgfunding: "Emergency Appeal Funding"
       budget: "Budget for DREFs & Appeals"
       population: "Targeted Population"
     currentops: "Current Operations"
     fieldreports: "Latest Field Reports"
-    alerts: "Latest Alerts"
-    coredatasets:
-      name: "Core Datasets"
-      ongoingops: "Ongoing Operations"
-      3w: "Who does, what and where? (3W)"
-      appeals: "Appeals"
+    alerts: "Latest Deployment Alerts"
+    globaloverview:
+      name: "Global Overview"
+      ongoingops: "List of Active Operations"
+      3w: "3W: Who does What Where? (incomplete)"
+      appeals: "Operations Pages"
     golabs:
       name: "Go Labs"
       fieldreports: "IFRC Field Reports"
@@ -55,7 +55,7 @@ landing:
       europemigration: "European Migration Portal"
       erureadiness: "Emergency Response Units (ERU) Readiness"
       datalibrary: "Data Library"
-    quote: "IFRC Go aims to make all disaster information universally accessible and useful to IFRC responders for better decision making."
+    quote: "Go aims to make all disaster information universally accessible and useful to IFRC responders for better decision making. It is set to replace DMIS in early 2018."
     datainit: "IFRC Data Initiatives"
     datainitdesc: "IFRC is a data-driven organization dedicated to making evidence-based decision-making. Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies."
     githubdesc: "All our products and tools are available on the IFRC GO github page."

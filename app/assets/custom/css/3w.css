@@ -14,7 +14,7 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
     font-size:1.5em;
-    color:#D32F2F;
+    color:#C02C2D;
  }
 
 .headline {
@@ -38,11 +38,11 @@
 }
 
 #time_chart .stack path {
-    stroke:#D32F2F;
+    stroke:#C02C2D;
 }
 
 .btn-sm {
-    background-color:#D32F2F;
+    background-color:#C02C2D;
     border-width:0px;
     margin-bottom:10px;
 }
@@ -57,7 +57,7 @@
 }
 
 .filterlink {
-    color:#D32F2F;
+    color:#C02C2D;
     padding-right:10px;
     cursor:pointer;
 }
