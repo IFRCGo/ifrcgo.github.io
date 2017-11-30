@@ -163,7 +163,7 @@ function updateMap(data,region){
 		var fillOpacity = 0;
 		var cls = 'country'
 		if(data.map(function(e) { if(e['#region+name']==region || region=='All'){return e['#country+code']}; }).indexOf(feature.properties['ISO_A3'])>-1){
-			color = '#D33F49';
+			color = '#C02C2D';
 			fillOpacity = 0.7;
 			cls = 'appealcountry country appeal'+feature.properties['ISO_A3']
 		};
@@ -209,7 +209,7 @@ function createMap(data,geom){
 		var cls = 'country'
 
 		if(data.map(function(e) { return e['#country+code']; }).indexOf(feature.properties['ISO_A3'])>-1){
-			color = '#D33F49';
+			color = '#C02C2D';
 			fillOpacity = 0.7;
 			cls = 'appealcountry country appeal'+feature.properties['ISO_A3']
 		};
@@ -282,7 +282,7 @@ function createPie(id,width,inner,percent){
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 
 	svg.append("path")
-		.style("fill", "#D33F49")
+		.style("fill", "#C02C2D")
 		.attr("d", fundingArc)
 		.attr("transform", "translate("+(width/2)+","+(width/2)+")");
 

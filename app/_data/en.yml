@@ -26,25 +26,28 @@ navext:
 ## LANDING CONTENT ##
 #####################
 landing:
-    title: "Go Project Lab"
+    title: "Go Lab"
     tagline: "Go to the data"
-    welcome: "Welcome to the IFRC Go Project Website"
+    welcome: "Welcome to IFRC Go"
     sims: "SIMS"
     simsdesc: "Surge Information Management Support (SIMS) is a network of information management and mapping specialists that provide information management for international disaster response operations across the RCRC Movement"
     stats:
-      dref: "Active DREF Operations"
-      emgappeal: "Active Emergency Appeals"
+      dref: "Ongoing DREF Operations"
+      emgappeal: "Ongoing Emergency Appeals"
       emgfunding: "Emergency Appeal Funding"
       budget: "Budget for DREFs & Appeals"
       population: "Targeted Population"
     currentops: "Current Operations"
     fieldreports: "Latest Field Reports"
-    alerts: "Latest Alerts"
-    coredatasets:
-      name: "Core Datasets"
-      ongoingops: "Ongoing Operations"
-      3w: "Who does, what and where? (3W)"
-      appeals: "Appeals"
+    alerts: "Latest Deployment Alerts"
+    globaloverview:
+      name: "Global Overview"
+      ongoingops: "Map of Ongoing Operations"
+      historiceru: "Historic ERU Deployments"
+      erureadiness: "ERU Readiness"
+      ongoingopslist: "List of Active Operations"
+      3w: "3W: Who Does What Where? (incomplete)"
+      appeals: "List of Operations Pages"
     golabs:
       name: "Go Labs"
       fieldreports: "IFRC Field Reports"
@@ -53,12 +56,12 @@ landing:
       okrs: "OKRS"
       summary: "Summary of 2017 Emergency Operations"
       europemigration: "European Migration Portal"
-      erureadiness: "Emergency Response Units (ERU) Readiness"
       datalibrary: "Data Library"
-    quote: "IFRC Go aims to make all disaster information universally accessible and useful to IFRC responders for better decision making."
+    quote: "Go is IFRC's portal for data and information for operational decision-making. Go is currently in beta, and will replace DMIS in early 2018."
     datainit: "IFRC Data Initiatives"
     datainitdesc: "IFRC is a data-driven organization dedicated to making evidence-based decision-making. Through data.ifrc.org you will be able to access the Federation-wide Databank and Reporting System (FDRS) that provides data about all the National Societies."
-    githubdesc: "All our products and tools are available on the IFRC GO github page."
+    githubtitle: "Code"
+    githubdesc: "All our products and tools are available on the IFRC Go Github page."
 
 
 ####################
@@ -86,7 +89,7 @@ about:
     - header: "Go Work Streams"
       text: "The Go Team will deliver three major streams of work focusing on i) Data literacy - building the basic organizational foundations of better data services, ii) Single-context situational awareness (small/medium size disaster information) - improving information management within a specific small to medium crisis response including ongoing global overview, and iii) Multi-context complex awareness (major disaster information) - to establish an emergency center that provides Federation leaders with processes, systems and products to increase informational coherence and decision-making during multiple large global crisis response operations."
     - header: "Go Products and Services"
-      text: "Within these work streams, the Go Platform will deliver a suite of solutions that make disaster information universally available and useful for IFRC responders. Examples of these solutions include programs to create good data habits; analytics; data visualizations; trend analysis; hazard mapping; response mapping; gap analysis; and an innovation lab to liaise with and build on existing partnerships with key private sector, United Nations, Non Governmental Organizations."
+      text: "Within these work streams, Go will deliver a suite of solutions that make disaster information universally available and useful for IFRC responders. Examples of these solutions include programs to create good data habits; analytics; data visualizations; trend analysis; hazard mapping; response mapping; gap analysis; and an innovation lab to liaise with and build on existing partnerships with key private sector, United Nations, Non Governmental Organizations."
   supporter_message: "Go has received dedicated personnel and funding support from"
   supporters:
     - name: "American Red Cross"
