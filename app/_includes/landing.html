@@ -2,13 +2,11 @@
 <!-- <div class="row column alerts">
 <p class="marquee"><span id="feed"></span></p>
 </div> -->
-<hr />
-<div class="row">
-  <div class="quote text-center">
-    {{site.data[locale].landing.quote}}
-  </div>
+
+<div class="callout secondary text-center">
+  <p>{{site.data[locale].landing.quote}}</p>
 </div>
-<hr  />
+
 <div class="row small-12 medium-up-3">
 <a name="coredatasets"><h1 class="text-center">{{site.data[locale].landing.globaloverview.name}}</h1></a>
 
@@ -45,16 +43,29 @@
     </div>
   </div>
 </div>
+
 <div class="row small-up-1 medium-up-3">
+  <div class="column">
+    <div class="card" style="border:none">
+      <a target="_blank" href="{{ site.baseurl }}/ongoingops">
+        <div class="card-section text-center">
+          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/ongoingops.png">
+        </div>
+      </a>
+      <div class="card-section">
+        <a href="{{ site.baseurl }}/ongoingops" target="_blank" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.globaloverview.ongoingops}}</a>
+      </div>
+    </div>
+  </div>
   <div class="column">
     <div class="card" style="border:none">
       <a href="{{ site.baseurl }}/currentappeals">
         <div class="card-section text-center">
-          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/surge_icon.png">
+          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/ongoingops.png">
         </div>
       </a>
       <div class="card-section">
-        <a href="{{ site.baseurl }}/currentappeals" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.globaloverview.ongoingops}}</a>
+        <a href="{{ site.baseurl }}/currentappeals" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.globaloverview.ongoingopslist}}</a>
       </div>
     </div>
   </div>
@@ -62,7 +73,7 @@
     <div class="card" style="border:none">
       <a href="{{ site.baseurl }}/appeals">
         <div class="card-section text-center">
-          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/appealsplus_icon.png">
+          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/listofopspages.png">
         </div>
       </a>
       <div class="card-section">
@@ -72,9 +83,33 @@
   </div>
   <div class="column">
     <div class="card" style="border:none">
+      <a href="{{ site.baseurl }}/historiceru">
+        <div class="card-section text-center">
+          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/deployment.png">
+        </div>
+      </a>
+      <div class="card-section">
+        <a href="{{ site.baseurl }}/historiceru" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.globaloverview.historiceru}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card" style="border:none">
+      <a href="https://s.ifrcgo.org/eru_readiness/">
+        <div class="card-section text-center">
+          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/deployment.png">
+        </div>
+      </a>
+      <div class="card-section">
+        <a href="https://s.ifrcgo.org/eru_readiness/" class="button ifrcCorporateRed expanded">{{site.data[locale].landing.globaloverview.erureadiness}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <div class="card" style="border:none">
       <a href="{{ site.baseurl }}/global3w">
         <div class="card-section text-center">
-          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/3w_icon.png">
+          <img class="card-icon rcicon" src="{{ site.baseurl }}/assets/icons/3w.png">
         </div>
       </a>
       <div class="card-section">
@@ -84,25 +119,27 @@
   </div>
 </div>
 
-<div class="row small-12 medium-up-3 large-up-5" style="background:#FAFAFA">
+<hr/>
+
+<div class="row small-12 medium-up-3 large-up-5">
   <a name="regions"><h1 class="text-center">Regional Go Pages</h1></a>
 
   <div class="column">
-    <div class="card iconmap" style="background:#FAFAFA">
+    <div class="card iconmap">
       <div class="card-section text-center">
-        <a href="https://ifrc-africa.github.io/africa-portal/" target="_blank" class="icons-regions">
+        <a href="http://ifrcgo.org/africa/" target="_blank" class="icons-regions">
           <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map africa.png">
         </a>
       </div>
       <div class="card-section">
-        <a href="https://ifrc-africa.github.io/africa-portal/" target="_blank" class="icons-regions">
+        <a href="http://ifrcgo.org/africa/" target="_blank" class="icons-regions">
           <h2 class="text-center">Africa</h2>
         </a>
       </div>
     </div>
   </div>
   <div class="column">
-    <div class="card iconmap" style="background:#FAFAFA">
+    <div class="card iconmap">
       <div class="card-section text-center">
         <a href="https://www.goamericas.cruzroja.org/english" target="_blank" class="icons-regions">
           <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map americas.png">
@@ -116,7 +153,7 @@
     </div>
   </div>
   <div class="column">
-    <div class="card iconmap" style="background:#FAFAFA">
+    <div class="card iconmap">
       <div class="card-section text-center">
         <a href="https://ifrc-asia-pacific.github.io/dashboard" target="_blank" class="icons-regions">
           <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map asia_pac.png">
@@ -130,7 +167,7 @@
     </div>
   </div>
   <div class="column">
-    <div class="card iconmap" style="background:#FAFAFA">
+    <div class="card iconmap">
       <div class="card-section text-center">
         <a href="http://ifrcgo.org/europe/" target="_blank" class="icons-regions">
           <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map europe.png">
@@ -144,7 +181,7 @@
     </div>
   </div>
   <div class="column">
-    <div class="card iconmap" style="background:#FAFAFA">
+    <div class="card iconmap">
       <div class="card-section text-center">
         <a href="http://ifrcgo.org/mena/" target="_blank" class="icons-regions">
           <img class="thumbnail-icons" src="{{ site.baseurl }}/assets/icon maps/icons/icon map mena.png">
@@ -158,6 +195,8 @@
     </div>
   </div>
 </div>
+
+<hr/>
 
 <div class="row">
   <!--<div class="medium-12 columns">
@@ -215,19 +254,7 @@
       </a>
     </div>
   </div>
-  <div class="column">
-    <div class="card">
-      <a href="{{site.baseurl}}/okrs">
-        <div class="card-section text-center">
-          <span class="icon icon-calendar card-icon"></span>
-        </div>
-        <div class="card-section">
-          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.okrs}}</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="column">
+  <!-- <div class="column">
     <div class="card">
       <a href="{{site.baseurl}}/summary">
         <div class="card-section text-center">
@@ -238,31 +265,7 @@
         </div>
       </a>
     </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <a href="https://ifrc-europe.github.io/migration-portal/">
-        <div class="card-section text-center">
-          <span class="icon icon-users card-icon"></span>
-        </div>
-        <div class="card-section">
-          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.europemigration}}</span>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="column">
-    <div class="card">
-      <a href="https://s.ifrcgo.org/eru_readiness/">
-        <div class="card-section text-center">
-          <img class="card-icon" src="{{ site.baseurl }}/assets/graphics/ERU.gif" style="height:20px;">
-        </div>
-        <div class="card-section">
-          <span class="button ifrcGray expanded">{{site.data[locale].landing.golabs.erureadiness}}</span>
-        </div>
-      </a>
-    </div>
-  </div>
+  </div> -->
   <div class="column">
     <div class="card">
       <a href="{{site.baseurl}}/datalibrary">
@@ -310,7 +313,7 @@
     <div class="card">
       <div class="card-section text-center">
         <a href="https://github.com/IFRCGo" target="_blank" class="icons-regions">
-          <h1>{{site.data[locale].landing.golabs.name}}</h1>
+          <h1>{{site.data[locale].landing.githubtitle}}</h1>
         </a>
       </div>
       <div class="card-section">
