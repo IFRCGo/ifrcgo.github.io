@@ -112,7 +112,7 @@ function generateTypes(id,datalist){
                 type: 'category'
             }
         },
-        color: {pattern:['#BFBFBF','#848484','#C02C2D']},
+        color: {pattern:['#BFBFBF','#848484','#D33F49']},
         tooltip: {
             format: {
                 value: function (value, ratio, id) {
@@ -187,7 +187,7 @@ function generateRegions(id,datalist){
                 type: 'category'
             }
         },
-        color: {pattern:['#BFBFBF','#848484','#C02C2D']},
+        color: {pattern:['#BFBFBF','#848484','#D33F49']},
         tooltip: {
             format: {
                 value: function (value, ratio, id) {
@@ -261,7 +261,7 @@ function generateTimeGraph(id,datalist){
                 type: 'category'
             }
         },
-        color: {pattern:['#BFBFBF','#848484','#C02C2D']}
+        color: {pattern:['#BFBFBF','#848484','#D33F49']}
     });
 }
 

@@ -19,7 +19,7 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
     font-size:1.5em;
-    color:#C02C2D;
+    color:#D32F2F;
  }
 
  .viz_chart {
@@ -29,13 +29,13 @@
 .buttonlink {
     border-width: 1px;
     border-style:solid;
-    border-color:#C02C2D;
+    border-color:#D33F49;
     border-radius: 10px;
     font-size:1.2em;
     background-color:#fff;
     padding: 10px;
     margin-right:10px;
-    color:#C02C2D;
+    color:#D33F49;
     outline:0;
     margin-bottom:10px;
     font-family: 'Open Sans', sans-serif;
