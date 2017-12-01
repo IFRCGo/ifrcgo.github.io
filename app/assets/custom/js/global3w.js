@@ -38,7 +38,7 @@ function generateDash(data,geom){
             .center([0,0])
             .zoom(1)
             .geojson(geom)
-            .colors(['#999999', '#C02C2D'])
+            .colors(['#999999', '#D33F49'])
             .colorDomain([0, 1])
             .colorAccessor(function (d) {
                 var c=0;
