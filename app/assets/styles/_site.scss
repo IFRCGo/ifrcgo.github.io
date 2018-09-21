@@ -217,3 +217,17 @@ p {
 .breadcrumbs {
   padding-left:15px;
 }
+
+.golive {
+  background-color: $ifrcYellow;
+  height: 3em;
+}
+
+.golivetext {
+  position: absolute;
+  left: 35%;
+  color: $ifrcGray;
+  line-height: 3em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
