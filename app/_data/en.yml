@@ -7,19 +7,9 @@ random: "random"
 nav:
   - text: "Home"
     url:  "http://ifrcgo.org"
-  - text: "Core Datasets"
-    url:  "/#coredatasets"
-  - text: "About"
-    url:  "/about"
-  # - text: "IFRC Regions"
-  #   url:  "/#regions"
 navext:
-  - text: "IFRC.org"
-    url:  "http://ifrc.org"
-  - text: "FedNet"
-    url:  "https://fednet.ifrc.org/CookieAuth.dll?GetLogon?curl=Z2F&reason=0&formdir=2"
-  - text: "DMIS"
-    url:  "https://www-secure.ifrc.org/DMISII/Pages/00_Home/login.aspx"
+  - text: "go.ifrc.org"
+    url:  "https://go.ifrc.org"
 
 
 #####################
