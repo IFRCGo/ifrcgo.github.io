@@ -2,6 +2,7 @@
 source 'https://rubygems.org'
 
 gem 'jekyll'
+gem 'bundler'
 gem 'sass'
 gem 'compass'
 gem 'sass-css-importer'
