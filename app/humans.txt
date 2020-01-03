@@ -3,7 +3,7 @@
 |   ||    __)   |       _/    \  \/  /   \  ___  /   |   \
 |   ||     \    |    |   \     \____ \    \_\  \/    |    \
 |___|\___  /    |____|_  /\______  /  \______  /\_______  /
-         \/            \/        \/          \/         \/
+         \/            \/        \/          \/         \/ 
 
 ============================================================
 
@@ -13,5 +13,26 @@
 Contributor: SimonbJohnson
 Github: https://github.com/SimonbJohnson
 
+Contributor: renecnielsen
+Github: https://github.com/renecnielsen
+
+Contributor: kathicks
+Github: https://github.com/kathicks
+
 Contributor: Rydela
 Github: https://github.com/Rydela
+
+Contributor: Zibethin
+Github: https://github.com/Zibethin
+
+Contributor: danbjoseph
+Github: https://github.com/danbjoseph
+
+Contributor: toffehoff
+Github: https://github.com/toffehoff
+
+Contributor: guipizzini
+Github: https://github.com/guipizzini
+
+Contributor: humanitariandata
+Github: https://github.com/humanitariandata
