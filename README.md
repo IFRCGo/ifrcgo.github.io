@@ -1,4 +1,4 @@
-This was the initial GO Platform, it has been replaced by what is live at https://go.ifrc.org/.
+# This was the initial GO Platform, it has been replaced by what is live at https://go.ifrc.org/.
 
 ## IFRC GO LABS
 
